@@ -8,12 +8,13 @@ class S21Matrix {
 
  public:
   S21Matrix();
+  S21Matrix(int rows, int cols);
   ~S21Matrix();
 
   void Print();
   double& operator()(int row, int col);
-  int get_cols();
-  int get_rows();
+  int get_cols() const;
+  int get_rows() const;
 };
 
 #endif  // SRC_S21_MATRIX_H_

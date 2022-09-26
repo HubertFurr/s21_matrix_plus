@@ -9,8 +9,17 @@ S21Matrix::S21Matrix() {
 
   // Выделяем память с value-initialization (Т.к. double - POD-тип)
   matrix_ = new double[rows_ * cols_]();
-  this->Print();
 }
+
+S21Matrix::S21Matrix(int rows, int cols) {
+  rows_ = rows;
+  cols_ = cols;
+  matrix_ = new double[rows_ * cols_]();
+}
+
+// TODO(hubertfu): 
+// initializer_list - https://radioprog.ru/post/1262
+// initializer lists - https://www.educative.io/answers/what-are-initializer-lists-in-cpp
 
 S21Matrix::~S21Matrix() { delete[] matrix_; }
 
@@ -35,6 +44,6 @@ void S21Matrix::Print() {
   std::cout << std::endl;
 }
 
-int S21Matrix::get_cols() { return cols_; }
+int S21Matrix::get_cols() const { return cols_; }
 
-int S21Matrix::get_rows() { return rows_; }
+int S21Matrix::get_rows() const { return rows_; }
