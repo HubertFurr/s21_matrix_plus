@@ -54,3 +54,13 @@ dkms.conf
 .DS_Store
 .DS_Store?
 ._*
+
+# gcov files
+*.gcov
+*.gcda
+*.gcno
+
+# Projects's resut
+test
+gcov_report
+report/
