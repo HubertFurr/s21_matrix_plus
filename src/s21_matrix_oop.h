@@ -9,12 +9,17 @@ class S21Matrix {
  public:
   S21Matrix();
   S21Matrix(int rows, int cols);
+  S21Matrix(const S21Matrix& other);
+  S21Matrix(S21Matrix&& other) noexcept;
   ~S21Matrix();
 
-  void Print();
-  double& operator()(int row, int col);
+  void Print() const;
+  double& operator()(int row, int col) const;
   int get_cols() const;
   int get_rows() const;
+
+  S21Matrix& operator=(const S21Matrix& other);
+  S21Matrix& operator=(S21Matrix&& other);
 };
 
 #endif  // SRC_S21_MATRIX_H_
