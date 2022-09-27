@@ -113,7 +113,7 @@ ALL_TESTS_O = $(addprefix $(TESTS_OBJ_DIR)/, $(notdir $(ALL_TESTS_C:%.cc=%.o)))
 ALL_MODULES_GCOV_O = $(addprefix $(GCOV_OBJ_DIR)/, $(notdir $(ALL_MODULES_C:.cc=.o)))
 
 # Набор всех файлов для cpplint / cppcheck
-ALL_C_H_FILES = $(shell find . -type f | grep "\.(c|h)$$" -E)
+ALL_CPP_H_FILES = $(shell find . -type f | grep "\.(cpp|cc|h|hpp)$$" -E)
 
 # Указываем список каталогов, в которых make выполняет поиск
 vpath %.cc $(ALL_MODULES_DIRS) : $(ALL_TESTS_DIRS)
@@ -182,12 +182,12 @@ clean:
 rebuild: clean all
 
 cpplint: 
-	python3 ../materials/linters/cpplint.py --extensions=c $(ALL_C_H_FILES)
+	clang-format -n --verbose $(ALL_CPP_H_FILES)
 cppcheck:
-	cppcheck --enable=all --suppress=missingIncludeSystem $(ALL_C_H_FILES)
+	cppcheck --enable=all --force --suppress=missingIncludeSystem --language=c++ $(ALL_CPP_H_FILES)
 leaks:
 	leaks --atExit -- ./$(TEST_EXE)
 valgrind:
-	valgrind --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./$(TEST_EXE)
+	valgrind  --tool=memcheck --track-fds=yes --trace-children=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./$(TEST_EXE)
 
 .PHONY: all clean rebuild cpplint cppcheck leaks valgrind
