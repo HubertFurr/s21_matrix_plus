@@ -13,6 +13,8 @@ class S21Matrix {
   S21Matrix(S21Matrix&& other) noexcept;
   ~S21Matrix();
 
+  void SumMatrix(const S21Matrix& other);
+
   void Print() const;
   double& operator()(int row, int col) const;
   int get_cols() const;
@@ -20,6 +22,7 @@ class S21Matrix {
 
   S21Matrix& operator=(const S21Matrix& other);
   S21Matrix& operator=(S21Matrix&& other);
+  S21Matrix operator+(const S21Matrix& other) const;
 };
 
 #endif  // SRC_S21_MATRIX_H_

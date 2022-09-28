@@ -122,3 +122,27 @@ void S21Matrix::Print() const {
 int S21Matrix::get_cols() const { return cols_; }
 
 int S21Matrix::get_rows() const { return rows_; }
+
+void S21Matrix::SumMatrix(const S21Matrix &other) {
+  if (rows_ != other.get_rows() || cols_ != other.get_cols()) {
+    throw std::logic_error("Incorrect matrix size");
+  }
+
+  for (int i = 0; i < rows_; ++i) {
+    for (int j = 0; j < cols_; ++j) {
+      matrix_[i * cols_ + j] =
+          matrix_[i * cols_ + j] + other.matrix_[i * cols_ + j];
+    }
+  }
+}
+
+S21Matrix S21Matrix::operator+(const S21Matrix &other) const {
+  std::cout << "start operator+" << std::endl;
+  // SumMatrix(other);
+  // return *this;
+  S21Matrix tmp = *this;
+  tmp.SumMatrix(other);
+  std::cout << "end operator+" << std::endl;
+  return tmp;
+  // return std::move(tmp);
+}
