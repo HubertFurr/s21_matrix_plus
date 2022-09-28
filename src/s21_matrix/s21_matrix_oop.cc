@@ -191,3 +191,22 @@ S21Matrix S21Matrix::operator-(const S21Matrix &other) const {
   std::cout << "end operator+" << std::endl;
   return tmp;
 }
+
+void S21Matrix::MulNumber(const double number) {
+  for (int i = 0; i < rows_; ++i) {
+    for (int j = 0; j < cols_; ++j) {
+      matrix_[i * cols_ + j] = matrix_[i * cols_ + j] * number;
+    }
+  }
+}
+
+S21Matrix operator*(const S21Matrix &matrix, const double number) {
+  S21Matrix tmp = matrix;
+  tmp.MulNumber(number);
+  return tmp;
+}
+
+S21Matrix operator*(const double number, const S21Matrix &matrix) {
+  S21Matrix tmp = matrix * number;
+  return tmp;
+}
