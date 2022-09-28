@@ -1,5 +1,6 @@
 #include "./../s21_matrix_oop.h"
 
+#include <cmath>
 #include <iostream>
 
 S21Matrix::S21Matrix() {
@@ -122,6 +123,30 @@ void S21Matrix::Print() const {
 int S21Matrix::get_cols() const { return cols_; }
 
 int S21Matrix::get_rows() const { return rows_; }
+
+bool S21Matrix::EqMatrix(const S21Matrix &other) {
+  bool result = true;
+
+  if (rows_ != other.get_rows() || cols_ != other.get_cols()) {
+    result = false;
+  } else {
+    for (int i = 0; i < rows_; i++) {
+      for (int j = 0; j < cols_; j++) {
+        if (std::fabs(other(i, j) - (*this)(i, j)) > 1e-7) {
+          result = false;
+          break;
+        }
+      }
+      if (result == false) {
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
+bool S21Matrix::operator==(const S21Matrix &other) { return EqMatrix(other); }
 
 void S21Matrix::SumMatrix(const S21Matrix &other) {
   if (rows_ != other.get_rows() || cols_ != other.get_cols()) {
