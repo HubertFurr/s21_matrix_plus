@@ -66,6 +66,66 @@ TEST(test_class, move_constructor) {
   test_matrix_value(matrix_check, 0);
 }
 
+TEST(test_class, move_constructor2) {
+  S21Matrix matrix_check;
+  matrix_check = get_matrix();
+
+  // std::move
+  // std::cout << matrix_check.get_rows() << '\n';
+  // std::cout << matrix_check.get_cols() << '\n';
+  // matrix_check = get_matrix();
+  // S21Matrix matrix_check2 = matrix_check;
+
+  // std::cout << matrix_check.get_rows() << '\n';
+  // std::cout << matrix_check.get_cols() << '\n';
+
+  EXPECT_EQ(matrix_check.get_cols(), 5);
+  EXPECT_EQ(matrix_check.get_rows(), 5);
+  test_matrix_value(matrix_check, 0);
+}
+
+TEST(test_class, operator_eq) {
+  S21Matrix matrix1{2, 2};
+  S21Matrix matrix2;
+
+  matrix1(0, 0) = 3;
+  matrix1(0, 1) = 3;
+  matrix1(1, 0) = 3;
+  matrix1(1, 1) = 3;
+
+  matrix2 = matrix1;
+
+  EXPECT_EQ(matrix1.get_cols(), 2);
+  EXPECT_EQ(matrix1.get_rows(), 2);
+
+  EXPECT_EQ(matrix2.get_cols(), 2);
+  EXPECT_EQ(matrix2.get_rows(), 2);
+
+  test_matrix_value(matrix1, 3);
+  test_matrix_value(matrix2, 3);
+}
+
+TEST(test_class, operator111) {
+  S21Matrix matrix1 = S21Matrix(4,5);
+  S21Matrix matrix2(std::move(matrix1));
+
+  // matrix1(0, 1) = 3;
+  // matrix1(1, 0) = 3;
+  // matrix1(1, 1) = 3;
+
+  // matrix2 = matrix1;
+
+  // EXPECT_EQ(matrix1.get_cols(), 2);
+  // EXPECT_EQ(matrix1.get_rows(), 2);
+
+  // EXPECT_EQ(matrix2.get_cols(), 2);
+  // EXPECT_EQ(matrix2.get_rows(), 2);
+
+  // test_matrix_value(matrix1, 3);
+  // test_matrix_value(matrix2, 3);
+  // delete matrix1;
+}
+
 // int i1;                 //undefined value
 // int i2 = 42;            //note: inits with 42
 // int i3(42);             //inits with 42
