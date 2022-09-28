@@ -171,3 +171,23 @@ S21Matrix S21Matrix::operator+(const S21Matrix &other) const {
   return tmp;
   // return std::move(tmp);
 }
+
+void S21Matrix::SubMatrix(const S21Matrix &other) {
+  if (rows_ != other.get_rows() || cols_ != other.get_cols()) {
+    throw std::logic_error("Incorrect matrix size");
+  }
+
+  for (int i = 0; i < rows_; ++i) {
+    for (int j = 0; j < cols_; ++j) {
+      matrix_[i * cols_ + j] =
+          matrix_[i * cols_ + j] - other.matrix_[i * cols_ + j];
+    }
+  }
+}
+
+S21Matrix S21Matrix::operator-(const S21Matrix &other) const {
+  S21Matrix tmp = *this;
+  tmp.SubMatrix(other);
+  std::cout << "end operator+" << std::endl;
+  return tmp;
+}
