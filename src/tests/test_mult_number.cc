@@ -1,6 +1,6 @@
 #include "test.h"
 
-TEST(test_class, test_mult_number) {
+TEST(test_class, test_mul_number) {
   S21Matrix matrix1{2, 2};
   double number = 2;
   EXPECT_EQ(matrix1.get_cols(), 2);
@@ -16,7 +16,7 @@ TEST(test_class, test_mult_number) {
   test_matrix_value(matrix1, 2);
 }
 
-TEST(test_class, test_mult_number_operator1) {
+TEST(test_class, test_mul_number_operator1) {
   S21Matrix matrix1{2, 2};
   double number = 2;
   EXPECT_EQ(matrix1.get_cols(), 2);
@@ -32,7 +32,7 @@ TEST(test_class, test_mult_number_operator1) {
   test_matrix_value(result, 2);
 }
 
-TEST(test_class, test_mult_number_operator2) {
+TEST(test_class, test_mul_number_operator2) {
   S21Matrix matrix1{2, 2};
   double number = 2;
   EXPECT_EQ(matrix1.get_cols(), 2);
@@ -48,7 +48,35 @@ TEST(test_class, test_mult_number_operator2) {
   test_matrix_value(result, 2);
 }
 
-TEST(test_class, test_mult_number_const_operator) {
+TEST(test_class, test_mul_number_operator3) {
+  S21Matrix matrix1{2, 2};
+  double number = 2;
+  EXPECT_EQ(matrix1.get_cols(), 2);
+  EXPECT_EQ(matrix1.get_rows(), 2);
+
+  matrix1(0, 0) = 1;
+  matrix1(0, 1) = 1;
+  matrix1(1, 0) = 1;
+  matrix1(1, 1) = 1;
+
+  S21Matrix result_check{2, 2};
+  EXPECT_EQ(result_check.get_cols(), 2);
+  EXPECT_EQ(result_check.get_rows(), 2);
+
+  result_check(0, 0) = 8;
+  result_check(0, 1) = 8;
+  result_check(1, 0) = 8;
+  result_check(1, 1) = 8;
+
+  S21Matrix result = matrix1;
+  result *= number;
+  result *= number;
+  result *= number;
+
+  ASSERT_TRUE(result_check == result);
+}
+
+TEST(test_class, test_mul_number_const_operator) {
   const S21Matrix matrix1{2, 2};
   const double number = 2;
   EXPECT_EQ(matrix1.get_cols(), 2);

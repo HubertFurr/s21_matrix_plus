@@ -175,6 +175,11 @@ S21Matrix S21Matrix::operator+(const S21Matrix &other) const {
   // return std::move(tmp);
 }
 
+S21Matrix S21Matrix::operator+=(const S21Matrix &other) {
+  SumMatrix(other);
+  return *this;
+}
+
 void S21Matrix::SubMatrix(const S21Matrix &other) {
   if (rows_ != other.get_rows() || cols_ != other.get_cols()) {
     throw std::logic_error("Incorrect matrix size");
@@ -191,8 +196,12 @@ void S21Matrix::SubMatrix(const S21Matrix &other) {
 S21Matrix S21Matrix::operator-(const S21Matrix &other) const {
   S21Matrix tmp = *this;
   tmp.SubMatrix(other);
-  std::cout << "end operator+" << std::endl;
   return tmp;
+}
+
+S21Matrix S21Matrix::operator-=(const S21Matrix &other) {
+  SubMatrix(other);
+  return *this;
 }
 
 void S21Matrix::MulNumber(const double number) {
@@ -212,6 +221,11 @@ S21Matrix operator*(const S21Matrix &matrix, const double number) {
 S21Matrix operator*(const double number, const S21Matrix &matrix) {
   S21Matrix tmp = matrix * number;
   return tmp;
+}
+
+S21Matrix S21Matrix::operator*=(const double number) {
+  MulNumber(number);
+  return *this;
 }
 
 void S21Matrix::MulMatrix(const S21Matrix &other) {
@@ -235,4 +249,9 @@ S21Matrix S21Matrix::operator*(const S21Matrix &other) const {
   S21Matrix tmp = *this;
   tmp.MulMatrix(other);
   return tmp;
+}
+
+S21Matrix S21Matrix::operator*=(const S21Matrix &other) {
+  MulMatrix(other);
+  return *this;
 }

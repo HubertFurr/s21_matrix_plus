@@ -106,7 +106,7 @@ TEST(test_class, operator_eq) {
 }
 
 TEST(test_class, operator111) {
-  S21Matrix matrix1 = S21Matrix(4,5);
+  S21Matrix matrix1 = S21Matrix(4, 5);
   S21Matrix matrix2(std::move(matrix1));
 
   // matrix1(0, 1) = 3;
