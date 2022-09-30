@@ -6,25 +6,26 @@
 S21Matrix::S21Matrix() {
   std::cout << "Default constructor" << std::endl;
   // TODO(hubertfu):const проверить
+  // TODO(hubertfu):explicit проверить
   rows_ = 3;
   cols_ = 3;
 
   // Выделяем память с value-initialization (Т.к. double - POD-тип)
-  matrix_ = new double[rows_ * cols_]();
+  matrix_ = new double[rows_ * cols_]{};
 }
 
 S21Matrix::S21Matrix(int rows, int cols) {
   std::cout << "int int constructor" << std::endl;
   rows_ = rows;
   cols_ = cols;
-  matrix_ = new double[rows_ * cols_]();
+  matrix_ = new double[rows_ * cols_]{};
 }
 
 S21Matrix::S21Matrix(const S21Matrix &other) {
   std::cout << "Copy constructor" << std::endl;
   rows_ = other.rows_;
   cols_ = other.cols_;
-  matrix_ = new double[rows_ * cols_]();
+  matrix_ = new double[rows_ * cols_]{};
   // other.Print();
   std::copy(other.matrix_, other.matrix_ + rows_ * cols_, matrix_);
   // std::cout << "other[]:" << other.matrix_[0] << std::endl;
@@ -124,7 +125,7 @@ int S21Matrix::get_cols() const { return cols_; }
 
 int S21Matrix::get_rows() const { return rows_; }
 
-bool S21Matrix::EqMatrix(const S21Matrix &other) {
+bool S21Matrix::EqMatrix(const S21Matrix &other) const {
   bool result = true;
 
   if (rows_ != other.get_rows() || cols_ != other.get_cols()) {
@@ -146,7 +147,9 @@ bool S21Matrix::EqMatrix(const S21Matrix &other) {
   return result;
 }
 
-bool S21Matrix::operator==(const S21Matrix &other) { return EqMatrix(other); }
+bool S21Matrix::operator==(const S21Matrix &other) const {
+  return EqMatrix(other);
+}
 
 void S21Matrix::SumMatrix(const S21Matrix &other) {
   if (rows_ != other.get_rows() || cols_ != other.get_cols()) {
@@ -208,5 +211,28 @@ S21Matrix operator*(const S21Matrix &matrix, const double number) {
 
 S21Matrix operator*(const double number, const S21Matrix &matrix) {
   S21Matrix tmp = matrix * number;
+  return tmp;
+}
+
+void S21Matrix::MulMatrix(const S21Matrix &other) {
+  if (cols_ != other.get_rows()) {
+    throw std::logic_error("Incorrect matrix size for multiplication");
+  }
+
+  S21Matrix result{rows_, cols_};
+
+  for (int i = 0; i < result.get_rows(); i++) {
+    for (int j = 0; j < result.get_cols(); j++) {
+      for (int k = 0; k < cols_; k++) {
+        result(i, j) += (*this)(i, k) * other(k, j);
+      }
+    }
+  }
+  *this = std::move(result);
+}
+
+S21Matrix S21Matrix::operator*(const S21Matrix &other) const {
+  S21Matrix tmp = *this;
+  tmp.MulMatrix(other);
   return tmp;
 }

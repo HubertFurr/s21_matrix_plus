@@ -13,10 +13,11 @@ class S21Matrix {
   S21Matrix(S21Matrix&& other) noexcept;
   ~S21Matrix();
 
-  bool EqMatrix(const S21Matrix& other);
+  bool EqMatrix(const S21Matrix& other) const;
   void SumMatrix(const S21Matrix& other);
   void SubMatrix(const S21Matrix& other);
   void MulNumber(const double number);
+  void MulMatrix(const S21Matrix& other);
 
   void Print() const;
   double& operator()(int row, int col) const;
@@ -25,11 +26,12 @@ class S21Matrix {
 
   S21Matrix& operator=(const S21Matrix& other);
   S21Matrix& operator=(S21Matrix&& other);
-  bool operator==(const S21Matrix& other);
+  bool operator==(const S21Matrix& other) const;
   S21Matrix operator+(const S21Matrix& other) const;
   S21Matrix operator-(const S21Matrix& other) const;
   friend S21Matrix operator*(const double number, const S21Matrix& matrix);
   friend S21Matrix operator*(const S21Matrix& matrix, const double number);
+  S21Matrix operator*(const S21Matrix& other) const;
 };
 
 #endif  // SRC_S21_MATRIX_H_
