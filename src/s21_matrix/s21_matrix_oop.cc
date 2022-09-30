@@ -2,7 +2,7 @@
 
 #include <cmath>
 #include <iostream>
-#include <vector>
+// #include <vector>
 
 S21Matrix::S21Matrix() {
   std::cout << "Default constructor" << std::endl;
