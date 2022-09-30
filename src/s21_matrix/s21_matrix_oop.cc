@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <vector>
 
 S21Matrix::S21Matrix() {
   std::cout << "Default constructor" << std::endl;
@@ -117,6 +118,43 @@ void S21Matrix::Print() const {
       }
     }
     std::cout << "\n";
+  }
+  std::cout << std::endl;
+}
+
+void S21Matrix::PrintWolfram() const {
+  // std::cout.precision(14);;
+  // std::cout.setf(std::ios::fixed);
+  std::cout << "det{";
+  for (int i = 0; i < rows_; ++i) {
+    std::cout << "{";
+    for (int j = 0; j < cols_; ++j) {
+      std::cout << (*this)(i, j);
+      if (j != cols_ - 1) {
+        std::cout << ",";
+      }
+    }
+    std::cout << "}";
+    if (i != rows_ - 1) {
+      std::cout << ",";
+    }
+  }
+  std::cout << "}" << std::endl;
+}
+
+void S21Matrix::PrintPlanet() const {
+  // std::cout.precision(14);;
+  // std::cout.setf(std::ios::fixed);
+  // std::cout << "det{";
+  for (int i = 0; i < rows_; ++i) {
+    // std::cout << "{";
+    for (int j = 0; j < cols_; ++j) {
+      std::cout << (*this)(i, j);
+      if (j != cols_ - 1) {
+        std::cout << " ";
+      }
+    }
+    std::cout << std::endl;
   }
   std::cout << std::endl;
 }
@@ -254,4 +292,82 @@ S21Matrix S21Matrix::operator*(const S21Matrix &other) const {
 S21Matrix S21Matrix::operator*=(const S21Matrix &other) {
   MulMatrix(other);
   return *this;
+}
+
+void S21Matrix::SwapRows(int n1, int n2) {
+  if (n1 != n2) {
+    for (int i = 0; i < cols_; ++i) {
+      std::swap((*this)(n1, i), (*this)(n2, i));
+    }
+  }
+}
+
+/**
+ * @brief функция для вычисления определителя (детерминанта) матрицы
+ *
+ * Прямые методы вычисления определителя могут быть основаны непосредственно на
+ * его определении, как суммы по перестановкам, или на разложении Лапласа по
+ * определителям меньшего порядка. Однако такие методы очень неэффективны, так
+ * как требуют О(n!) операций для вычисления определителя n-го порядка.
+ * Определитель матрицы 12х12 уже не посчитается за адекватное время
+ *
+ * Поэтому будем вычислять методом "Гаусса-Жордана", сложность данного алгоритма
+ * составляет уже O(n^3)
+ *
+ *
+ * @author Hubert Furr (hubertfu@student.21-school.ru)
+ * @return double расчитанный определитель (детерминант)
+ */
+double S21Matrix::Determinant() {
+  // double result = 0;
+  if (rows_ != cols_) {
+    throw std::logic_error("Incorrect matrix size for Determinant");
+  }
+
+  double det = 1;
+  S21Matrix tmp = *this;
+  int size = rows_;
+  // std::cout << "\n\n"
+  //           << "matrix:"
+  //           << "\n";
+  // tmp.Print();
+
+  for (int i = 0; i < size; ++i) {
+    // Выбор опорного элемента. pivoting = индекс опорного элемента
+    int pivoting = i;
+    for (int j = i + 1; j < size; j++) {
+      if (std::abs(tmp(j, i)) > std::abs(tmp(pivoting, i))) {
+        pivoting = j;
+      }
+    }
+
+    if (std::abs(tmp(pivoting, i)) < epsilon_) {
+      det = 0;
+      break;
+    }
+
+    // Меняем местами текущую строку и строку с опорным элементом
+    tmp.SwapRows(i, pivoting);
+    // std::cout << "after pivo:"
+    //           << "\n";
+    // tmp.Print();
+
+    det *= tmp(i, i);
+
+    if (i != pivoting) {
+      det = -det;
+    }
+
+    for (int j = i + 1; j < size; ++j) {
+      double el = tmp(j, i) / tmp(i, i);
+      for (int k = 0; k < size; ++k) {
+        tmp(j, k) -= tmp(i, k) * el;
+      }
+    }
+    // std::cout << "after minus row:"
+    //           << "\n";
+    // tmp.Print();
+  }
+
+  return det;
 }

@@ -5,6 +5,9 @@ class S21Matrix {
  private:
   int rows_, cols_;
   double* matrix_;
+  const double epsilon_ = 1e-9;
+
+  void SwapRows(int n1, int n2);
 
  public:
   S21Matrix();
@@ -18,8 +21,12 @@ class S21Matrix {
   void SubMatrix(const S21Matrix& other);
   void MulNumber(const double number);
   void MulMatrix(const S21Matrix& other);
+  double Determinant();
 
   void Print() const;
+  void PrintWolfram() const;
+  void PrintPlanet() const;
+
   double& operator()(int row, int col) const;
   int get_cols() const;
   int get_rows() const;
