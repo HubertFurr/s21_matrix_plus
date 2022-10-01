@@ -1,4 +1,4 @@
-#include "test.h"
+#include "./../test.h"
 
 TEST(test_class, basic_constructor) {
   S21Matrix matrix_check;

@@ -109,6 +109,8 @@ S21Matrix &S21Matrix::operator=(S21Matrix &&other) {
 }
 
 void S21Matrix::Print() const {
+  // std::cout.precision(14);;
+  // std::cout.setf(std::ios::fixed);
   std::cout << "[" << rows_ << " x " << cols_ << "]" << std::endl;
   for (int i = 0; i < rows_; ++i) {
     for (int j = 0; j < cols_; ++j) {
@@ -143,8 +145,9 @@ void S21Matrix::PrintWolfram() const {
 }
 
 void S21Matrix::PrintPlanet() const {
-  // std::cout.precision(14);;
-  // std::cout.setf(std::ios::fixed);
+  std::cout.precision(2);
+  ;
+  std::cout.setf(std::ios::fixed);
   // std::cout << "det{";
   for (int i = 0; i < rows_; ++i) {
     // std::cout << "{";
@@ -157,6 +160,22 @@ void S21Matrix::PrintPlanet() const {
     std::cout << std::endl;
   }
   std::cout << std::endl;
+}
+
+void S21Matrix::PrintTest() const {
+  std::cout.precision(2);
+  std::cout.setf(std::ios::fixed);
+  // std::cout << "det{";
+  for (int i = 0; i < rows_; ++i) {
+    // std::cout << "{";
+    for (int j = 0; j < cols_; ++j) {
+      std::cout << "matrix1(" << i << ", " << j << ") = " << (*this)(i, j)
+                << ";" << std::endl;
+      // std::cout << (*this)(i, j);
+    }
+    // std::cout << "}";
+  }
+  // std::cout << "}" << std::endl;
 }
 
 int S21Matrix::get_cols() const { return cols_; }
@@ -353,6 +372,11 @@ double S21Matrix::Determinant() {
     // tmp.Print();
 
     det *= tmp(i, i);
+    // double koef = tmp(i, i);
+
+    // for (int j = 0; j < size; ++j) {
+    // tmp(i, j) /= koef;
+    // }
 
     if (i != pivoting) {
       det = -det;
@@ -360,8 +384,12 @@ double S21Matrix::Determinant() {
 
     for (int j = i + 1; j < size; ++j) {
       double el = tmp(j, i) / tmp(i, i);
-      for (int k = 0; k < size; ++k) {
+      for (int k = i; k < size; ++k) {
+        // вообще
+        // std::cout << j << " " << k << "(" << tmp(j, k) << ") = " << tmp(i, k)
+        // << " * " << el << " == " << tmp(i, k) * el << std::endl;
         tmp(j, k) -= tmp(i, k) * el;
+        // tmp.Print();
       }
     }
     // std::cout << "after minus row:"

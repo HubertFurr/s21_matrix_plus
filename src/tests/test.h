@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 
 #include "./../s21_matrix_oop.h"
+#include "./classes/class_test_helper.h"
 
 void test_matrix_value(const S21Matrix &matrix_check, double check);
 S21Matrix get_matrix();

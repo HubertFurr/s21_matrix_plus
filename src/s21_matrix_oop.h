@@ -5,7 +5,7 @@ class S21Matrix {
  private:
   int rows_, cols_;
   double* matrix_;
-  const double epsilon_ = 1e-9;
+  const double epsilon_ = 1e-7;
 
   void SwapRows(int n1, int n2);
 
@@ -26,6 +26,7 @@ class S21Matrix {
   void Print() const;
   void PrintWolfram() const;
   void PrintPlanet() const;
+  void PrintTest() const;
 
   double& operator()(int row, int col) const;
   int get_cols() const;

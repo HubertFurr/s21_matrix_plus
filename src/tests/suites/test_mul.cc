@@ -1,4 +1,4 @@
-#include "test.h"
+#include "./../test.h"
 
 TEST(test_class, test_mul) {
   S21Matrix matrix1{2, 2};
