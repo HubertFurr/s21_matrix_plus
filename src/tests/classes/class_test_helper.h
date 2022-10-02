@@ -11,6 +11,10 @@ class S21TestHelper final {
 
   S21TestHelper() = delete;
   ~S21TestHelper() = delete;
+  static void Print(const S21Matrix& matrix);
+  static void PrintWolfram(const S21Matrix& matrix);
+  static void PrintPlanet(const S21Matrix& matrix);
+  static void PrintTest(const S21Matrix& matrix);
   static int GetRandInt(const int min, const int max);
   static double GetRandDouble(const double min, const double max);
   static S21Matrix RandomS21Matrix(const int rows, const int cols);

@@ -1135,8 +1135,6 @@ TEST(TestDeterminant, TestDeterminant8) {
   matrix1(4, 3) = 1234.1231;
   matrix1(4, 4) = 213.2232;
 
-  matrix1.PrintPlanet();
-
   double result_check = 130920381546776.9578338963303456;
   S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();

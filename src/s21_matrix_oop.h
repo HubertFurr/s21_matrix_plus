@@ -26,11 +26,6 @@ class S21Matrix {
   double Determinant() const;
   S21Matrix InverseMatrix() const;
 
-  void Print() const;
-  void PrintWolfram() const;
-  void PrintPlanet() const;
-  void PrintTest() const;
-
   double& operator()(int row, int col) const;
   int get_cols() const;
   int get_rows() const;
