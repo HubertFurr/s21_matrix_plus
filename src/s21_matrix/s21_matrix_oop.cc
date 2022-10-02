@@ -5,7 +5,7 @@
 // #include <vector>
 
 S21Matrix::S21Matrix() {
-  std::cout << "Default constructor" << std::endl;
+  // std::cout << "Default constructor" << std::endl;
   // TODO(hubertfu):const проверить
   // TODO(hubertfu):explicit проверить
   rows_ = 3;
@@ -16,14 +16,14 @@ S21Matrix::S21Matrix() {
 }
 
 S21Matrix::S21Matrix(int rows, int cols) {
-  std::cout << "int int constructor" << std::endl;
+  // std::cout << "int int constructor" << std::endl;
   rows_ = rows;
   cols_ = cols;
   matrix_ = new double[rows_ * cols_]{};
 }
 
 S21Matrix::S21Matrix(const S21Matrix &other) {
-  std::cout << "Copy constructor" << std::endl;
+  // std::cout << "Copy constructor" << std::endl;
   rows_ = other.rows_;
   cols_ = other.cols_;
   matrix_ = new double[rows_ * cols_]{};
@@ -36,7 +36,7 @@ S21Matrix::S21Matrix(const S21Matrix &other) {
 }
 
 S21Matrix::S21Matrix(S21Matrix &&other) noexcept {
-  std::cout << "Move constructor" << std::endl;
+  // std::cout << "Move constructor" << std::endl;
   rows_ = 0;
   cols_ = 0;
   matrix_ = nullptr;
@@ -54,13 +54,13 @@ S21Matrix::~S21Matrix() { delete[] matrix_; }
 
 double &S21Matrix::operator()(int row, int col) const {
   if (row >= rows_ || col >= cols_) {
-    throw std::out_of_range("Incorrect input, index is out of range");
+    throw std::out_of_range("Incorrect input for (), index is out of range.");
   }
   return matrix_[row * cols_ + col];
 }
 
 S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
-  std::cout << "Use =&" << std::endl;
+  // std::cout << "Use =&" << std::endl;
   if (this != &other) {
     delete[] matrix_;
 
@@ -74,7 +74,7 @@ S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
 }
 
 S21Matrix &S21Matrix::operator=(S21Matrix &&other) {
-  std::cout << "Use =&&" << std::endl;
+  // std::cout << "Use =&&" << std::endl;
   if (this != &other) {
     delete[] matrix_;
 
@@ -120,8 +120,10 @@ bool S21Matrix::EqMatrix(const S21Matrix &other) const {
   } else {
     for (int i = 0; i < rows_; i++) {
       for (int j = 0; j < cols_; j++) {
-        if (std::fabs(other(i, j) - (*this)(i, j)) > 1e-7) {
+        if (std::fabs(other(i, j) - (*this)(i, j)) > epsilon_) {
           result = false;
+          // std::cout << other(i, j) << " - " << (*this)(i, j) << " == " <<
+          // std::fabs(other(i, j) - (*this)(i, j)) << std::endl;
           break;
         }
       }
@@ -264,7 +266,52 @@ S21Matrix S21Matrix::Transpose() const {
   return result;
 }
 
-// S21Matrix S21Matrix::CalcComplements() const {}
+S21Matrix S21Matrix::GetMinorMatrix(const int skip_row,
+                                    const int skip_column) const {
+  // TODO(hubertfu): exception?
+  std::cout << "22!!\n";
+  std::cout << rows_ << cols_ << "!!\n";
+  S21Matrix result{rows_ - 1, cols_ - 1};
+
+  int shift_i = 0;
+  for (int i = 0; i < result.get_rows(); i++) {
+    if (i == skip_row) {
+      shift_i = 1;
+    }
+    int shift_j = 0;
+    for (int j = 0; j < result.get_cols(); j++) {
+      if (j == skip_column) {
+        shift_j = 1;
+      }
+      result(i, j) = (*this)(i + shift_i, j + shift_j);
+    }
+  }
+
+  return result;
+}
+
+S21Matrix S21Matrix::CalcComplements() const {
+  if (rows_ != cols_ || rows_ == 1) {
+    throw std::logic_error("Incorrect matrix size for CalcComplements");
+  }
+std::cout << "11!!\n";
+  S21Matrix result{rows_, cols_};
+std::cout << "12!!\n";
+  for (int i = 0; i < result.get_rows(); ++i) {
+    for (int j = 0; j < result.get_cols(); ++j) {
+      std::cout << "13!!\n";
+      S21Matrix minor_matrix = GetMinorMatrix(i, j);
+      std::cout << "14!!\n";
+      result(i, j) = minor_matrix.Determinant();
+std::cout << "15!!\n";
+      if ((i + j) % 2 != 0) {
+        result(i, j) = -result(i, j);
+      }
+    }
+  }
+
+  return result;
+}
 
 /**
  * @brief функция для вычисления определителя (детерминанта) матрицы
@@ -282,13 +329,13 @@ S21Matrix S21Matrix::Transpose() const {
  * @author Hubert Furr (hubertfu@student.21-school.ru)
  * @return double расчитанный определитель (детерминант)
  */
-double S21Matrix::Determinant() const {
+/*double S21Matrix::Determinant() const {
   // double result = 0;
   if (rows_ != cols_) {
     throw std::logic_error("Incorrect matrix size for Determinant");
   }
 
-  double det = 1;
+  double result = 1;
   S21Matrix tmp = *this;
   int size = rows_;
   // std::cout << "\n\n"
@@ -306,7 +353,7 @@ double S21Matrix::Determinant() const {
     }
 
     if (std::abs(tmp(pivoting, i)) < epsilon_) {
-      det = 0;
+      result = 0;
       break;
     }
 
@@ -316,7 +363,7 @@ double S21Matrix::Determinant() const {
     //           << "\n";
     // tmp.Print();
 
-    det *= tmp(i, i);
+    result *= tmp(i, i);
     // double koef = tmp(i, i);
 
     // for (int j = 0; j < size; ++j) {
@@ -324,7 +371,7 @@ double S21Matrix::Determinant() const {
     // }
 
     if (i != pivoting) {
-      det = -det;
+      result = -result;
     }
 
     for (int j = i + 1; j < size; ++j) {
@@ -342,7 +389,39 @@ double S21Matrix::Determinant() const {
     // tmp.Print();
   }
 
-  return det;
+  return result;
+}*/
+
+double S21Matrix::Determinant() const {
+  if (rows_ != cols_) {
+    throw std::logic_error("Incorrect matrix size for Determinant");
+  }
+
+  double result = 0;
+
+  if (rows_ == 1) {
+    result = (*this)(0, 0);
+  } else {
+    if (rows_ == 2) {
+      result = (*this)(0, 0) * (*this)(1, 1) - (*this)(1, 0) * (*this)(0, 1);
+    } else if (rows_ > 2) {
+      int sign = 1;
+
+      for (int i = 0; i < rows_; i++) {
+        S21Matrix minor_matrix = GetMinorMatrix(i, 0);
+        double det = minor_matrix.Determinant();
+        if (sign == 1) {
+          result += (*this)(i, 0) * det;
+        } else {
+          result += (*this)(i, 0) * det;
+        }
+
+        sign = -sign;
+      }
+    }
+  }
+
+  return result;
 }
 
 // S21Matrix S21Matrix::InverseMatrix() const {}

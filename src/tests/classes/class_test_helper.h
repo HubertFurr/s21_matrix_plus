@@ -1,23 +1,18 @@
 #include "./../../s21_matrix_oop.h"
 
-// В рамках С++ по идее тут лучше использовать namespace s21_matrix_test_helper
-// Однако в качестве эксперимента попробуем сделать аналог статичного класса
+namespace s21_matrix_test_helper {
+constexpr double epsilon_ = 1e-7;
+constexpr int random_test_num_ = 50;
+constexpr int test_timeout_ = 300;
 
-class S21TestHelper final {
- private:
- public:
-  static constexpr double epsilon_ = 1e-7;
-  static constexpr int random_test_num_ = 50;
-
-  S21TestHelper() = delete;
-  ~S21TestHelper() = delete;
-  static void Print(const S21Matrix& matrix);
-  static void PrintWolfram(const S21Matrix& matrix);
-  static void PrintPlanet(const S21Matrix& matrix);
-  static void PrintTest(const S21Matrix& matrix);
-  static int GetRandInt(const int min, const int max);
-  static double GetRandDouble(const double min, const double max);
-  static S21Matrix RandomS21Matrix(const int rows, const int cols);
-  static void FillS21Matrix(S21Matrix& matrix, double value);
-  static void CheckS21Matrix(const S21Matrix matrix, double value);
-};
+void Print(const S21Matrix& matrix);
+void PrintWolfram(const S21Matrix& matrix);
+void PrintPlanet(const S21Matrix& matrix);
+void PrintMathway(const S21Matrix& matrix);
+void PrintTest(const S21Matrix& matrix);
+int GetRandInt(const int min, int max);
+double GetRandDouble(const double min, double max);
+S21Matrix RandomS21Matrix(const int rows, int cols);
+void FillS21Matrix(S21Matrix& matrix, double value);
+void CheckS21Matrix(const S21Matrix& matrix, double value);
+}  // namespace s21_matrix_test_helper
