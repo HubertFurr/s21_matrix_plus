@@ -36,7 +36,7 @@ TEST(TestDeterminant, TestDeterminantException4) {
 // равен нулю
 TEST_P(RandomMatrixWithZeros, TestDeterminantZeroRandom1) {
   double check = 0.0;
-  ASSERT_NEAR(test_matrix_.Determinant(), check, S21TestHelper::epsilon_);
+  EXPECT_NEAR(test_matrix_.Determinant(), check, S21TestHelper::epsilon_);
 }
 
 INSTANTIATE_TEST_SUITE_P(Suite1, RandomMatrixWithZeros,
@@ -47,7 +47,7 @@ INSTANTIATE_TEST_SUITE_P(Suite1, RandomMatrixWithZeros,
 // равен нулю
 TEST_P(RandomMatrixWithDuplicates, TestDeterminantZeroRandom2) {
   double check = 0.0;
-  ASSERT_NEAR(test_matrix_.Determinant(), check, S21TestHelper::epsilon_);
+  EXPECT_NEAR(test_matrix_.Determinant(), check, S21TestHelper::epsilon_);
 }
 
 INSTANTIATE_TEST_SUITE_P(Suite2, RandomMatrixWithDuplicates,
@@ -58,7 +58,7 @@ INSTANTIATE_TEST_SUITE_P(Suite2, RandomMatrixWithDuplicates,
 // равен нулю
 TEST_P(RandomMatrixWithProportional, TestDeterminantZeroRandom3) {
   double check = 0.0;
-  ASSERT_NEAR(test_matrix_.Determinant(), check, S21TestHelper::epsilon_);
+  EXPECT_NEAR(test_matrix_.Determinant(), check, S21TestHelper::epsilon_);
 }
 
 INSTANTIATE_TEST_SUITE_P(Suite3, RandomMatrixWithProportional,
@@ -78,7 +78,7 @@ TEST(TestDeterminant, TestDeterminantZero1) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero2) {
@@ -99,7 +99,7 @@ TEST(TestDeterminant, TestDeterminantZero2) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero3) {
@@ -120,7 +120,7 @@ TEST(TestDeterminant, TestDeterminantZero3) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero4) {
@@ -143,7 +143,7 @@ TEST(TestDeterminant, TestDeterminantZero4) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero5) {
@@ -166,7 +166,7 @@ TEST(TestDeterminant, TestDeterminantZero5) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero6) {
@@ -197,7 +197,7 @@ TEST(TestDeterminant, TestDeterminantZero6) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero7) {
@@ -238,7 +238,7 @@ TEST(TestDeterminant, TestDeterminantZero7) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero8) {
@@ -280,7 +280,7 @@ TEST(TestDeterminant, TestDeterminantZero8) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero9) {
@@ -321,7 +321,7 @@ TEST(TestDeterminant, TestDeterminantZero9) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero10) {
@@ -362,7 +362,7 @@ TEST(TestDeterminant, TestDeterminantZero10) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero11) {
@@ -400,7 +400,7 @@ TEST(TestDeterminant, TestDeterminantZero11) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero12) {
@@ -437,7 +437,7 @@ TEST(TestDeterminant, TestDeterminantZero12) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero13) {
@@ -474,7 +474,7 @@ TEST(TestDeterminant, TestDeterminantZero13) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero14) {
@@ -512,7 +512,7 @@ TEST(TestDeterminant, TestDeterminantZero14) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero15) {
@@ -549,7 +549,7 @@ TEST(TestDeterminant, TestDeterminantZero15) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero16) {
@@ -586,7 +586,7 @@ TEST(TestDeterminant, TestDeterminantZero16) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero17) {
@@ -624,7 +624,7 @@ TEST(TestDeterminant, TestDeterminantZero17) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero18) {
@@ -661,7 +661,7 @@ TEST(TestDeterminant, TestDeterminantZero18) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero19) {
@@ -698,7 +698,7 @@ TEST(TestDeterminant, TestDeterminantZero19) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero20) {
@@ -714,7 +714,7 @@ TEST(TestDeterminant, TestDeterminantZero20) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero21) {
@@ -730,7 +730,7 @@ TEST(TestDeterminant, TestDeterminantZero21) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero22) {
@@ -746,7 +746,7 @@ TEST(TestDeterminant, TestDeterminantZero22) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero23) {
@@ -762,7 +762,7 @@ TEST(TestDeterminant, TestDeterminantZero23) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero24) {
@@ -783,7 +783,7 @@ TEST(TestDeterminant, TestDeterminantZero24) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero25) {
@@ -811,7 +811,7 @@ TEST(TestDeterminant, TestDeterminantZero25) {
   double result_check = 0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminantZero26) {
@@ -824,7 +824,7 @@ TEST(TestDeterminant, TestDeterminantZero26) {
   double result_check = -0.0;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -841,7 +841,7 @@ TEST(TestDeterminant, TestDeterminant1) {
   double result_check = 1.5;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant2) {
@@ -857,7 +857,7 @@ TEST(TestDeterminant, TestDeterminant2) {
   double result_check = -0.02;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant3) {
@@ -873,7 +873,7 @@ TEST(TestDeterminant, TestDeterminant3) {
   double result_check = 86.5510796270;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant4) {
@@ -894,7 +894,7 @@ TEST(TestDeterminant, TestDeterminant4) {
   double result_check = -39;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant5) {
@@ -915,7 +915,7 @@ TEST(TestDeterminant, TestDeterminant5) {
   double result_check = 138.2380038449;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant6) {
@@ -943,7 +943,7 @@ TEST(TestDeterminant, TestDeterminant6) {
   double result_check = -5.1347814888913e-17;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant7) {
@@ -971,7 +971,7 @@ TEST(TestDeterminant, TestDeterminant7) {
   double result_check = -6618.5495718153;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant8) {
@@ -1010,7 +1010,7 @@ TEST(TestDeterminant, TestDeterminant8) {
   double result_check = 130920381546776.9578338963303456;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant9) {
@@ -1058,7 +1058,7 @@ TEST(TestDeterminant, TestDeterminant9) {
   double result_check = -109019.85742181906954580110;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant10) {
@@ -1151,7 +1151,7 @@ TEST(TestDeterminant, TestDeterminant10) {
   double result_check = -63.322314761722227635;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant11) {
@@ -1284,7 +1284,7 @@ TEST(TestDeterminant, TestDeterminant11) {
   double result_check = -0.1224542341292035685434;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
 
 TEST(TestDeterminant, TestDeterminant12) {
@@ -1715,5 +1715,5 @@ TEST(TestDeterminant, TestDeterminant12) {
   double result_check = 0.0358009468269194807741324658459869567154;
   double result = matrix1.Determinant();
 
-  ASSERT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
 }
