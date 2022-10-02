@@ -1,8 +1,6 @@
 #include "./../classes/class_determinant_random.h"
 #include "./../test.h"
 
-// https://planetcalc.ru/8351/
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Тесты исключений
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -28,6 +26,66 @@ TEST(TestDeterminant, TestDeterminantException4) {
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Тесты на const матрицы
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+TEST(TestDeterminant, TestDeterminantConst1) {
+  S21Matrix matrix1{1, 1};
+  EXPECT_EQ(matrix1.get_cols(), 1);
+  EXPECT_EQ(matrix1.get_rows(), 1);
+
+  matrix1(0, 0) = 1.5;
+
+  double result_check = 1.5;
+  const S21Matrix const_matrix1 = matrix1;
+  double result = const_matrix1.Determinant();
+
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == const_matrix1);
+}
+
+TEST(TestDeterminant, TestDeterminantConst2) {
+  S21Matrix matrix1{2, 2};
+  EXPECT_EQ(matrix1.get_cols(), 2);
+  EXPECT_EQ(matrix1.get_rows(), 2);
+
+  matrix1(0, 0) = 1.1;
+  matrix1(0, 1) = 1.2;
+  matrix1(1, 0) = 1.3;
+  matrix1(1, 1) = 1.4;
+
+  double result_check = -0.02;
+  const S21Matrix const_matrix1 = matrix1;
+  double result = const_matrix1.Determinant();
+
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == const_matrix1);
+}
+
+TEST(TestDeterminant, TestDeterminantConst3) {
+  S21Matrix matrix1{3, 3};
+  EXPECT_EQ(matrix1.get_cols(), 3);
+  EXPECT_EQ(matrix1.get_rows(), 3);
+
+  matrix1(0, 0) = 1.1;
+  matrix1(0, 1) = 1.2;
+  matrix1(0, 2) = 1.3;
+  matrix1(1, 0) = 1.4;
+  matrix1(1, 1) = 1.5;
+  matrix1(1, 2) = 1.6;
+  matrix1(2, 0) = 1.7;
+  matrix1(2, 1) = 1.8;
+  matrix1(2, 2) = 1.9;
+
+  double result_check = 0.0;
+  const S21Matrix const_matrix1 = matrix1;
+  double result = const_matrix1.Determinant();
+
+  EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == const_matrix1);
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Рандомные цикличные тесты на определитель, равный 0
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -36,7 +94,9 @@ TEST(TestDeterminant, TestDeterminantException4) {
 // равен нулю
 TEST_P(RandomMatrixWithZeros, TestDeterminantZeroRandom1) {
   double check = 0.0;
+  S21Matrix matrix_before = test_matrix_;
   EXPECT_NEAR(test_matrix_.Determinant(), check, S21TestHelper::epsilon_);
+  EXPECT_TRUE(test_matrix_ == matrix_before);
 }
 
 INSTANTIATE_TEST_SUITE_P(Suite1, RandomMatrixWithZeros,
@@ -47,7 +107,9 @@ INSTANTIATE_TEST_SUITE_P(Suite1, RandomMatrixWithZeros,
 // равен нулю
 TEST_P(RandomMatrixWithDuplicates, TestDeterminantZeroRandom2) {
   double check = 0.0;
+  S21Matrix matrix_before = test_matrix_;
   EXPECT_NEAR(test_matrix_.Determinant(), check, S21TestHelper::epsilon_);
+  EXPECT_TRUE(test_matrix_ == matrix_before);
 }
 
 INSTANTIATE_TEST_SUITE_P(Suite2, RandomMatrixWithDuplicates,
@@ -58,7 +120,9 @@ INSTANTIATE_TEST_SUITE_P(Suite2, RandomMatrixWithDuplicates,
 // равен нулю
 TEST_P(RandomMatrixWithProportional, TestDeterminantZeroRandom3) {
   double check = 0.0;
+  S21Matrix matrix_before = test_matrix_;
   EXPECT_NEAR(test_matrix_.Determinant(), check, S21TestHelper::epsilon_);
+  EXPECT_TRUE(test_matrix_ == matrix_before);
 }
 
 INSTANTIATE_TEST_SUITE_P(Suite3, RandomMatrixWithProportional,
@@ -76,9 +140,11 @@ TEST(TestDeterminant, TestDeterminantZero1) {
   matrix1(0, 0) = 0.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero2) {
@@ -97,9 +163,11 @@ TEST(TestDeterminant, TestDeterminantZero2) {
   matrix1(2, 2) = 1.9;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero3) {
@@ -118,9 +186,11 @@ TEST(TestDeterminant, TestDeterminantZero3) {
   matrix1(2, 2) = -66;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero4) {
@@ -141,9 +211,11 @@ TEST(TestDeterminant, TestDeterminantZero4) {
   matrix1(2, 2) = 1.16551e+07;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero5) {
@@ -164,9 +236,11 @@ TEST(TestDeterminant, TestDeterminantZero5) {
   matrix1(2, 2) = 7.57375e+07;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero6) {
@@ -195,9 +269,11 @@ TEST(TestDeterminant, TestDeterminantZero6) {
   matrix1(3, 3) = -9.0224e+07;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero7) {
@@ -236,9 +312,11 @@ TEST(TestDeterminant, TestDeterminantZero7) {
   matrix1(4, 4) = 6.79804e+07;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero8) {
@@ -278,9 +356,11 @@ TEST(TestDeterminant, TestDeterminantZero8) {
   matrix1(4, 4) = 429858960118645.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero9) {
@@ -319,9 +399,11 @@ TEST(TestDeterminant, TestDeterminantZero9) {
   matrix1(4, 4) = 342540400593534.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero10) {
@@ -360,9 +442,11 @@ TEST(TestDeterminant, TestDeterminantZero10) {
   matrix1(4, 4) = 342540400593534.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero11) {
@@ -398,9 +482,11 @@ TEST(TestDeterminant, TestDeterminantZero11) {
   matrix1(4, 4) = 429858960118645.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero12) {
@@ -435,9 +521,11 @@ TEST(TestDeterminant, TestDeterminantZero12) {
   matrix1(4, 4) = 0.342540400593534;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero13) {
@@ -472,9 +560,11 @@ TEST(TestDeterminant, TestDeterminantZero13) {
   matrix1(4, 4) = 0.342540400593534;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero14) {
@@ -510,9 +600,11 @@ TEST(TestDeterminant, TestDeterminantZero14) {
   matrix1(4, 4) = 0.429858960118645;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero15) {
@@ -547,9 +639,11 @@ TEST(TestDeterminant, TestDeterminantZero15) {
   matrix1(4, 4) = 342540400593534.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero16) {
@@ -584,9 +678,11 @@ TEST(TestDeterminant, TestDeterminantZero16) {
   matrix1(4, 4) = 342540400593534.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero17) {
@@ -622,9 +718,11 @@ TEST(TestDeterminant, TestDeterminantZero17) {
   matrix1(4, 4) = 429.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero18) {
@@ -659,9 +757,11 @@ TEST(TestDeterminant, TestDeterminantZero18) {
   matrix1(4, 4) = 342540400593534.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero19) {
@@ -696,9 +796,11 @@ TEST(TestDeterminant, TestDeterminantZero19) {
   matrix1(4, 4) = 342540400593534.0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero20) {
@@ -712,9 +814,11 @@ TEST(TestDeterminant, TestDeterminantZero20) {
   matrix1(1, 1) = 6;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero21) {
@@ -728,9 +832,11 @@ TEST(TestDeterminant, TestDeterminantZero21) {
   matrix1(1, 1) = 6;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero22) {
@@ -744,9 +850,11 @@ TEST(TestDeterminant, TestDeterminantZero22) {
   matrix1(1, 1) = 0;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero23) {
@@ -760,9 +868,11 @@ TEST(TestDeterminant, TestDeterminantZero23) {
   matrix1(1, 1) = 15066259.67524537444115;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero24) {
@@ -781,9 +891,11 @@ TEST(TestDeterminant, TestDeterminantZero24) {
   matrix1(2, 2) = -99285853.08585397899151;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero25) {
@@ -809,9 +921,11 @@ TEST(TestDeterminant, TestDeterminantZero25) {
   matrix1(3, 3) = 71803366.44616046547890;
 
   double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminantZero26) {
@@ -822,9 +936,11 @@ TEST(TestDeterminant, TestDeterminantZero26) {
   matrix1(0, 0) = -0.0;
 
   double result_check = -0.0;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -839,9 +955,11 @@ TEST(TestDeterminant, TestDeterminant1) {
   matrix1(0, 0) = 1.5;
 
   double result_check = 1.5;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant2) {
@@ -855,9 +973,11 @@ TEST(TestDeterminant, TestDeterminant2) {
   matrix1(1, 1) = 1.4;
 
   double result_check = -0.02;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant3) {
@@ -871,9 +991,11 @@ TEST(TestDeterminant, TestDeterminant3) {
   matrix1(1, 1) = 2.69165195827372;
 
   double result_check = 86.5510796270;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant4) {
@@ -892,9 +1014,11 @@ TEST(TestDeterminant, TestDeterminant4) {
   matrix1(2, 2) = 7;
 
   double result_check = -39;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant5) {
@@ -913,9 +1037,11 @@ TEST(TestDeterminant, TestDeterminant5) {
   matrix1(2, 2) = 5.7808097708039;
 
   double result_check = 138.2380038449;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant6) {
@@ -941,9 +1067,11 @@ TEST(TestDeterminant, TestDeterminant6) {
   matrix1(3, 3) = 2.6;
 
   double result_check = -5.1347814888913e-17;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant7) {
@@ -969,9 +1097,11 @@ TEST(TestDeterminant, TestDeterminant7) {
   matrix1(3, 3) = 8.75408579711802;
 
   double result_check = -6618.5495718153;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant8) {
@@ -1008,9 +1138,11 @@ TEST(TestDeterminant, TestDeterminant8) {
   matrix1.PrintPlanet();
 
   double result_check = 130920381546776.9578338963303456;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant9) {
@@ -1056,9 +1188,11 @@ TEST(TestDeterminant, TestDeterminant9) {
   matrix1(5, 5) = 4.85558348917402;
 
   double result_check = -109019.85742181906954580110;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant10) {
@@ -1149,9 +1283,11 @@ TEST(TestDeterminant, TestDeterminant10) {
   matrix1(8, 8) = 1.60;
 
   double result_check = -63.322314761722227635;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant11) {
@@ -1282,9 +1418,11 @@ TEST(TestDeterminant, TestDeterminant11) {
   matrix1(10, 10) = 1.82;
 
   double result_check = -0.1224542341292035685434;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestDeterminant, TestDeterminant12) {
@@ -1713,7 +1851,9 @@ TEST(TestDeterminant, TestDeterminant12) {
   matrix1(19, 19) = 1.53;
 
   double result_check = 0.0358009468269194807741324658459869567154;
+  S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
   EXPECT_NEAR(result_check, result, S21TestHelper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
