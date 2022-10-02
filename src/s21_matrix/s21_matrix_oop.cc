@@ -125,8 +125,8 @@ void S21Matrix::Print() const {
 }
 
 void S21Matrix::PrintWolfram() const {
-  // std::cout.precision(14);;
-  // std::cout.setf(std::ios::fixed);
+  std::cout.precision(2);
+  std::cout.setf(std::ios::fixed);
   std::cout << "det{";
   for (int i = 0; i < rows_; ++i) {
     std::cout << "{";
@@ -146,7 +146,6 @@ void S21Matrix::PrintWolfram() const {
 
 void S21Matrix::PrintPlanet() const {
   std::cout.precision(2);
-  ;
   std::cout.setf(std::ios::fixed);
   // std::cout << "det{";
   for (int i = 0; i < rows_; ++i) {
@@ -314,12 +313,27 @@ S21Matrix S21Matrix::operator*=(const S21Matrix &other) {
 }
 
 void S21Matrix::SwapRows(int n1, int n2) {
+  // TODO(hubertfu): exception?
   if (n1 != n2) {
     for (int i = 0; i < cols_; ++i) {
       std::swap((*this)(n1, i), (*this)(n2, i));
     }
   }
 }
+
+S21Matrix S21Matrix::Transpose() const {
+  S21Matrix result{cols_, rows_};
+
+  for (int i = 0; i < rows_; ++i) {
+    for (int j = 0; j < cols_; ++j) {
+      result(j, i) = (*this)(i, j);
+    }
+  }
+
+  return result;
+}
+
+// S21Matrix S21Matrix::CalcComplements() const {}
 
 /**
  * @brief функция для вычисления определителя (детерминанта) матрицы
@@ -337,7 +351,7 @@ void S21Matrix::SwapRows(int n1, int n2) {
  * @author Hubert Furr (hubertfu@student.21-school.ru)
  * @return double расчитанный определитель (детерминант)
  */
-double S21Matrix::Determinant() {
+double S21Matrix::Determinant() const {
   // double result = 0;
   if (rows_ != cols_) {
     throw std::logic_error("Incorrect matrix size for Determinant");
@@ -399,3 +413,5 @@ double S21Matrix::Determinant() {
 
   return det;
 }
+
+// S21Matrix S21Matrix::InverseMatrix() const {}

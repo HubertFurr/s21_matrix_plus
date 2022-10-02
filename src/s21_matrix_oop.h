@@ -21,7 +21,10 @@ class S21Matrix {
   void SubMatrix(const S21Matrix& other);
   void MulNumber(const double number);
   void MulMatrix(const S21Matrix& other);
-  double Determinant();
+  S21Matrix Transpose() const;
+  S21Matrix CalcComplements() const;
+  double Determinant() const;
+  S21Matrix InverseMatrix() const;
 
   void Print() const;
   void PrintWolfram() const;
