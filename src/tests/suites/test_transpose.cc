@@ -27,6 +27,7 @@ TEST(TestTranspose, TestTransposeConst1) {
 
   EXPECT_TRUE(result == result_check);
   EXPECT_TRUE(result == const_result_check);
+  EXPECT_TRUE(matrix1 == const_matrix1);
 }
 
 TEST(TestTranspose, TestTransposeConst2) {
@@ -59,6 +60,7 @@ TEST(TestTranspose, TestTransposeConst2) {
 
   EXPECT_TRUE(result == result_check);
   EXPECT_TRUE(result == const_result_check);
+  EXPECT_TRUE(matrix1 == const_matrix1);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -80,9 +82,11 @@ TEST(TestTranspose, TestTranspose1) {
   S21TestHelper::CheckS21Matrix(matrix1, 1.99);
   S21TestHelper::CheckS21Matrix(result_check, 1.99);
 
+  S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
 
   EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestTranspose, TestTranspose2) {
@@ -97,9 +101,11 @@ TEST(TestTranspose, TestTranspose2) {
   S21TestHelper::CheckS21Matrix(matrix1, 0.0);
   S21TestHelper::CheckS21Matrix(result_check, 0.0);
 
+  S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
 
   EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestTranspose, TestTranspose3) {
@@ -117,9 +123,11 @@ TEST(TestTranspose, TestTranspose3) {
   S21TestHelper::CheckS21Matrix(matrix1, -1.5);
   S21TestHelper::CheckS21Matrix(result_check, -1.5);
 
+  S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
 
   EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestTranspose, TestTranspose4) {
@@ -141,9 +149,11 @@ TEST(TestTranspose, TestTranspose4) {
   result_check(2, 0) = 3;
   result_check(3, 0) = 4;
 
+  S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
 
   EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestTranspose, TestTranspose5) {
@@ -165,9 +175,11 @@ TEST(TestTranspose, TestTranspose5) {
   result_check(0, 2) = 3;
   result_check(0, 3) = 4;
 
+  S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
 
   EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestTranspose, TestTranspose6) {
@@ -193,9 +205,11 @@ TEST(TestTranspose, TestTranspose6) {
   result_check(1, 1) = 5;
   result_check(2, 1) = 6;
 
+  S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
 
   EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestTranspose, TestTranspose7) {
@@ -221,9 +235,11 @@ TEST(TestTranspose, TestTranspose7) {
   result_check(0, 2) = 5;
   result_check(1, 2) = 6;
 
+  S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
 
   EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestTranspose, TestTranspose8) {
@@ -335,9 +351,11 @@ TEST(TestTranspose, TestTranspose8) {
   result_check(6, 5) = 0.38849;
   result_check(6, 6) = -0.73690;
 
+  S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
 
   EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestTranspose, TestTranspose9) {
@@ -391,7 +409,9 @@ TEST(TestTranspose, TestTranspose9) {
   result_check(18, 0) = 1.22;
   result_check(19, 0) = 0.58;
 
+  S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
 
   EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
 }
