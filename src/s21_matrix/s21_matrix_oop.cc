@@ -387,4 +387,36 @@ double S21Matrix::Determinant() const {
   return result;
 }
 
+// double S21Matrix::Determinant() const {
+//   if (rows_ != cols_) {
+//     throw std::logic_error("Incorrect matrix size for Determinant");
+//   }
+
+//   double result = 0;
+
+//   if (rows_ == 1) {
+//     result = (*this)(0, 0);
+//   } else {
+//     if (rows_ == 2) {
+//       result = (*this)(0, 0) * (*this)(1, 1) - (*this)(1, 0) * (*this)(0, 1);
+//     } else if (rows_ > 2) {
+//       int sign = 1;
+
+//       for (int i = 0; i < rows_; i++) {
+//         S21Matrix minor_matrix = GetMinorMatrix(i, 0);
+//         double det = minor_matrix.Determinant();
+//         if (sign == 1) {
+//           result += (*this)(i, 0) * det;
+//         } else {
+//           result -= (*this)(i, 0) * det;
+//         }
+
+//         sign = -sign;
+//       }
+//     }
+//   }
+
+//   return result;
+// }
+
 // S21Matrix S21Matrix::InverseMatrix() const {}

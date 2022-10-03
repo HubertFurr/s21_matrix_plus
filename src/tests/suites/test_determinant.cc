@@ -104,6 +104,7 @@ TEST_P(RandomDeterminantMatrixWithZeros, TestDeterminantZeroRandom1) {
     std::cout << "det: " << result << "\n";
     s21_matrix_test_helper::Print(test_matrix_);
     s21_matrix_test_helper::PrintTest(test_matrix_);
+    s21_matrix_test_helper::PrintWolfram(test_matrix_);
   }
 #endif
 }
@@ -127,6 +128,7 @@ TEST_P(RandomDeterminantMatrixWithDuplicates, TestDeterminantZeroRandom2) {
     std::cout << "det: " << result << "\n";
     s21_matrix_test_helper::Print(test_matrix_);
     s21_matrix_test_helper::PrintTest(test_matrix_);
+    s21_matrix_test_helper::PrintWolfram(test_matrix_);
   }
 #endif
 }
@@ -150,6 +152,7 @@ TEST_P(RandomDeterminantMatrixWithProportional, TestDeterminantZeroRandom3) {
     std::cout << "det: " << result << "\n";
     s21_matrix_test_helper::Print(test_matrix_);
     s21_matrix_test_helper::PrintTest(test_matrix_);
+    s21_matrix_test_helper::PrintWolfram(test_matrix_);
   }
 #endif
 }
@@ -966,6 +969,178 @@ TEST(TestDeterminant, TestDeterminantZero26) {
   matrix1(0, 0) = -0.0;
 
   double result_check = -0.0;
+  S21Matrix matrix_before = matrix1;
+  double result = matrix1.Determinant();
+
+  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
+}
+
+TEST(TestDeterminant, TestDeterminantZero27) {
+  S21Matrix matrix1{5, 5};
+  EXPECT_EQ(matrix1.get_cols(), 5);
+  EXPECT_EQ(matrix1.get_rows(), 5);
+
+  matrix1(0, 0) = 561.395;
+  matrix1(0, 1) = 356.219;
+  matrix1(0, 2) = 356.219;
+  matrix1(0, 3) = -952.484;
+  matrix1(0, 4) = -506.042;
+
+  matrix1(1, 0) = 370.469;
+  matrix1(1, 1) = 356.219;
+  matrix1(1, 2) = 356.219;
+  matrix1(1, 3) = 441.733;
+  matrix1(1, 4) = 919.346;
+
+  matrix1(2, 0) = 113.190;
+  matrix1(2, 1) = 356.219;
+  matrix1(2, 2) = 356.219;
+  matrix1(2, 3) = 577.491;
+  matrix1(2, 4) = -770.006;
+
+  matrix1(3, 0) = -629.533;
+  matrix1(3, 1) = 356.219;
+  matrix1(3, 2) = 356.219;
+  matrix1(3, 3) = 370.425;
+  matrix1(3, 4) = -226.376;
+
+  matrix1(4, 0) = 964.659;
+  matrix1(4, 1) = 356.219;
+  matrix1(4, 2) = 356.219;
+  matrix1(4, 3) = 907.791;
+  matrix1(4, 4) = 679.804;
+
+  double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
+  double result = matrix1.Determinant();
+
+  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
+}
+
+TEST(TestDeterminant, TestDeterminantZero28) {
+  S21Matrix matrix1{5, 5};
+  EXPECT_EQ(matrix1.get_cols(), 5);
+  EXPECT_EQ(matrix1.get_rows(), 5);
+
+  matrix1(0, 0) = 561.395;
+  matrix1(0, 1) = 370.469;
+  matrix1(0, 2) = 441.733;
+  matrix1(0, 3) = -952.484;
+  matrix1(0, 4) = -506.042;
+
+  matrix1(1, 0) = 356.219;
+  matrix1(1, 1) = 356.219;
+  matrix1(1, 2) = 356.219;
+  matrix1(1, 3) = 356.219;
+  matrix1(1, 4) = 356.219;
+
+  matrix1(2, 0) = 113.190;
+  matrix1(2, 1) = 919.346;
+  matrix1(2, 2) = -629.533;
+  matrix1(2, 3) = 577.491;
+  matrix1(2, 4) = -770.006;
+
+  matrix1(3, 0) = 356.219;
+  matrix1(3, 1) = 356.219;
+  matrix1(3, 2) = 356.219;
+  matrix1(3, 3) = 356.219;
+  matrix1(3, 4) = 356.219;
+
+  matrix1(4, 0) = 964.659;
+  matrix1(4, 1) = 370.425;
+  matrix1(4, 2) = -226.376;
+  matrix1(4, 3) = 907.791;
+  matrix1(4, 4) = 679.804;
+
+  double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
+  double result = matrix1.Determinant();
+
+  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
+}
+
+TEST(TestDeterminant, TestDeterminantZero29) {
+  S21Matrix matrix1{5, 5};
+  EXPECT_EQ(matrix1.get_cols(), 5);
+  EXPECT_EQ(matrix1.get_rows(), 5);
+
+  matrix1(0, 0) = 356.219;
+  matrix1(0, 1) = 356.219;
+  matrix1(0, 2) = 356.219;
+  matrix1(0, 3) = 356.219;
+  matrix1(0, 4) = 356.219;
+
+  matrix1(1, 0) = 356.219;
+  matrix1(1, 1) = 356.219;
+  matrix1(1, 2) = 356.219;
+  matrix1(1, 3) = 356.219;
+  matrix1(1, 4) = 356.219;
+
+  matrix1(2, 0) = 113.190;
+  matrix1(2, 1) = 919.346;
+  matrix1(2, 2) = -629.533;
+  matrix1(2, 3) = 577.491;
+  matrix1(2, 4) = -770.006;
+
+  matrix1(3, 0) = 561.395;
+  matrix1(3, 1) = 370.469;
+  matrix1(3, 2) = 441.733;
+  matrix1(3, 3) = -952.484;
+  matrix1(3, 4) = -506.042;
+
+  matrix1(4, 0) = 964.659;
+  matrix1(4, 1) = 370.425;
+  matrix1(4, 2) = -226.376;
+  matrix1(4, 3) = 907.791;
+  matrix1(4, 4) = 679.804;
+
+  double result_check = 0.0;
+  S21Matrix matrix_before = matrix1;
+  double result = matrix1.Determinant();
+
+  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::epsilon_);
+  EXPECT_TRUE(matrix1 == matrix_before);
+}
+
+TEST(TestDeterminant, TestDeterminantZero30) {
+  S21Matrix matrix1{5, 5};
+  EXPECT_EQ(matrix1.get_cols(), 5);
+  EXPECT_EQ(matrix1.get_rows(), 5);
+
+  matrix1(0, 0) = 561;
+  matrix1(0, 1) = 356;
+  matrix1(0, 2) = 356;
+  matrix1(0, 3) = -952;
+  matrix1(0, 4) = -506;
+
+  matrix1(1, 0) = 370;
+  matrix1(1, 1) = 356;
+  matrix1(1, 2) = 356;
+  matrix1(1, 3) = 441;
+  matrix1(1, 4) = 919;
+
+  matrix1(2, 0) = 113;
+  matrix1(2, 1) = 356;
+  matrix1(2, 2) = 356;
+  matrix1(2, 3) = 577;
+  matrix1(2, 4) = -770;
+
+  matrix1(3, 0) = -629;
+  matrix1(3, 1) = 356;
+  matrix1(3, 2) = 356;
+  matrix1(3, 3) = 370;
+  matrix1(3, 4) = -226;
+
+  matrix1(4, 0) = 964;
+  matrix1(4, 1) = 356;
+  matrix1(4, 2) = 356;
+  matrix1(4, 3) = 907;
+  matrix1(4, 4) = 679;
+
+  double result_check = 0.0;
   S21Matrix matrix_before = matrix1;
   double result = matrix1.Determinant();
 
