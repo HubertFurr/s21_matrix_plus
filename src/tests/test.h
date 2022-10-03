@@ -6,7 +6,7 @@
 #define _GTEST_TIMEOUT 2
 
 // 1 - включить отображение доп информации в тестах
-#define __DEBUG 1
+// #define __DEBUG 1
 
 #include <gtest/gtest.h>
 

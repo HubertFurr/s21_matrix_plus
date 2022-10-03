@@ -6,7 +6,7 @@
 namespace s21_matrix_test_helper {
 void Print(const S21Matrix& matrix) {
   std::cout.precision(10);
-  std::cout.setf(std::ios::fixed);
+  // std::cout.setf(std::ios::fixed);
   std::cout << "[" << matrix.get_rows() << " x " << matrix.get_cols() << "]"
             << std::endl;
   for (int i = 0; i < matrix.get_rows(); ++i) {
@@ -92,7 +92,7 @@ void PrintMathway(const S21Matrix& matrix) {
 }
 
 void PrintTest(const S21Matrix& matrix) {
-  std::cout.precision(2);
+  std::cout.precision(0);
   std::cout.setf(std::ios::fixed);
   for (int i = 0; i < matrix.get_rows(); ++i) {
     for (int j = 0; j < matrix.get_cols(); ++j) {
@@ -121,7 +121,7 @@ S21Matrix RandomS21Matrix(int rows, int cols) {
 
   for (int i = 0; i < result.get_rows(); ++i) {
     for (int j = 0; j < result.get_cols(); ++j) {
-      result(i, j) = s21_matrix_test_helper::GetRandDouble(-2, 2);
+      result(i, j) = s21_matrix_test_helper::GetRandDouble(-1, 1);
     }
   }
 

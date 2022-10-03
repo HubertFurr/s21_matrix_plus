@@ -176,6 +176,7 @@ TEST_P(RandomCofactorMatrixWithZeros, TestCalcComplementsZeroRandom1) {
   if (::testing::Test::HasFailure()) {
     s21_matrix_test_helper::Print(test_matrix_);
     s21_matrix_test_helper::PrintTest(test_matrix_);
+    s21_matrix_test_helper::PrintWolfram(test_matrix_);
   }
 #endif
 }
@@ -205,6 +206,7 @@ TEST_P(RandomCofactorMatrixWithDuplicates, TestCalcComplementsZeroRandom2) {
   if (::testing::Test::HasFailure()) {
     s21_matrix_test_helper::Print(test_matrix_);
     s21_matrix_test_helper::PrintTest(test_matrix_);
+    s21_matrix_test_helper::PrintWolfram(test_matrix_);
   }
 #endif
 }
@@ -234,6 +236,7 @@ TEST_P(RandomCofactorMatrixWithProportional, TestCalcComplementsZeroRandom3) {
   if (::testing::Test::HasFailure()) {
     s21_matrix_test_helper::Print(test_matrix_);
     s21_matrix_test_helper::PrintTest(test_matrix_);
+    s21_matrix_test_helper::PrintWolfram(test_matrix_);
   }
 #endif
 }
@@ -777,16 +780,229 @@ TEST(TestCalcComplements, TestCalcComplements6) {
   S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.CalcComplements();
 
-  // s21_matrix_test_helper::Print(matrix1);
-  // s21_matrix_test_helper::Print(result);
-  // s21_matrix_test_helper::Print(result_check);
-  // std::exit(1);
-
   EXPECT_TRUE(result == result_check);
   EXPECT_TRUE(matrix1 == matrix_before);
 }
 
 TEST(TestCalcComplements, TestCalcComplements7) {
+  S21Matrix matrix1{10, 10};
+  EXPECT_EQ(matrix1.get_cols(), 10);
+  EXPECT_EQ(matrix1.get_rows(), 10);
+
+  S21Matrix result_check{10, 10};
+  EXPECT_EQ(result_check.get_cols(), 10);
+  EXPECT_EQ(result_check.get_rows(), 10);
+
+  matrix1(0, 0) = -1;
+  matrix1(0, 1) = -0;
+  matrix1(0, 2) = 1;
+  matrix1(0, 3) = 1;
+  matrix1(0, 4) = 1;
+  matrix1(0, 5) = 1;
+  matrix1(0, 6) = -0;
+  matrix1(0, 7) = 0;
+  matrix1(0, 8) = -1;
+  matrix1(0, 9) = 0;
+  matrix1(1, 0) = 1;
+  matrix1(1, 1) = -0;
+  matrix1(1, 2) = -0;
+  matrix1(1, 3) = -1;
+  matrix1(1, 4) = -0;
+  matrix1(1, 5) = -0;
+  matrix1(1, 6) = -1;
+  matrix1(1, 7) = 0;
+  matrix1(1, 8) = -0;
+  matrix1(1, 9) = -1;
+  matrix1(2, 0) = 1;
+  matrix1(2, 1) = -1;
+  matrix1(2, 2) = -0;
+  matrix1(2, 3) = -1;
+  matrix1(2, 4) = -0;
+  matrix1(2, 5) = 0;
+  matrix1(2, 6) = -0;
+  matrix1(2, 7) = 0;
+  matrix1(2, 8) = 1;
+  matrix1(2, 9) = -0;
+  matrix1(3, 0) = -0;
+  matrix1(3, 1) = -1;
+  matrix1(3, 2) = -0;
+  matrix1(3, 3) = 1;
+  matrix1(3, 4) = 1;
+  matrix1(3, 5) = -0;
+  matrix1(3, 6) = 1;
+  matrix1(3, 7) = -0;
+  matrix1(3, 8) = -1;
+  matrix1(3, 9) = 1;
+  matrix1(4, 0) = 0;
+  matrix1(4, 1) = 1;
+  matrix1(4, 2) = 1;
+  matrix1(4, 3) = 0;
+  matrix1(4, 4) = -0;
+  matrix1(4, 5) = 1;
+  matrix1(4, 6) = -1;
+  matrix1(4, 7) = -1;
+  matrix1(4, 8) = 0;
+  matrix1(4, 9) = -0;
+  matrix1(5, 0) = 1;
+  matrix1(5, 1) = 1;
+  matrix1(5, 2) = 1;
+  matrix1(5, 3) = 0;
+  matrix1(5, 4) = -0;
+  matrix1(5, 5) = 0;
+  matrix1(5, 6) = 0;
+  matrix1(5, 7) = 1;
+  matrix1(5, 8) = -0;
+  matrix1(5, 9) = 1;
+  matrix1(6, 0) = -0;
+  matrix1(6, 1) = 0;
+  matrix1(6, 2) = -0;
+  matrix1(6, 3) = -0;
+  matrix1(6, 4) = 1;
+  matrix1(6, 5) = 0;
+  matrix1(6, 6) = -1;
+  matrix1(6, 7) = -0;
+  matrix1(6, 8) = -1;
+  matrix1(6, 9) = 1;
+  matrix1(7, 0) = -0;
+  matrix1(7, 1) = 0;
+  matrix1(7, 2) = -0;
+  matrix1(7, 3) = -1;
+  matrix1(7, 4) = -1;
+  matrix1(7, 5) = 0;
+  matrix1(7, 6) = -1;
+  matrix1(7, 7) = 1;
+  matrix1(7, 8) = 0;
+  matrix1(7, 9) = -1;
+  matrix1(8, 0) = 0;
+  matrix1(8, 1) = 1;
+  matrix1(8, 2) = 0;
+  matrix1(8, 3) = 1;
+  matrix1(8, 4) = -1;
+  matrix1(8, 5) = 1;
+  matrix1(8, 6) = -1;
+  matrix1(8, 7) = -1;
+  matrix1(8, 8) = -0;
+  matrix1(8, 9) = 0;
+  matrix1(9, 0) = -0;
+  matrix1(9, 1) = 1;
+  matrix1(9, 2) = 1;
+  matrix1(9, 3) = -0;
+  matrix1(9, 4) = -0;
+  matrix1(9, 5) = 1;
+  matrix1(9, 6) = 0;
+  matrix1(9, 7) = -0;
+  matrix1(9, 8) = -1;
+  matrix1(9, 9) = -1;
+
+  result_check(0, 0) = -2;
+  result_check(0, 1) = -1;
+  result_check(0, 2) = -2;
+  result_check(0, 3) = 13;
+  result_check(0, 4) = 15;
+  result_check(0, 5) = 9;
+  result_check(0, 6) = -7;
+  result_check(0, 7) = 13;
+  result_check(0, 8) = 14;
+  result_check(0, 9) = -8;
+  result_check(1, 0) = 13;
+  result_check(1, 1) = -5;
+  result_check(1, 2) = 13;
+  result_check(1, 3) = 19;
+  result_check(1, 4) = 6;
+  result_check(1, 5) = -24;
+  result_check(1, 6) = -12;
+  result_check(1, 7) = -4;
+  result_check(1, 8) = 1;
+  result_check(1, 9) = -17;
+  result_check(2, 0) = 2;
+  result_check(2, 1) = 1;
+  result_check(2, 2) = -21;
+  result_check(2, 3) = -13;
+  result_check(2, 4) = 8;
+  result_check(2, 5) = 37;
+  result_check(2, 6) = 7;
+  result_check(2, 7) = 10;
+  result_check(2, 8) = 9;
+  result_check(2, 9) = 8;
+  result_check(3, 0) = 6;
+  result_check(3, 1) = -20;
+  result_check(3, 2) = 29;
+  result_check(3, 3) = 7;
+  result_check(3, 4) = -22;
+  result_check(3, 5) = -27;
+  result_check(3, 6) = -2;
+  result_check(3, 7) = -16;
+  result_check(3, 8) = -19;
+  result_check(3, 9) = 1;
+  result_check(4, 0) = -5;
+  result_check(4, 1) = -14;
+  result_check(4, 2) = 41;
+  result_check(4, 3) = -2;
+  result_check(4, 4) = -20;
+  result_check(4, 5) = -35;
+  result_check(4, 6) = -6;
+  result_check(4, 7) = -25;
+  result_check(4, 8) = -11;
+  result_check(4, 9) = 3;
+  result_check(5, 0) = 6;
+  result_check(5, 1) = 3;
+  result_check(5, 2) = 6;
+  result_check(5, 3) = 7;
+  result_check(5, 4) = 1;
+  result_check(5, 5) = -4;
+  result_check(5, 6) = -2;
+  result_check(5, 7) = 7;
+  result_check(5, 8) = 4;
+  result_check(5, 9) = 1;
+  result_check(6, 0) = -3;
+  result_check(6, 1) = 10;
+  result_check(6, 2) = -26;
+  result_check(6, 3) = -15;
+  result_check(6, 4) = 11;
+  result_check(6, 5) = 25;
+  result_check(6, 6) = 1;
+  result_check(6, 7) = 8;
+  result_check(6, 8) = -2;
+  result_check(6, 9) = 11;
+  result_check(7, 0) = -5;
+  result_check(7, 1) = -14;
+  result_check(7, 2) = 18;
+  result_check(7, 3) = -2;
+  result_check(7, 4) = -20;
+  result_check(7, 5) = -12;
+  result_check(7, 6) = -6;
+  result_check(7, 7) = -2;
+  result_check(7, 8) = -11;
+  result_check(7, 9) = 3;
+  result_check(8, 0) = 6;
+  result_check(8, 1) = 3;
+  result_check(8, 2) = -17;
+  result_check(8, 3) = 7;
+  result_check(8, 4) = 1;
+  result_check(8, 5) = 19;
+  result_check(8, 6) = -2;
+  result_check(8, 7) = 7;
+  result_check(8, 8) = 4;
+  result_check(8, 9) = 1;
+  result_check(9, 0) = 1;
+  result_check(9, 1) = 12;
+  result_check(9, 2) = -22;
+  result_check(9, 3) = -18;
+  result_check(9, 4) = 4;
+  result_check(9, 5) = 30;
+  result_check(9, 6) = 15;
+  result_check(9, 7) = 5;
+  result_check(9, 8) = -7;
+  result_check(9, 9) = 4;
+
+  S21Matrix matrix_before = matrix1;
+  S21Matrix result = matrix1.CalcComplements();
+
+  EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(matrix1 == matrix_before);
+}
+
+TEST(TestCalcComplements, TestCalcComplements8) {
   TEST_TIMEOUT_BEGIN
   S21Matrix matrix1{16, 16};
   EXPECT_EQ(matrix1.get_cols(), 16);
@@ -1318,7 +1534,7 @@ TEST(TestCalcComplements, TestCalcComplements7) {
   TEST_TIMEOUT_END
 }
 
-TEST(TestCalcComplements, TestCalcComplements8) {
+TEST(TestCalcComplements, TestCalcComplements9) {
   S21Matrix matrix1{4, 4};
   EXPECT_EQ(matrix1.get_cols(), 4);
   EXPECT_EQ(matrix1.get_rows(), 4);
@@ -1368,7 +1584,7 @@ TEST(TestCalcComplements, TestCalcComplements8) {
   EXPECT_TRUE(matrix1 == matrix_before);
 }
 
-TEST(TestCalcComplements, TestCalcComplements9) {
+TEST(TestCalcComplements, TestCalcComplements10) {
   S21Matrix matrix1{4, 4};
   EXPECT_EQ(matrix1.get_cols(), 4);
   EXPECT_EQ(matrix1.get_rows(), 4);
@@ -1377,7 +1593,7 @@ TEST(TestCalcComplements, TestCalcComplements9) {
   EXPECT_EQ(result_check.get_cols(), 4);
   EXPECT_EQ(result_check.get_rows(), 4);
 
-  matrix1(0, 0) = 1.00000001;
+  matrix1(0, 0) = 1.000001;
   matrix1(0, 1) = 15;
   matrix1(0, 2) = 1;
   matrix1(0, 3) = 1;
@@ -1400,16 +1616,16 @@ TEST(TestCalcComplements, TestCalcComplements9) {
   result_check(0, 3) = 0;
   result_check(1, 0) = 0;
   result_check(1, 1) = 0;
-  result_check(1, 2) = -1.4e-7;
-  result_check(1, 3) = 1.4e-7;
+  result_check(1, 2) = -1.4e-5;
+  result_check(1, 3) = 1.4e-5;
   result_check(2, 0) = 0;
   result_check(2, 1) = 0;
-  result_check(2, 2) = 2.8e-7;
-  result_check(2, 3) = -2.8e-7;
+  result_check(2, 2) = 2.8e-5;
+  result_check(2, 3) = -2.8e-5;
   result_check(3, 0) = 0;
   result_check(3, 1) = 0;
-  result_check(3, 2) = -1.4e-7;
-  result_check(3, 3) = 1.4e-7;
+  result_check(3, 2) = -1.4e-5;
+  result_check(3, 3) = 1.4e-5;
 
   S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.CalcComplements();
