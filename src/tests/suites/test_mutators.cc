@@ -45,7 +45,7 @@ TEST(TestMutators, TestMutators1) {
   EXPECT_EQ(matrix1.get_rows(), 1);
   EXPECT_EQ(matrix1.get_cols(), 1);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, 5.5);
+  s21_matrix_test_helper::FillMatrix(matrix1, 5.5);
   matrix1.set_rows(2);
 
   EXPECT_EQ(matrix1.get_rows(), 2);
@@ -60,7 +60,7 @@ TEST(TestMutators, TestMutators2) {
   EXPECT_EQ(matrix1.get_rows(), 1);
   EXPECT_EQ(matrix1.get_cols(), 1);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, 5.5);
+  s21_matrix_test_helper::FillMatrix(matrix1, 5.5);
   matrix1.set_cols(2);
 
   EXPECT_EQ(matrix1.get_rows(), 1);
@@ -75,7 +75,7 @@ TEST(TestMutators, TestMutators3) {
   EXPECT_EQ(matrix1.get_rows(), 1);
   EXPECT_EQ(matrix1.get_cols(), 1);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, 5.5);
+  s21_matrix_test_helper::FillMatrix(matrix1, 5.5);
   matrix1.set_rows(1);
 
   EXPECT_EQ(matrix1.get_rows(), 1);
@@ -89,7 +89,7 @@ TEST(TestMutators, TestMutators4) {
   EXPECT_EQ(matrix1.get_rows(), 1);
   EXPECT_EQ(matrix1.get_cols(), 1);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, 5.5);
+  s21_matrix_test_helper::FillMatrix(matrix1, 5.5);
   matrix1.set_cols(1);
 
   EXPECT_EQ(matrix1.get_rows(), 1);
@@ -103,7 +103,7 @@ TEST(TestMutators, TestMutators5) {
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 2);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, 5.5);
+  s21_matrix_test_helper::FillMatrix(matrix1, 5.5);
   matrix1.set_rows(1);
 
   EXPECT_EQ(matrix1.get_rows(), 1);
@@ -118,7 +118,7 @@ TEST(TestMutators, TestMutators6) {
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 2);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, 5.5);
+  s21_matrix_test_helper::FillMatrix(matrix1, 5.5);
   matrix1.set_cols(1);
 
   EXPECT_EQ(matrix1.get_rows(), 2);
@@ -133,7 +133,7 @@ TEST(TestMutators, TestMutators7) {
   EXPECT_EQ(matrix1.get_rows(), 99);
   EXPECT_EQ(matrix1.get_cols(), 99);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, 5.5);
+  s21_matrix_test_helper::FillMatrix(matrix1, 5.5);
   matrix1.set_rows(2);
   matrix1.set_cols(2);
 

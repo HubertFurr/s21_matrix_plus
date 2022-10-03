@@ -4,6 +4,8 @@
 
 #include <random>
 namespace s21_matrix_test_helper {
+S21Matrix TestMoveConstructor(S21Matrix test) { return test; }
+
 void Print(const S21Matrix& matrix) {
   std::cout.precision(10);
   // std::cout.setf(std::ios::fixed);
@@ -128,7 +130,7 @@ S21Matrix GetRandMatrix(int rows, int cols, double min, double max) {
   return result;
 }
 
-void FillS21Matrix(S21Matrix& matrix, double value) {
+void FillMatrix(S21Matrix& matrix, double value) {
   for (int i = 0; i < matrix.get_rows(); ++i) {
     for (int j = 0; j < matrix.get_cols(); ++j) {
       matrix(i, j) = value;
@@ -136,7 +138,7 @@ void FillS21Matrix(S21Matrix& matrix, double value) {
   }
 }
 // TODO(hubertfu): remove s21
-void CheckS21Matrix(const S21Matrix& matrix, double value) {
+void CheckMatrix(const S21Matrix& matrix, double value) {
   for (int i = 0; i < matrix.get_rows(); ++i) {
     for (int j = 0; j < matrix.get_cols(); ++j) {
       ASSERT_NEAR(matrix(i, j), value, epsilon_);

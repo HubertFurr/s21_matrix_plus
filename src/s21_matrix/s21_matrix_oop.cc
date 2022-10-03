@@ -2,7 +2,6 @@
 
 #include <cmath>
 #include <iostream>
-// #include <vector>
 
 S21Matrix::S21Matrix() {
   std::cout << "Default constructor" << std::endl;
@@ -37,12 +36,14 @@ S21Matrix::S21Matrix(const S21Matrix &other) {
 
 S21Matrix::S21Matrix(S21Matrix &&other) noexcept {
   std::cout << "Move constructor" << std::endl;
-  rows_ = 0;
-  cols_ = 0;
-  matrix_ = nullptr;
-  std::swap(rows_, other.rows_);
-  std::swap(cols_, other.rows_);
-  std::swap(matrix_, other.matrix_);
+
+  matrix_ = other.matrix_;
+  rows_ = other.rows_;
+  cols_ = other.cols_;
+
+  other.matrix_ = nullptr;
+  other.rows_ = 0;
+  other.cols_ = 0;
 }
 
 // TODO(hubertfu):

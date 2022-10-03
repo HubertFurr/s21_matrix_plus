@@ -21,7 +21,7 @@ TEST(test_class, test_summ) {
 
   matrix1.SumMatrix(matrix2);
 
-  test_matrix_value(matrix1, 5);
+  s21_matrix_test_helper::CheckMatrix(matrix1, 5);
 }
 
 TEST(test_class, test_operator_add1) {
@@ -46,7 +46,7 @@ TEST(test_class, test_operator_add1) {
   S21Matrix result;  // = matrix1 + matrix2;
   result = matrix1 + matrix2;
 
-  test_matrix_value(result, 5);
+  s21_matrix_test_helper::CheckMatrix(result, 5);
 }
 
 TEST(test_class, test_operator_add2) {
@@ -70,7 +70,7 @@ TEST(test_class, test_operator_add2) {
 
   S21Matrix result = matrix2 + matrix1;
 
-  test_matrix_value(result, 5);
+  s21_matrix_test_helper::CheckMatrix(result, 5);
 }
 
 TEST(test_class, test_operator_add3) {
@@ -130,5 +130,5 @@ TEST(test_class, test_const_operator_add1) {
   S21Matrix result;  // = matrix1 + matrix2;
   result = matrix1 + matrix2;
 
-  test_matrix_value(result, 5);
+  s21_matrix_test_helper::CheckMatrix(result, 5);
 }

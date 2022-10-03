@@ -6,7 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 TEST(TestCalcComplements, TestCalcComplementsException1) {
-  //TODO(hubertfu):  EXPECT_ANY_THROW ?
+  // TODO(hubertfu):  EXPECT_ANY_THROW ?
   S21Matrix test_matrix(2, 3);
   S21Matrix matrix_before = test_matrix;
 
@@ -81,8 +81,8 @@ TEST(TestCalcComplements, TestCalcComplementsException7) {
   EXPECT_EQ(test_matrix.get_rows(), 29);
   EXPECT_EQ(test_matrix.get_cols(), 30);
 
-  s21_matrix_test_helper::FillS21Matrix(test_matrix, 1.99);
-  s21_matrix_test_helper::CheckS21Matrix(test_matrix, 1.99);
+  s21_matrix_test_helper::FillMatrix(test_matrix, 1.99);
+  s21_matrix_test_helper::CheckMatrix(test_matrix, 1.99);
 
   S21Matrix matrix_before = test_matrix;
 
@@ -166,7 +166,7 @@ TEST_P(RandomCofactorMatrixWithZeros, TestCalcComplementsZeroRandom1) {
   EXPECT_EQ(result_check.get_cols(), test_matrix_.get_rows());
   EXPECT_EQ(result_check.get_rows(), test_matrix_.get_cols());
 
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckMatrix(result_check, 0.0);
 
   S21Matrix result = test_matrix_.CalcComplements();
 
@@ -196,7 +196,7 @@ TEST_P(RandomCofactorMatrixWithDuplicates, TestCalcComplementsZeroRandom2) {
   EXPECT_EQ(result_check.get_cols(), test_matrix_.get_rows());
   EXPECT_EQ(result_check.get_rows(), test_matrix_.get_cols());
 
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckMatrix(result_check, 0.0);
 
   S21Matrix result = test_matrix_.CalcComplements();
 
@@ -226,7 +226,7 @@ TEST_P(RandomCofactorMatrixWithProportional, TestCalcComplementsZeroRandom3) {
   EXPECT_EQ(result_check.get_cols(), test_matrix_.get_rows());
   EXPECT_EQ(result_check.get_rows(), test_matrix_.get_cols());
 
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckMatrix(result_check, 0.0);
 
   S21Matrix result = test_matrix_.CalcComplements();
 
@@ -259,7 +259,7 @@ TEST(TestCalcComplements, TestCalcComplementsZero1) {
   EXPECT_EQ(result_check.get_cols(), 3);
   EXPECT_EQ(result_check.get_rows(), 3);
 
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckMatrix(result_check, 0.0);
 
   matrix1(0, 0) = -3.00;
   matrix1(0, 1) = 6.00;
@@ -287,8 +287,8 @@ TEST(TestCalcComplements, TestCalcComplementsZero2) {
   EXPECT_EQ(result_check.get_cols(), 3);
   EXPECT_EQ(result_check.get_rows(), 3);
 
-  s21_matrix_test_helper::CheckS21Matrix(matrix1, 0.0);
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckMatrix(matrix1, 0.0);
+  s21_matrix_test_helper::CheckMatrix(result_check, 0.0);
 
   S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.CalcComplements();
@@ -306,7 +306,7 @@ TEST(TestCalcComplements, TestCalcComplementsZero3) {
   EXPECT_EQ(result_check.get_cols(), 3);
   EXPECT_EQ(result_check.get_rows(), 3);
 
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckMatrix(result_check, 0.0);
 
   matrix1(0, 0) = 0.00;
   matrix1(0, 1) = 9.00;
@@ -334,7 +334,7 @@ TEST(TestCalcComplements, TestCalcComplementsZero4) {
   EXPECT_EQ(result_check.get_cols(), 4);
   EXPECT_EQ(result_check.get_rows(), 4);
 
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckMatrix(result_check, 0.0);
 
   matrix1(0, 0) = 1;
   matrix1(0, 1) = 15;
@@ -369,7 +369,7 @@ TEST(TestCalcComplements, TestCalcComplementsZero5) {
   EXPECT_EQ(result_check.get_cols(), 4);
   EXPECT_EQ(result_check.get_rows(), 4);
 
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckMatrix(result_check, 0.0);
 
   matrix1(0, 0) = 1;
   matrix1(0, 1) = 5;

@@ -39,7 +39,7 @@ TEST(TestInverse, TestInverseException4) {
 
 TEST(TestInverse, TestInverseException5) {
   S21Matrix test_matrix(5, 4);
-  s21_matrix_test_helper::FillS21Matrix(test_matrix, 5.5);
+  s21_matrix_test_helper::FillMatrix(test_matrix, 5.5);
   S21Matrix matrix_before = test_matrix;
 
   EXPECT_ANY_THROW(test_matrix.InverseMatrix());

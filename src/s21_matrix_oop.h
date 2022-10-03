@@ -27,12 +27,12 @@ class S21Matrix {
   double Determinant() const;
   S21Matrix InverseMatrix() const;
 
-  double& operator()(int row, int col) const;
   int get_cols() const;
   int get_rows() const;
   void set_rows(int new_rows);
   void set_cols(int new_cols);
 
+  double& operator()(int row, int col) const;
   S21Matrix& operator=(const S21Matrix& other);
   S21Matrix& operator=(S21Matrix&& other);
   bool operator==(const S21Matrix& other) const;
@@ -40,8 +40,8 @@ class S21Matrix {
   S21Matrix operator+=(const S21Matrix& other);
   S21Matrix operator-(const S21Matrix& other) const;
   S21Matrix operator-=(const S21Matrix& other);
-  friend S21Matrix operator*(const double number, const S21Matrix& matrix);
   friend S21Matrix operator*(const S21Matrix& matrix, const double number);
+  friend S21Matrix operator*(const double number, const S21Matrix& matrix);
   S21Matrix operator*=(const double number);
   S21Matrix operator*(const S21Matrix& other) const;
   S21Matrix operator*=(const S21Matrix& other);

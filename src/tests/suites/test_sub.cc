@@ -21,7 +21,7 @@ TEST(test_class, test_sub) {
 
   matrix1.SubMatrix(matrix2);
 
-  test_matrix_value(matrix1, -1);
+  s21_matrix_test_helper::CheckMatrix(matrix1, -1);
 }
 
 TEST(test_class, test_operator_sub1) {
@@ -46,7 +46,7 @@ TEST(test_class, test_operator_sub1) {
   S21Matrix result;  // = matrix1 + matrix2;
   result = matrix1 - matrix2;
 
-  test_matrix_value(result, -1);
+  s21_matrix_test_helper::CheckMatrix(result, -1);
 }
 
 TEST(test_class, test_operator_sub2) {
@@ -70,7 +70,7 @@ TEST(test_class, test_operator_sub2) {
 
   S21Matrix result = matrix2 - matrix1;
 
-  test_matrix_value(result, 1);
+  s21_matrix_test_helper::CheckMatrix(result, 1);
 }
 
 TEST(test_class, test_operator_sub3) {
@@ -130,5 +130,5 @@ TEST(test_class, test_const_operator_sub) {
   S21Matrix result;  // = matrix1 + matrix2;
   result = matrix1 - matrix2;
 
-  test_matrix_value(result, -1);
+  s21_matrix_test_helper::CheckMatrix(result, -1);
 }

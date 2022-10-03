@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[]) {
   // Задаем фильтры для запуска некоторых тестов
-  ::testing::GTEST_FLAG(filter) = "*Mutators*";
+  ::testing::GTEST_FLAG(filter) = "*Constructor*";
 
   // Передаем параметры командной строки в gtest
   testing::InitGoogleTest(&argc, argv);

@@ -14,11 +14,11 @@ TEST(TestTranspose, TestTransposeConst1) {
   EXPECT_EQ(result_check.get_rows(), 99);
   EXPECT_EQ(result_check.get_cols(), 1);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, 1.99);
-  s21_matrix_test_helper::FillS21Matrix(result_check, 1.99);
+  s21_matrix_test_helper::FillMatrix(matrix1, 1.99);
+  s21_matrix_test_helper::FillMatrix(result_check, 1.99);
 
-  s21_matrix_test_helper::CheckS21Matrix(matrix1, 1.99);
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 1.99);
+  s21_matrix_test_helper::CheckMatrix(matrix1, 1.99);
+  s21_matrix_test_helper::CheckMatrix(result_check, 1.99);
 
   const S21Matrix const_matrix1 = matrix1;
   const S21Matrix const_result_check = result_check;
@@ -76,11 +76,11 @@ TEST(TestTranspose, TestTranspose1) {
   EXPECT_EQ(result_check.get_rows(), 99);
   EXPECT_EQ(result_check.get_cols(), 95);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, 1.99);
-  s21_matrix_test_helper::FillS21Matrix(result_check, 1.99);
+  s21_matrix_test_helper::FillMatrix(matrix1, 1.99);
+  s21_matrix_test_helper::FillMatrix(result_check, 1.99);
 
-  s21_matrix_test_helper::CheckS21Matrix(matrix1, 1.99);
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 1.99);
+  s21_matrix_test_helper::CheckMatrix(matrix1, 1.99);
+  s21_matrix_test_helper::CheckMatrix(result_check, 1.99);
 
   S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
@@ -98,8 +98,8 @@ TEST(TestTranspose, TestTranspose2) {
   EXPECT_EQ(result_check.get_rows(), 95);
   EXPECT_EQ(result_check.get_cols(), 99);
 
-  s21_matrix_test_helper::CheckS21Matrix(matrix1, 0.0);
-  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckMatrix(matrix1, 0.0);
+  s21_matrix_test_helper::CheckMatrix(result_check, 0.0);
 
   S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
@@ -117,11 +117,11 @@ TEST(TestTranspose, TestTranspose3) {
   EXPECT_EQ(result_check.get_rows(), 99);
   EXPECT_EQ(result_check.get_cols(), 99);
 
-  s21_matrix_test_helper::FillS21Matrix(matrix1, -1.5);
-  s21_matrix_test_helper::FillS21Matrix(result_check, -1.5);
+  s21_matrix_test_helper::FillMatrix(matrix1, -1.5);
+  s21_matrix_test_helper::FillMatrix(result_check, -1.5);
 
-  s21_matrix_test_helper::CheckS21Matrix(matrix1, -1.5);
-  s21_matrix_test_helper::CheckS21Matrix(result_check, -1.5);
+  s21_matrix_test_helper::CheckMatrix(matrix1, -1.5);
+  s21_matrix_test_helper::CheckMatrix(result_check, -1.5);
 
   S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.Transpose();
