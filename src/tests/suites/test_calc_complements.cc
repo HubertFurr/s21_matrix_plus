@@ -6,6 +6,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 TEST(TestCalcComplements, TestCalcComplementsException1) {
+  //TODO(hubertfu):  EXPECT_ANY_THROW ?
   S21Matrix test_matrix(2, 3);
   S21Matrix matrix_before = test_matrix;
 

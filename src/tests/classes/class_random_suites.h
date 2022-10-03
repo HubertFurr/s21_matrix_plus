@@ -53,3 +53,33 @@ class RandomCofactorMatrixWithProportional
  protected:
   S21Matrix test_matrix_;
 };
+
+class RandomInverseMatrixWithZeros : public RandomDeterminantMatrixWithZeros {};
+class RandomInverseMatrixWithDuplicates
+    : public RandomDeterminantMatrixWithDuplicates {};
+class RandomInverseMatrixWithProportiona
+    : public RandomDeterminantMatrixWithProportional {};
+
+class RandomInverseMatrixRangeOne : public ::testing::TestWithParam<int> {
+ public:
+  RandomInverseMatrixRangeOne();
+
+ protected:
+  S21Matrix test_matrix_;
+};
+
+class RandomInverseMatrixRangeTwo : public ::testing::TestWithParam<int> {
+ public:
+  RandomInverseMatrixRangeTwo();
+
+ protected:
+  S21Matrix test_matrix_;
+};
+
+class RandomInverseMatrixRangeThree : public ::testing::TestWithParam<int> {
+ public:
+  RandomInverseMatrixRangeThree();
+
+ protected:
+  S21Matrix test_matrix_;
+};

@@ -131,3 +131,30 @@ RandomCofactorMatrixWithProportional::RandomCofactorMatrixWithProportional() {
     }
   }
 }
+
+RandomInverseMatrixRangeOne::RandomInverseMatrixRangeOne() {
+  int num_rows = s21_matrix_test_helper::GetRandInt(
+      1, s21_matrix_test_helper::random_matrix_max_size);
+  int num_cols = num_rows;
+
+  test_matrix_ =
+      s21_matrix_test_helper::GetRandMatrix(num_rows, num_cols, -1e8, 1e8);
+}
+
+RandomInverseMatrixRangeTwo::RandomInverseMatrixRangeTwo() {
+  int num_rows = s21_matrix_test_helper::GetRandInt(
+      1, s21_matrix_test_helper::random_matrix_max_size);
+  int num_cols = num_rows;
+
+  test_matrix_ =
+      s21_matrix_test_helper::GetRandMatrix(num_rows, num_cols, -1e3, 1e3);
+}
+
+RandomInverseMatrixRangeThree::RandomInverseMatrixRangeThree() {
+  int num_rows = s21_matrix_test_helper::GetRandInt(
+      1, s21_matrix_test_helper::random_matrix_max_size);
+  int num_cols = num_rows;
+
+  test_matrix_ =
+      s21_matrix_test_helper::GetRandMatrix(num_rows, num_cols, -2, 2);
+}

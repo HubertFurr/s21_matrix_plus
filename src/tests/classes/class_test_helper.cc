@@ -116,12 +116,12 @@ double GetRandDouble(double min, double max) {
   return distr(generator);
 }
 
-S21Matrix RandomS21Matrix(int rows, int cols) {
+S21Matrix GetRandMatrix(int rows, int cols, double min, double max) {
   S21Matrix result{rows, cols};
 
   for (int i = 0; i < result.get_rows(); ++i) {
     for (int j = 0; j < result.get_cols(); ++j) {
-      result(i, j) = s21_matrix_test_helper::GetRandDouble(-1, 1);
+      result(i, j) = s21_matrix_test_helper::GetRandDouble(min, max);
     }
   }
 
@@ -135,12 +135,41 @@ void FillS21Matrix(S21Matrix& matrix, double value) {
     }
   }
 }
-
+// TODO(hubertfu): remove s21
 void CheckS21Matrix(const S21Matrix& matrix, double value) {
   for (int i = 0; i < matrix.get_rows(); ++i) {
     for (int j = 0; j < matrix.get_cols(); ++j) {
       ASSERT_NEAR(matrix(i, j), value, epsilon_);
     }
   }
+}
+
+void TestInverse(const S21Matrix& matrix) {
+  S21Matrix matrix_before = matrix;
+  double det = matrix.Determinant();
+  if (std::abs(det) < s21_matrix_test_helper::epsilon_) {
+    EXPECT_ANY_THROW(matrix.InverseMatrix());
+  } else {
+    S21Matrix matrix_inverse = matrix.InverseMatrix();
+    S21Matrix matrix_mult = matrix * matrix_inverse;
+    S21Matrix matrix_identity =
+        s21_matrix_test_helper::GetIdentityMatrix(matrix.get_rows());
+    EXPECT_TRUE(matrix_mult == matrix_identity);
+  }
+  EXPECT_TRUE(matrix == matrix_before);
+}
+
+S21Matrix GetIdentityMatrix(int size) {
+  S21Matrix result{size, size};
+
+  for (int i = 0; i < result.get_rows(); i++) {
+    for (int j = 0; j < result.get_cols(); j++) {
+      if (i == j) {
+        result(i, j) = 1.0;
+      }
+    }
+  }
+
+  return result;
 }
 }  // namespace s21_matrix_test_helper

@@ -419,4 +419,26 @@ double S21Matrix::Determinant() const {
 //   return result;
 // }
 
-// S21Matrix S21Matrix::InverseMatrix() const {}
+S21Matrix S21Matrix::InverseMatrix() const {
+  if (rows_ != cols_) {
+    throw std::logic_error("Incorrect matrix size for Inverse");
+  }
+
+  double det = Determinant();
+
+  if (std::fabs(det) < epsilon_) {
+    throw std::logic_error("Determinant must be non-zero to calculate Inverse");
+  }
+
+  S21Matrix result{rows_, cols_};
+
+  if (rows_ == 1) {
+    result(0, 0) = 1 / det;
+  } else {
+    S21Matrix matrix_cofactor_transposed = Transpose().CalcComplements();
+    // TODO(hubertfu): мб лучше делить в цикле?
+    result = matrix_cofactor_transposed * (1.0 / det);
+  }
+
+  return result;
+}
