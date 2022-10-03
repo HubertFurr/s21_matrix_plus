@@ -5,7 +5,7 @@
 #include <random>
 namespace s21_matrix_test_helper {
 void Print(const S21Matrix& matrix) {
-  // std::cout.precision(10);
+  std::cout.precision(10);
   // std::cout.setf(std::ios::fixed);
   std::cout << "[" << matrix.get_rows() << " x " << matrix.get_cols() << "]"
             << std::endl;
@@ -29,7 +29,7 @@ void Print(const S21Matrix& matrix) {
 void PrintWolfram(const S21Matrix& matrix) {
   std::cout.precision(0);
   std::cout.setf(std::ios::fixed);
-  std::cout << "CofactorMatrix[{";
+  std::cout << "[{";
   for (int i = 0; i < matrix.get_rows(); ++i) {
     std::cout << "{";
     for (int j = 0; j < matrix.get_cols(); ++j) {
@@ -104,14 +104,14 @@ void PrintTest(const S21Matrix& matrix) {
 
 int GetRandInt(int min, int max) {
   std::random_device rd;
-  static thread_local std::mt19937 generator(rd());
+  std::mt19937 generator(rd());
   std::uniform_int_distribution<> distr(min, max);
   return distr(generator);
 }
 
 double GetRandDouble(double min, double max) {
   std::random_device rd;
-  static thread_local std::mt19937 generator(rd());
+  std::mt19937 generator(rd());
   std::uniform_real_distribution<double> distr(min, max);
   return distr(generator);
 }

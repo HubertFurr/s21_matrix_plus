@@ -122,8 +122,8 @@ bool S21Matrix::EqMatrix(const S21Matrix &other) const {
       for (int j = 0; j < cols_; j++) {
         if (std::fabs(other(i, j) - (*this)(i, j)) > epsilon_) {
           result = false;
-          // std::cout << other(i, j) << " - " << (*this)(i, j) << " == " <<
-          // std::fabs(other(i, j) - (*this)(i, j)) << std::endl;
+          std::cout << other(i, j) << " - " << (*this)(i, j) << " == " <<
+          std::fabs(other(i, j) - (*this)(i, j)) << std::endl;
           break;
         }
       }
@@ -269,8 +269,6 @@ S21Matrix S21Matrix::Transpose() const {
 S21Matrix S21Matrix::GetMinorMatrix(const int skip_row,
                                     const int skip_column) const {
   // TODO(hubertfu): exception?
-  std::cout << "22!!\n";
-  std::cout << rows_ << cols_ << "!!\n";
   S21Matrix result{rows_ - 1, cols_ - 1};
 
   int shift_i = 0;
@@ -294,16 +292,13 @@ S21Matrix S21Matrix::CalcComplements() const {
   if (rows_ != cols_ || rows_ == 1) {
     throw std::logic_error("Incorrect matrix size for CalcComplements");
   }
-std::cout << "11!!\n";
   S21Matrix result{rows_, cols_};
-std::cout << "12!!\n";
+
   for (int i = 0; i < result.get_rows(); ++i) {
     for (int j = 0; j < result.get_cols(); ++j) {
-      std::cout << "13!!\n";
       S21Matrix minor_matrix = GetMinorMatrix(i, j);
-      std::cout << "14!!\n";
       result(i, j) = minor_matrix.Determinant();
-std::cout << "15!!\n";
+
       if ((i + j) % 2 != 0) {
         result(i, j) = -result(i, j);
       }
@@ -329,7 +324,7 @@ std::cout << "15!!\n";
  * @author Hubert Furr (hubertfu@student.21-school.ru)
  * @return double расчитанный определитель (детерминант)
  */
-/*double S21Matrix::Determinant() const {
+double S21Matrix::Determinant() const {
   // double result = 0;
   if (rows_ != cols_) {
     throw std::logic_error("Incorrect matrix size for Determinant");
@@ -390,38 +385,38 @@ std::cout << "15!!\n";
   }
 
   return result;
-}*/
-
-double S21Matrix::Determinant() const {
-  if (rows_ != cols_) {
-    throw std::logic_error("Incorrect matrix size for Determinant");
-  }
-
-  double result = 0;
-
-  if (rows_ == 1) {
-    result = (*this)(0, 0);
-  } else {
-    if (rows_ == 2) {
-      result = (*this)(0, 0) * (*this)(1, 1) - (*this)(1, 0) * (*this)(0, 1);
-    } else if (rows_ > 2) {
-      int sign = 1;
-
-      for (int i = 0; i < rows_; i++) {
-        S21Matrix minor_matrix = GetMinorMatrix(i, 0);
-        double det = minor_matrix.Determinant();
-        if (sign == 1) {
-          result += (*this)(i, 0) * det;
-        } else {
-          result += (*this)(i, 0) * det;
-        }
-
-        sign = -sign;
-      }
-    }
-  }
-
-  return result;
 }
+
+// double S21Matrix::Determinant() const {
+//   if (rows_ != cols_) {
+//     throw std::logic_error("Incorrect matrix size for Determinant");
+//   }
+
+//   double result = 0;
+
+//   if (rows_ == 1) {
+//     result = (*this)(0, 0);
+//   } else {
+//     if (rows_ == 2) {
+//       result = (*this)(0, 0) * (*this)(1, 1) - (*this)(1, 0) * (*this)(0, 1);
+//     } else if (rows_ > 2) {
+//       int sign = 1;
+
+//       for (int i = 0; i < rows_; i++) {
+//         S21Matrix minor_matrix = GetMinorMatrix(i, 0);
+//         double det = minor_matrix.Determinant();
+//         if (sign == 1) {
+//           result += (*this)(i, 0) * det;
+//         } else {
+//           result += (*this)(i, 0) * det;
+//         }
+
+//         sign = -sign;
+//       }
+//     }
+//   }
+
+//   return result;
+// }
 
 // S21Matrix S21Matrix::InverseMatrix() const {}

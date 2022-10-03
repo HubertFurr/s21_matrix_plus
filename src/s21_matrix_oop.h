@@ -5,7 +5,7 @@ class S21Matrix {
  private:
   int rows_, cols_;
   double* matrix_;
-  const double epsilon_ = 1e-8;
+  const double epsilon_ = 1e-7;
 
   void SwapRows(int n1, int n2);
   S21Matrix GetMinorMatrix(const int skip_row, const int skip_column) const;

@@ -3,7 +3,7 @@
 namespace s21_matrix_test_helper {
 constexpr double epsilon_ = 1e-7;
 constexpr int random_test_num_ = 50;
-constexpr int test_timeout_ = 300;
+constexpr int random_matrix_max_size = 20;
 
 void Print(const S21Matrix& matrix);
 void PrintWolfram(const S21Matrix& matrix);

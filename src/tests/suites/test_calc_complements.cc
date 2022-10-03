@@ -159,24 +159,25 @@ TEST(TestCalcComplements, TestCalcComplementsConst2) {
 // Если хотя бы один ряд (строка или столбец) состоит из нулей, то определитель
 // равен нулю
 TEST_P(RandomCofactorMatrixWithZeros, TestCalcComplementsZeroRandom1) {
-  // TEST_TIMEOUT_BEGIN
-  // S21Matrix matrix_before = test_matrix_;
-  // S21Matrix result_check{test_matrix_.get_rows(), test_matrix_.get_cols()};
+  S21Matrix matrix_before = test_matrix_;
+  S21Matrix result_check{test_matrix_.get_rows(), test_matrix_.get_cols()};
 
-  // EXPECT_EQ(result_check.get_cols(), test_matrix_.get_rows());
-  // EXPECT_EQ(result_check.get_rows(), test_matrix_.get_cols());
+  EXPECT_EQ(result_check.get_cols(), test_matrix_.get_rows());
+  EXPECT_EQ(result_check.get_rows(), test_matrix_.get_cols());
 
-  // s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
+  s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
 
-  // S21Matrix result = test_matrix_.CalcComplements();
+  S21Matrix result = test_matrix_.CalcComplements();
 
-  // EXPECT_TRUE(result == result_check);
-  // EXPECT_TRUE(test_matrix_ == matrix_before);
-  // TEST_TIMEOUT_FAIL_END(s21_matrix_test_helper::test_timeout_)
-  // if (::testing::Test::HasFailure()) {
-  //   s21_matrix_test_helper::Print(test_matrix_);
-  //   s21_matrix_test_helper::PrintTest(test_matrix_);
-  // }
+  EXPECT_TRUE(result == result_check);
+  EXPECT_TRUE(test_matrix_ == matrix_before);
+
+#if (__DEBUG == 1)
+  if (::testing::Test::HasFailure()) {
+    s21_matrix_test_helper::Print(test_matrix_);
+    s21_matrix_test_helper::PrintTest(test_matrix_);
+  }
+#endif
 }
 
 INSTANTIATE_TEST_SUITE_P(
@@ -187,32 +188,25 @@ INSTANTIATE_TEST_SUITE_P(
 // Если в определителе имеются два одинаковых параллельных ряда, то определитель
 // равен нулю
 TEST_P(RandomCofactorMatrixWithDuplicates, TestCalcComplementsZeroRandom2) {
-  TEST_TIMEOUT_BEGIN
-    try{
   S21Matrix matrix_before = test_matrix_;
   S21Matrix result_check{test_matrix_.get_rows(), test_matrix_.get_cols()};
-  std::cout << "1!!\n";
+
   EXPECT_EQ(result_check.get_cols(), test_matrix_.get_rows());
   EXPECT_EQ(result_check.get_rows(), test_matrix_.get_cols());
-std::cout << "2!!\n";
+
   s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
-std::cout << "3!!\n";
+
   S21Matrix result = test_matrix_.CalcComplements();
-std::cout << "4!!\n";
+
   EXPECT_TRUE(result == result_check);
   EXPECT_TRUE(test_matrix_ == matrix_before);
-  } catch (const std::exception& ex) {
-    s21_matrix_test_helper::Print(test_matrix_);
-    s21_matrix_test_helper::PrintTest(test_matrix_);
-    std::cout << ex.what();
-    std::exit(1);
-  }
-  TEST_TIMEOUT_FAIL_END(s21_matrix_test_helper::test_timeout_)
+
+#if (__DEBUG == 1)
   if (::testing::Test::HasFailure()) {
     s21_matrix_test_helper::Print(test_matrix_);
     s21_matrix_test_helper::PrintTest(test_matrix_);
   }
-  
+#endif
 }
 
 INSTANTIATE_TEST_SUITE_P(
@@ -223,32 +217,25 @@ INSTANTIATE_TEST_SUITE_P(
 // Если в определителе два параллельных ряда пропорциональны, то определитель
 // равен нулю
 TEST_P(RandomCofactorMatrixWithProportional, TestCalcComplementsZeroRandom3) {
-  TEST_TIMEOUT_BEGIN
-  try {
   S21Matrix matrix_before = test_matrix_;
   S21Matrix result_check{test_matrix_.get_rows(), test_matrix_.get_cols()};
-std::cout << "1!!\n";
+
   EXPECT_EQ(result_check.get_cols(), test_matrix_.get_rows());
   EXPECT_EQ(result_check.get_rows(), test_matrix_.get_cols());
-std::cout << "2!!\n";
+
   s21_matrix_test_helper::CheckS21Matrix(result_check, 0.0);
-std::cout << "3!!\n";
+
   S21Matrix result = test_matrix_.CalcComplements();
-std::cout << "4!!\n";
+
   EXPECT_TRUE(result == result_check);
   EXPECT_TRUE(test_matrix_ == matrix_before);
-  } catch (const std::exception& ex) {
-    s21_matrix_test_helper::Print(test_matrix_);
-    s21_matrix_test_helper::PrintTest(test_matrix_);
-    std::cout << ex.what();
-    std::exit(1);
-  }
-  TEST_TIMEOUT_FAIL_END(s21_matrix_test_helper::test_timeout_)
-  
+
+#if (__DEBUG == 1)
   if (::testing::Test::HasFailure()) {
     s21_matrix_test_helper::Print(test_matrix_);
     s21_matrix_test_helper::PrintTest(test_matrix_);
   }
+#endif
 }
 
 INSTANTIATE_TEST_SUITE_P(
@@ -790,6 +777,11 @@ TEST(TestCalcComplements, TestCalcComplements6) {
   S21Matrix matrix_before = matrix1;
   S21Matrix result = matrix1.CalcComplements();
 
+  // s21_matrix_test_helper::Print(matrix1);
+  // s21_matrix_test_helper::Print(result);
+  // s21_matrix_test_helper::Print(result_check);
+  // std::exit(1);
+
   EXPECT_TRUE(result == result_check);
   EXPECT_TRUE(matrix1 == matrix_before);
 }
@@ -1323,7 +1315,7 @@ TEST(TestCalcComplements, TestCalcComplements7) {
 
   EXPECT_TRUE(result == result_check);
   EXPECT_TRUE(matrix1 == matrix_before);
-  TEST_TIMEOUT_FAIL_END(s21_matrix_test_helper::test_timeout_)
+  TEST_TIMEOUT_END
 }
 
 TEST(TestCalcComplements, TestCalcComplements8) {
