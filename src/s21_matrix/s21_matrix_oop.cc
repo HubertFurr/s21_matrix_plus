@@ -5,7 +5,7 @@
 // #include <vector>
 
 S21Matrix::S21Matrix() {
-  // std::cout << "Default constructor" << std::endl;
+  std::cout << "Default constructor" << std::endl;
   // TODO(hubertfu):const проверить
   // TODO(hubertfu):explicit проверить
   rows_ = 3;
@@ -16,14 +16,14 @@ S21Matrix::S21Matrix() {
 }
 
 S21Matrix::S21Matrix(int rows, int cols) {
-  // std::cout << "int int constructor" << std::endl;
+  std::cout << "int int constructor" << std::endl;
   rows_ = rows;
   cols_ = cols;
   matrix_ = new double[rows_ * cols_]{};
 }
 
 S21Matrix::S21Matrix(const S21Matrix &other) {
-  // std::cout << "Copy constructor" << std::endl;
+  std::cout << "Copy constructor" << std::endl;
   rows_ = other.rows_;
   cols_ = other.cols_;
   matrix_ = new double[rows_ * cols_]{};
@@ -36,7 +36,7 @@ S21Matrix::S21Matrix(const S21Matrix &other) {
 }
 
 S21Matrix::S21Matrix(S21Matrix &&other) noexcept {
-  // std::cout << "Move constructor" << std::endl;
+  std::cout << "Move constructor" << std::endl;
   rows_ = 0;
   cols_ = 0;
   matrix_ = nullptr;
@@ -60,7 +60,7 @@ double &S21Matrix::operator()(int row, int col) const {
 }
 
 S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
-  // std::cout << "Use =&" << std::endl;
+  std::cout << "Use =&" << std::endl;
   if (this != &other) {
     delete[] matrix_;
 
@@ -74,7 +74,7 @@ S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
 }
 
 S21Matrix &S21Matrix::operator=(S21Matrix &&other) {
-  // std::cout << "Use =&&" << std::endl;
+  std::cout << "Use =&&" << std::endl;
   if (this != &other) {
     delete[] matrix_;
 
@@ -108,9 +108,45 @@ S21Matrix &S21Matrix::operator=(S21Matrix &&other) {
   return *this;
 }
 
+int S21Matrix::get_rows() const { return rows_; }
+
 int S21Matrix::get_cols() const { return cols_; }
 
-int S21Matrix::get_rows() const { return rows_; }
+void S21Matrix::set_rows(int new_rows) {
+  if (new_rows <= 0) {
+    throw std::length_error("matrix size must be greater than 0");
+  }
+
+  if (new_rows < rows_) {
+    rows_ = new_rows;
+  } else if (new_rows > rows_) {
+    S21Matrix tmp{new_rows, cols_};
+    for (int i = 0; i < rows_; i++) {
+      for (int j = 0; j < cols_; j++) {
+        tmp(i, j) = (*this)(i, j);
+      }
+    }
+    *this = std::move(tmp);
+  }
+}
+
+void S21Matrix::set_cols(int new_cols) {
+  if (new_cols <= 0) {
+    throw std::length_error("matrix size must be greater than 0");
+  }
+
+  if (new_cols < cols_) {
+    cols_ = new_cols;
+  } else if (new_cols > cols_) {
+    S21Matrix tmp{rows_, new_cols};
+    for (int i = 0; i < rows_; i++) {
+      for (int j = 0; j < cols_; j++) {
+        tmp(i, j) = (*this)(i, j);
+      }
+    }
+    *this = std::move(tmp);
+  }
+}
 
 bool S21Matrix::EqMatrix(const S21Matrix &other) const {
   bool result = true;

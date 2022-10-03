@@ -30,6 +30,8 @@ class S21Matrix {
   double& operator()(int row, int col) const;
   int get_cols() const;
   int get_rows() const;
+  void set_rows(int new_rows);
+  void set_cols(int new_cols);
 
   S21Matrix& operator=(const S21Matrix& other);
   S21Matrix& operator=(S21Matrix&& other);
