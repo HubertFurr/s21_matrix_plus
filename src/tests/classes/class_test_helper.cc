@@ -4,7 +4,7 @@
 
 #include <random>
 namespace s21_matrix_test_helper {
-S21Matrix TestMoveConstructor(S21Matrix test) { return test; }
+S21Matrix TestMoveConstructor(const S21Matrix test) { return test; }
 
 void Print(const S21Matrix& matrix) {
   std::cout.precision(10);
@@ -137,7 +137,7 @@ void FillMatrix(S21Matrix& matrix, double value) {
     }
   }
 }
-// TODO(hubertfu): remove s21
+
 void CheckMatrix(const S21Matrix& matrix, double value) {
   for (int i = 0; i < matrix.get_rows(); ++i) {
     for (int j = 0; j < matrix.get_cols(); ++j) {

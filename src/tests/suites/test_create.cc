@@ -1,5 +1,51 @@
 #include "./../test.h"
 
+TEST(TestConstructor, Test1) {
+  // unsigned int gg = 5;
+  S21Matrix matrix_check = {5, 49};
+  // S21Matrix matrix_check = {};
+  EXPECT_EQ(matrix_check.get_rows(), 5);
+  EXPECT_EQ(matrix_check.get_cols(), 49);
+
+  s21_matrix_test_helper::CheckMatrix(matrix_check, 0.0);
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Тесты исключений
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+TEST(TestConstructor, TestConstructorException1) {
+  EXPECT_ANY_THROW(S21Matrix(0, 3));
+}
+
+TEST(TestConstructor, TestConstructorException2) {
+  EXPECT_ANY_THROW(S21Matrix(3, 0));
+}
+
+TEST(TestConstructor, TestConstructorException3) {
+  EXPECT_ANY_THROW(S21Matrix(0, 0));
+}
+
+TEST(TestConstructor, TestConstructorException4) {
+  EXPECT_ANY_THROW(S21Matrix(-1, 99));
+}
+
+TEST(TestConstructor, TestConstructorException5) {
+  EXPECT_ANY_THROW(S21Matrix(99, -1));
+}
+
+TEST(TestConstructor, TestConstructorException6) {
+  EXPECT_ANY_THROW(S21Matrix(-1, -1));
+}
+
+TEST(TestConstructor, TestConstructorException7) {
+  EXPECT_ANY_THROW(S21Matrix(-99, -99));
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Тесты успешного создания объектов
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 TEST(TestConstructor, TestConstructorBasic) {
   S21Matrix matrix_check;
   EXPECT_EQ(matrix_check.get_rows(), 3);
@@ -152,6 +198,62 @@ TEST(TestConstructor, TestConstructorMoveConst) {
 
   EXPECT_EQ(matrix_check.get_cols(), 14);
   EXPECT_EQ(matrix_check.get_rows(), 14);
+  EXPECT_EQ(matrix_test.get_rows(), 0);
+  EXPECT_EQ(matrix_test.get_rows(), 0);
+
+  s21_matrix_test_helper::CheckMatrix(matrix_check, 2.0);
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Тесты операторов присвоения
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+TEST(TestConstructor, TestAssignmentCopy) {
+  S21Matrix matrix_test{5, 5};
+  S21Matrix matrix_check{2, 2};
+
+  s21_matrix_test_helper::FillMatrix(matrix_test, 2.0);
+  s21_matrix_test_helper::FillMatrix(matrix_check, 5.0);
+
+  matrix_check = matrix_test;
+
+  EXPECT_EQ(matrix_check.get_cols(), 5);
+  EXPECT_EQ(matrix_check.get_rows(), 5);
+  EXPECT_EQ(matrix_test.get_rows(), 5);
+  EXPECT_EQ(matrix_test.get_rows(), 5);
+
+  s21_matrix_test_helper::CheckMatrix(matrix_test, 2.0);
+  s21_matrix_test_helper::CheckMatrix(matrix_check, 2.0);
+}
+
+TEST(TestConstructor, TestAssignmentMove1) {
+  S21Matrix matrix_test{5, 5};
+  S21Matrix matrix_check{2, 2};
+
+  s21_matrix_test_helper::FillMatrix(matrix_test, 2.0);
+  s21_matrix_test_helper::FillMatrix(matrix_check, 5.0);
+
+  matrix_check = s21_matrix_test_helper::TestMoveConstructor(matrix_test);
+
+  EXPECT_EQ(matrix_check.get_cols(), 5);
+  EXPECT_EQ(matrix_check.get_rows(), 5);
+  EXPECT_EQ(matrix_test.get_rows(), 5);
+  EXPECT_EQ(matrix_test.get_rows(), 5);
+
+  s21_matrix_test_helper::CheckMatrix(matrix_check, 2.0);
+}
+
+TEST(TestConstructor, TestAssignmentMove2) {
+  S21Matrix matrix_test{5, 5};
+  S21Matrix matrix_check{2, 2};
+
+  s21_matrix_test_helper::FillMatrix(matrix_test, 2.0);
+  s21_matrix_test_helper::FillMatrix(matrix_check, 5.0);
+
+  matrix_check = std::move(matrix_test);
+
+  EXPECT_EQ(matrix_check.get_cols(), 5);
+  EXPECT_EQ(matrix_check.get_rows(), 5);
   EXPECT_EQ(matrix_test.get_rows(), 0);
   EXPECT_EQ(matrix_test.get_rows(), 0);
 

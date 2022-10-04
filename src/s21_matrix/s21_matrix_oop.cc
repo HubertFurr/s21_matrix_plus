@@ -3,110 +3,174 @@
 #include <cmath>
 #include <iostream>
 
-S21Matrix::S21Matrix() {
+/**
+ * @brief Конструктор по умолчанию (Default constructor)
+ * Создает объект S21Matrix размером [3 x 3], заполненный нулями
+ *
+ * Выносим объявление полей в initializer list, чтобы избежать двойной
+ * инициализации.
+ *
+ * Используем new c {} (можно и () - для double нет разницы) - чтобы выделить
+ * память с value-initialization, чтобы инициализировать значения Шнулями (т.к.
+ * double - POD-тип)
+ */
+S21Matrix::S21Matrix()
+    : rows_(3), cols_(3), matrix_(new double[rows_ * cols_]{}) {
   std::cout << "Default constructor" << std::endl;
-  // TODO(hubertfu):const проверить
-  // TODO(hubertfu):explicit проверить
-  rows_ = 3;
-  cols_ = 3;
-
-  // Выделяем память с value-initialization (Т.к. double - POD-тип)
-  matrix_ = new double[rows_ * cols_]{};
 }
 
-S21Matrix::S21Matrix(int rows, int cols) {
+/**
+ * @brief Параметризованный конструктор (Parameterized Constructor)
+ * Создает объект S21Matrix размером [rows x cols], заполненный нулями
+ */
+S21Matrix::S21Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
   std::cout << "int int constructor" << std::endl;
-  rows_ = rows;
-  cols_ = cols;
+  if (rows_ <= 0 || cols_ <= 0) {
+    rows_ = 0;
+    cols_ = 0;
+    throw std::length_error("matrix size must be greater than 0");
+  }
+
   matrix_ = new double[rows_ * cols_]{};
 }
 
-S21Matrix::S21Matrix(const S21Matrix &other) {
+/**
+ * @brief Конструктор копирования (Copy Constructor)
+ * Создает объект S21Matrix путем копирования данных из объекта other
+ */
+S21Matrix::S21Matrix(const S21Matrix &other)
+    : rows_(other.rows_),
+      cols_(other.cols_),
+      matrix_(new double[rows_ * cols_]{}) {
   std::cout << "Copy constructor" << std::endl;
-  rows_ = other.rows_;
-  cols_ = other.cols_;
-  matrix_ = new double[rows_ * cols_]{};
-  // other.Print();
   std::copy(other.matrix_, other.matrix_ + rows_ * cols_, matrix_);
-  // std::cout << "other[]:" << other.matrix_[0] << std::endl;
-  // std::cout << "other():" << other(0, 0) << std::endl;
-  // Print();
-  // Копируем
 }
 
-S21Matrix::S21Matrix(S21Matrix &&other) noexcept {
+/**
+ * @brief Конструктор переноса (Move Constructor)
+ * Создает объект S21Matrix путем передачи владения ресурсами от объекта other
+ *
+ * noexcept - указывает, что наша функция (конструктор переноса) не генерирует
+ * (не выбрасывает) исключение или аварийно завершает свою работу. Компилятор
+ * рекомендует использовать слово noexcept для конструктора переноса и оператора
+ * переноса (т.к. не происходит никаких операций с памятью, а происходит простое
+ * присвоение указателя)
+ *
+ * Noexcept сильно уменьшает размер итогового бинарного файла и ускоряет работу
+ * программы. Но использовать его необходимо осторожно, т.к. если функция,
+ * помеченная noexcept, выпустит исключение наружу, то ваша программа вызовет
+ * std::terminate() и завершится, даже не соблаговолив вызвать деструкторы для
+ * уже созданных переменных (стек НЕ обязан развернуться).
+ */
+S21Matrix::S21Matrix(S21Matrix &&other) noexcept
+    : rows_(other.rows_), cols_(other.cols_), matrix_(other.matrix_) {
   std::cout << "Move constructor" << std::endl;
-
-  matrix_ = other.matrix_;
-  rows_ = other.rows_;
-  cols_ = other.cols_;
-
+  // Обязательно зануляем указатель из other, т.к. в противном случае оба
+  // указателя будут указывать на один участок памяти и при вызове деструктора
+  // other будет очищена память текущего объекта
   other.matrix_ = nullptr;
   other.rows_ = 0;
   other.cols_ = 0;
 }
 
-// TODO(hubertfu):
-// initializer_list - https://radioprog.ru/post/1262
-// initializer lists -
-// https://www.educative.io/answers/what-are-initializer-lists-in-cpp
+/**
+ * @brief Освобождает память, выделенную под массив matrix_. Эта функция будет
+ * вызываться из других функций в случаях, когда требуется выполнить
+ * перераспределение памяти или освобождение памяти.
+ *
+ * Проверка на nullptr не производится, т.к. это успешно делает сам delete
+ * В качестве адьтернативы можно было бы контролировать необходимость очистки
+ * памяти по rows_ и cols_ (и учитывать это во всей программе)
+ */
+void S21Matrix::Free() {
+  delete[] matrix_;
+  rows_ = 0;
+  cols_ = 0;
+  // Для избежания сбоев при повторном освобождении указателей и повторном
+  // использовании указателей
+  matrix_ = nullptr;
+}
 
-S21Matrix::~S21Matrix() { delete[] matrix_; }
+/**
+ * @brief Деструктор объекта (Destructor)
+ * Вызывается, когда заканчивается время жизни объекта, чтобы освободить
+ * ресурсы, занимаемые объектом
+ */
+S21Matrix::~S21Matrix() { Free(); }
+
+/**
+ * @brief Оператор присваивания копированием
+ *
+ * Если в программе объявить класс, в котором оператор присваивания не
+ * перегружается, то для этого класса компилятором будет создан оператор
+ * присваивания по умолчанию. При вызове оператора присваивания по умолчанию
+ * происходит побайтовое копирование одного экземпляра класса другому.
+ *
+ * В нашем случае это недопустимо, т.к. в этом случае 2 экземпляра S21Matrix в
+ * поле matrix_ будут указывать на один и тот же участок памяти
+ *
+ * @param other
+ * @return S21Matrix&
+ */
+S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
+  std::cout << "Use =&" << std::endl;
+  // Проверка на самоприсваивание, иначе после Free() уже нечего будет
+  // присваивать (т.кю всё удалится)
+  if (this != &other) {
+    Free();
+
+    rows_ = other.rows_;
+    cols_ = other.cols_;
+    matrix_ = new double[rows_ * cols_]();
+
+    std::copy(other.matrix_, other.matrix_ + rows_ * cols_, matrix_);
+  }
+
+  return *this;
+}
+
+/**
+ * @brief Оператор присваивания переносом
+ *
+ * Цель использования оператора переноса такая же, как и конструктора переноса –
+ * ускорить выполнение программы за счет избежания непосредственного копирования
+ * данных при присваивании так называемых rvalue-ссылок, которые используются в
+ * выражениях в правой части оператора присваивания.
+ *
+ * Если в классе не реализован оператор переноса, то этот оператор заменяется
+ * оператором копирования.
+ *
+ * В общем случае опретор состоит из следующих действий:
+ * 1) Проверка, не происходит ли присваивание экземпляра самому себе в случаях,
+ * когда функция может каким-либо образом возвращать этот же экземпляр
+ * 2) Освобождение памяти под выделенные внутренние данные. Экземпляр lvalue уже
+ * создан ранее и в нем уже есть некоторые данные;
+ * 3) Присваивание внутренним указателям адресов данных, которые необходимо
+ * скопировать в текущий экземпляр.
+ *
+ * Использование noexcept - см. описание конструктора переноса
+ *
+ * @param other
+ * @return S21Matrix&
+ */
+S21Matrix &S21Matrix::operator=(S21Matrix &&other) noexcept {
+  std::cout << "Use =&&" << std::endl;
+  if (this != &other) {
+    Free();
+
+    std::swap(rows_, other.rows_);
+    std::swap(cols_, other.cols_);
+    std::swap(matrix_, other.matrix_);
+  }
+
+  return *this;
+}
 
 double &S21Matrix::operator()(int row, int col) const {
   if (row >= rows_ || col >= cols_) {
     throw std::out_of_range("Incorrect input for (), index is out of range.");
   }
   return matrix_[row * cols_ + col];
-}
-
-S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
-  std::cout << "Use =&" << std::endl;
-  if (this != &other) {
-    delete[] matrix_;
-
-    rows_ = other.rows_;
-    cols_ = other.cols_;
-
-    matrix_ = new double[rows_ * cols_]();
-    std::copy(other.matrix_, other.matrix_ + rows_ * cols_, matrix_);
-  }
-  return *this;
-}
-
-S21Matrix &S21Matrix::operator=(S21Matrix &&other) {
-  std::cout << "Use =&&" << std::endl;
-  if (this != &other) {
-    delete[] matrix_;
-
-    // int a = 5, b = 3;
-    // std::cout << a << ' ' << b << '\n';
-    // std::swap(a,b);
-    // std::cout << a << ' ' << b << '\n';
-
-    rows_ = 0;
-    cols_ = 0;
-    matrix_ = nullptr;
-
-    // std::cout << rows_ << ' ' << other.rows_ << '\n';
-    // std::cout << matrix_ << ' ' << other.matrix_ << '\n';
-
-    std::swap(rows_, other.rows_);
-    std::swap(cols_, other.cols_);
-    std::swap(matrix_, other.matrix_);
-
-    // std::cout << rows_ << ' ' << other.rows_ << '\n';
-    // std::cout << matrix_ << ' ' << other.matrix_ << '\n';
-
-    // rows_ = other.rows_;
-    // cols_ = other.cols_;
-    // matrix_ = other.matrix_;
-
-    // other.matrix_ = nullptr;
-    // other.rows_ = 0;
-    // other.cols_ = 0;
-  }
-  return *this;
 }
 
 int S21Matrix::get_rows() const { return rows_; }
@@ -240,7 +304,7 @@ void S21Matrix::MulNumber(const double number) {
 }
 
 S21Matrix operator*(const S21Matrix &matrix, const double number) {
-  S21Matrix tmp = matrix;
+  S21Matrix tmp(matrix);
   tmp.MulNumber(number);
   return tmp;
 }
