@@ -1,17 +1,7 @@
 #include "./../test.h"
 
-TEST(TestConstructor, Test1) {
-  // unsigned int gg = 5;
-  S21Matrix matrix_check = {5, 49};
-  // S21Matrix matrix_check = {};
-  EXPECT_EQ(matrix_check.get_rows(), 5);
-  EXPECT_EQ(matrix_check.get_cols(), 49);
-
-  s21_matrix_test_helper::CheckMatrix(matrix_check, 0.0);
-}
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Тесты исключений
+ * Тесты исключений конструкторов
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 TEST(TestConstructor, TestConstructorException1) {
