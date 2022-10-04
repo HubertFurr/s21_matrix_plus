@@ -1,15 +1,6 @@
 #ifndef SRC_S21_MATRIX_H_
 #define SRC_S21_MATRIX_H_
 
-// TODO(hubertfu): explicit ?
-// struct A {
-//   explicit A(int a1 = 0);
-// };
-
-// A a = 0; /* not allowed */
-// A b; /* allowed */
-// A c(0); /* allowed */
-
 class S21Matrix {
  private:
   int rows_, cols_;
@@ -21,13 +12,27 @@ class S21Matrix {
   S21Matrix GetMinorMatrix(const int skip_row, const int skip_column) const;
 
  public:
+  // Возможно использование ключевого слова explicit для конструкторов, но на в
+  // контексте данного класса не нашел необходимости в этом.
+  // Неявные преобразования чаще всего нам полезны, поэтому необходимость
+  // использования explicit надо четко для себя объяснить
   S21Matrix();
   S21Matrix(int rows, int cols);
   S21Matrix(const S21Matrix& other);
   S21Matrix(S21Matrix&& other) noexcept;
   ~S21Matrix();
 
-  bool EqMatrix(const S21Matrix& other) const;
+  // Nodiscard -  атрибут используется, чтобы обозначить, что возвращаемое
+  // значение функции должно быть обязательно использовано при вызове.
+  // Особенно актуально в случаях, когда функция возвращает код ошибки (таким
+  // образом компилятор всегда напомнит, если вы не сохраняете код ошибки и,
+  // соответсвенно не проверяете его).
+  // В данном случае добавил у некоторых функций для примера. Можно добавить ко
+  // всем функциям, которые никак не меняют объект и что-то возвращают
+  // (использование таких функций без сохранения результатов не имеет смысла и
+  // компилятор будет нас предупреждать), но не стал, т.к.  многие тесты делают
+  // проверки на исключения без сохранения результата функций
+  [[nodiscard]] bool EqMatrix(const S21Matrix& other) const;
   void SumMatrix(const S21Matrix& other);
   void SubMatrix(const S21Matrix& other);
   void MulNumber(const double number);
@@ -37,8 +42,8 @@ class S21Matrix {
   double Determinant() const;
   S21Matrix InverseMatrix() const;
 
-  int get_cols() const;
-  int get_rows() const;
+  [[nodiscard]] int get_cols() const;
+  [[nodiscard]] int get_rows() const;
   void set_rows(int new_rows);
   void set_cols(int new_cols);
 
