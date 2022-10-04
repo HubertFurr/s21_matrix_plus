@@ -117,15 +117,15 @@ TEST(test_class, test_const_operator_add1) {
   EXPECT_EQ(matrix2.get_cols(), 2);
   EXPECT_EQ(matrix2.get_rows(), 2);
 
-  matrix1(0, 0) = 1;
-  matrix1(0, 1) = 2;
-  matrix1(1, 0) = 3;
-  matrix1(1, 1) = 4;
+  // matrix1(0, 0) = 1;
+  // matrix1(0, 1) = 2;
+  // matrix1(1, 0) = 3;
+  // matrix1(1, 1) = 4;
 
-  matrix2(0, 0) = 4;
-  matrix2(0, 1) = 3;
-  matrix2(1, 0) = 2;
-  matrix2(1, 1) = 1;
+  // matrix2(0, 0) = 4;
+  // matrix2(0, 1) = 3;
+  // matrix2(1, 0) = 2;
+  // matrix2(1, 1) = 1;
 
   S21Matrix result;  // = matrix1 + matrix2;
   result = matrix1 + matrix2;

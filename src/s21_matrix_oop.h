@@ -8,6 +8,7 @@ class S21Matrix {
   const double epsilon_ = 1e-7;
 
   void Free();
+  double& get_matrix_element(int row, int col) const;
   void SwapRows(int n1, int n2);
   S21Matrix GetMinorMatrix(const int skip_row, const int skip_column) const;
 
@@ -42,14 +43,15 @@ class S21Matrix {
   double Determinant() const;
   S21Matrix InverseMatrix() const;
 
-  [[nodiscard]] int get_cols() const;
-  [[nodiscard]] int get_rows() const;
+  [[nodiscard]] int get_cols() const noexcept;
+  [[nodiscard]] int get_rows() const noexcept;
   void set_rows(int new_rows);
   void set_cols(int new_cols);
 
   S21Matrix& operator=(const S21Matrix& other);
   S21Matrix& operator=(S21Matrix&& other) noexcept;
-  double& operator()(int row, int col) const;
+  double& operator()(int row, int col);
+  const double& operator()(int row, int col) const;
   bool operator==(const S21Matrix& other) const;
   S21Matrix operator+(const S21Matrix& other) const;
   S21Matrix operator+=(const S21Matrix& other);

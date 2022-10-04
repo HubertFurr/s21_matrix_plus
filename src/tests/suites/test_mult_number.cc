@@ -82,10 +82,10 @@ TEST(test_class, test_mul_number_const_operator) {
   EXPECT_EQ(matrix1.get_cols(), 2);
   EXPECT_EQ(matrix1.get_rows(), 2);
 
-  matrix1(0, 0) = 1;
-  matrix1(0, 1) = 1;
-  matrix1(1, 0) = 1;
-  matrix1(1, 1) = 1;
+  // matrix1(0, 0) = 1;
+  // matrix1(0, 1) = 1;
+  // matrix1(1, 0) = 1;
+  // matrix1(1, 1) = 1;
 
   S21Matrix result = matrix1 * number;
 

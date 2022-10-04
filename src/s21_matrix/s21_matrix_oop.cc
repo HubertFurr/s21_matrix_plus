@@ -11,7 +11,7 @@
  * инициализации.
  *
  * Используем new c {} (можно и () - для double нет разницы) - чтобы выделить
- * память с value-initialization, чтобы инициализировать значения Шнулями (т.к.
+ * память с value-initialization, чтобы инициализировать значения нулями (т.к.
  * double - POD-тип)
  */
 S21Matrix::S21Matrix()
@@ -79,7 +79,7 @@ S21Matrix::S21Matrix(S21Matrix &&other) noexcept
  * перераспределение памяти или освобождение памяти.
  *
  * Проверка на nullptr не производится, т.к. это успешно делает сам delete
- * В качестве адьтернативы можно было бы контролировать необходимость очистки
+ * В качестве альтернативы можно было бы контролировать необходимость очистки
  * памяти по rows_ и cols_ (и учитывать это во всей программе)
  */
 void S21Matrix::Free() {
@@ -109,13 +109,13 @@ S21Matrix::~S21Matrix() { Free(); }
  * В нашем случае это недопустимо, т.к. в этом случае 2 экземпляра S21Matrix в
  * поле matrix_ будут указывать на один и тот же участок памяти
  *
- * @param other
+ * @param other копируемый объект S21Matrix
  * @return S21Matrix&
  */
 S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
   std::cout << "Use =&" << std::endl;
   // Проверка на самоприсваивание, иначе после Free() уже нечего будет
-  // присваивать (т.кю всё удалится)
+  // присваивать (т.к. всё удалится)
   if (this != &other) {
     Free();
 
@@ -140,7 +140,7 @@ S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
  * Если в классе не реализован оператор переноса, то этот оператор заменяется
  * оператором копирования.
  *
- * В общем случае опретор состоит из следующих действий:
+ * В общем случае оператор состоит из следующих действий:
  * 1) Проверка, не происходит ли присваивание экземпляра самому себе в случаях,
  * когда функция может каким-либо образом возвращать этот же экземпляр
  * 2) Освобождение памяти под выделенные внутренние данные. Экземпляр lvalue уже
@@ -150,7 +150,7 @@ S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
  *
  * Использование noexcept - см. описание конструктора переноса
  *
- * @param other
+ * @param other объект S21Matrix, у которого забираем владение ресурсами
  * @return S21Matrix&
  */
 S21Matrix &S21Matrix::operator=(S21Matrix &&other) noexcept {
@@ -166,17 +166,65 @@ S21Matrix &S21Matrix::operator=(S21Matrix &&other) noexcept {
   return *this;
 }
 
-double &S21Matrix::operator()(int row, int col) const {
-  if (row >= rows_ || col >= cols_) {
-    throw std::out_of_range("Incorrect input for (), index is out of range.");
-  }
-  return matrix_[row * cols_ + col];
+/**
+ * @brief Индексация по элементам матрицы (строка row, колонка col).
+ *
+ * Возвращает ссылку на элемент, которая позволяет как получить его значение,
+ * так и изменить при необходимости.
+ *
+ * @param row номер столбца запрашиваемого элемента
+ * @param col номер строки запрашиваемого элемента
+ * @return double& ссылка на значение (row, col)
+ */
+double &S21Matrix::operator()(int row, int col) {
+  return get_matrix_element(row, col);
 }
 
-int S21Matrix::get_rows() const { return rows_; }
+/**
+ * @brief Индексация по элементам матрицы (строка row, колонка col).
+ *
+ * Перегрузка оператора () для const-объектов. В целом идентичен обычной
+ * перегрузке оператора (), за исключением того, что возвращает const-ссылку.
+ * Соответственно позволяет получить значение элемента, но не позволяет его
+ * изменить.
+ *
+ * @param row номер столбца запрашиваемого элемента
+ * @param col номер строки запрашиваемого элемента
+ * @return double& const-ссылка на значение (row, col)
+ */
+const double &S21Matrix::operator()(int row, int col) const {
+  return get_matrix_element(row, col);
+}
 
-int S21Matrix::get_cols() const { return cols_; }
+/**
+ * @brief Accessor (Getter) поля rows_
+ *
+ * В общем случае метод, позволяющий получить данные, доступ к которым напрямую
+ * ограничен (приватное поле). Основное назначение - реализовать гибкий
+ * механизм инкапсуляции
+ *
+ * @return int значение поля rows_
+ */
+int S21Matrix::get_rows() const noexcept { return rows_; }
 
+/**
+ * @brief Accessor (Getter) поля cols_
+ *
+ * @return int значение поля cols_
+ */
+int S21Matrix::get_cols() const noexcept { return cols_; }
+
+/**
+ * @brief Mutator (Setter) поля rows_
+ *
+ * В общем случае метод, позволяющий модифицировать данные, доступ к которым
+ * напрямую ограничен (приватное поле). Основное назначение - реализовать гибкий
+ * механизм инкапсуляции, позволив изменить значение поля, обработав при этом
+ * все ограничения (произведя дополнительные действия при необходимости) и
+ * сохранив инвариант объекта
+ *
+ * @param new_rows новое значение для rows_
+ */
 void S21Matrix::set_rows(int new_rows) {
   if (new_rows <= 0) {
     throw std::length_error("matrix size must be greater than 0");
@@ -195,6 +243,11 @@ void S21Matrix::set_rows(int new_rows) {
   }
 }
 
+/**
+ * @brief Mutator (Setter) поля cols_
+ *
+ * @param new_rows новое значение для cols_
+ */
 void S21Matrix::set_cols(int new_cols) {
   if (new_cols <= 0) {
     throw std::length_error("matrix size must be greater than 0");
@@ -211,6 +264,23 @@ void S21Matrix::set_cols(int new_cols) {
     }
     *this = std::move(tmp);
   }
+}
+
+/**
+ * @brief По сути accessor и mutator для поля matrix_, однако не совсем и он
+ * приватный, т.к. позволяет и получить и изменить данные. Нужен для
+ * использования в перегрузке оператора (), который уже разделяет поведение для
+ * const и не-const объектов
+ *
+ * @param row номер столбца запрашиваемого элемента
+ * @param col номер строки запрашиваемого элемента
+ * @return double& ссылка на значение (row, col)
+ */
+double &S21Matrix::get_matrix_element(int row, int col) const {
+  if (row >= rows_ || col >= cols_ || row < 0 || col < 0) {
+    throw std::out_of_range("Incorrect input for (), index is out of range.");
+  }
+  return matrix_[row * cols_ + col];
 }
 
 bool S21Matrix::EqMatrix(const S21Matrix &other) const {

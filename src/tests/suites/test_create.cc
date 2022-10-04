@@ -117,7 +117,7 @@ TEST(TestConstructor, TestConstructorCopy2) {
 }
 
 TEST(TestConstructor, TestConstructorCopyConst1) {
-  const S21Matrix matrix_check = S21Matrix(2, 2);
+  S21Matrix matrix_check = S21Matrix(2, 2);
 
   matrix_check(0, 0) = 4.0;
   matrix_check(0, 1) = 4.0;
@@ -137,7 +137,7 @@ TEST(TestConstructor, TestConstructorCopyConst1) {
 }
 
 TEST(TestConstructor, TestConstructorCopyConst2) {
-  const S21Matrix matrix_check = S21Matrix(2, 2);
+  S21Matrix matrix_check = S21Matrix(2, 2);
 
   matrix_check(0, 0) = 4.0;
   matrix_check(0, 1) = 4.0;
