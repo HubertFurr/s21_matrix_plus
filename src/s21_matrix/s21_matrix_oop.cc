@@ -283,6 +283,16 @@ double &S21Matrix::get_matrix_element(int row, int col) const {
   return matrix_[row * cols_ + col];
 }
 
+/**
+ * @brief Проверяет матрицы на равенство между собой
+ *
+ * Матрицы считаются равными, если у них одинаковый размер и элементы с
+ * одинаковым индексом отличаются не более чем на this->epsilon_
+ *
+ * @param other сравниваемая матрица
+ * @return true если матрицы равны
+ * @return false если матрицы не равны
+ */
 bool S21Matrix::EqMatrix(const S21Matrix &other) const {
   bool result = true;
 
@@ -293,12 +303,10 @@ bool S21Matrix::EqMatrix(const S21Matrix &other) const {
       for (int j = 0; j < cols_; j++) {
         if (std::fabs(other(i, j) - (*this)(i, j)) > epsilon_) {
           result = false;
-          // std::cout << other(i, j) << " - " << (*this)(i, j)
-          //           << " == " << std::fabs(other(i, j) - (*this)(i, j))
-          //           << std::endl;
           break;
         }
       }
+
       if (result == false) {
         break;
       }
@@ -308,6 +316,13 @@ bool S21Matrix::EqMatrix(const S21Matrix &other) const {
   return result;
 }
 
+/**
+ * @brief Перегрузка оператора ==
+ *
+ * @param other сравниваемая матрица
+ * @return true если матрицы равны
+ * @return false если матрицы не равны
+ */
 bool S21Matrix::operator==(const S21Matrix &other) const {
   return EqMatrix(other);
 }

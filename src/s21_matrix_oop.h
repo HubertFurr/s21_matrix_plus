@@ -17,6 +17,7 @@ class S21Matrix {
   // контексте данного класса не нашел необходимости в этом.
   // Неявные преобразования чаще всего нам полезны, поэтому необходимость
   // использования explicit надо четко для себя объяснить
+
   S21Matrix();
   S21Matrix(int rows, int cols);
   S21Matrix(const S21Matrix& other);
@@ -33,6 +34,7 @@ class S21Matrix {
   // (использование таких функций без сохранения результатов не имеет смысла и
   // компилятор будет нас предупреждать), но не стал, т.к.  многие тесты делают
   // проверки на исключения без сохранения результата функций
+
   [[nodiscard]] bool EqMatrix(const S21Matrix& other) const;
   void SumMatrix(const S21Matrix& other);
   void SubMatrix(const S21Matrix& other);
