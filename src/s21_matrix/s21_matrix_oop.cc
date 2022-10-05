@@ -317,7 +317,7 @@ bool S21Matrix::EqMatrix(const S21Matrix &other) const {
 }
 
 /**
- * @brief Перегрузка оператора ==
+ * @brief Перегрузка оператора == для объекта
  *
  * @param other сравниваемая матрица
  * @return true если матрицы равны
@@ -327,9 +327,20 @@ bool S21Matrix::operator==(const S21Matrix &other) const {
   return EqMatrix(other);
 }
 
+/**
+ * @brief Прибавляет вторую матрицы к текущей
+ *
+ * Суммой двух матриц A[m × n] и B[m × n] одинаковых размеров называется матрица
+ * C[m × n] = A + B тех же размеров, элементы которой определяются равенствами
+ * C(i,j) = A(i,j) + B(i,j).
+ *
+ * Сложить матрицы разных размеров нельзя
+ *
+ * @param other 2е слагаемое (матрица)
+ */
 void S21Matrix::SumMatrix(const S21Matrix &other) {
   if (rows_ != other.get_rows() || cols_ != other.get_cols()) {
-    throw std::logic_error("Incorrect matrix size");
+    throw std::logic_error("Incorrect matrix size for Sum");
   }
 
   for (int i = 0; i < rows_; ++i) {
@@ -340,6 +351,12 @@ void S21Matrix::SumMatrix(const S21Matrix &other) {
   }
 }
 
+/**
+ * @brief перегрузка оператора + для объекта
+ *
+ * @param other 2е слагаемое (матрица)
+ * @return S21Matrix результат сложения двух матриц
+ */
 S21Matrix S21Matrix::operator+(const S21Matrix &other) const {
   std::cout << "start operator+" << std::endl;
   // SumMatrix(other);
@@ -351,6 +368,12 @@ S21Matrix S21Matrix::operator+(const S21Matrix &other) const {
   // return std::move(tmp);
 }
 
+/**
+ * @brief перегрузка оператора += для объекта
+ *
+ * @param other 2е слагаемое (матрица)
+ * @return S21Matrix результат сложения двух матриц
+ */
 S21Matrix S21Matrix::operator+=(const S21Matrix &other) {
   SumMatrix(other);
   return *this;

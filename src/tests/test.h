@@ -10,8 +10,6 @@
 
 #include <gtest/gtest.h>
 
-#include <future>
-
 #include "./../s21_matrix_oop.h"
 #include "./classes/class_test_helper.h"
 
