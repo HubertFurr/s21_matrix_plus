@@ -352,7 +352,7 @@ void S21Matrix::SumMatrix(const S21Matrix &other) {
 }
 
 /**
- * @brief перегрузка оператора + для объекта
+ * @brief Перегрузка оператора + для объекта
  *
  * @param other 2е слагаемое (матрица)
  * @return S21Matrix результат сложения двух матриц
@@ -369,7 +369,7 @@ S21Matrix S21Matrix::operator+(const S21Matrix &other) const {
 }
 
 /**
- * @brief перегрузка оператора += для объекта
+ * @brief Перегрузка оператора += для объекта
  *
  * @param other 2е слагаемое (матрица)
  * @return S21Matrix результат сложения двух матриц
@@ -379,9 +379,20 @@ S21Matrix S21Matrix::operator+=(const S21Matrix &other) {
   return *this;
 }
 
+/**
+ * @brief Вычитает из текущей матрицы другую
+ *
+ * Разностью двух матриц A[m × n] и B[m × n] одинаковых размеров называется
+ * матрица C[m × n] = A - B тех же размеров, элементы которой определяются
+ * равенствами C(i,j) = A(i,j) - B(i,j).
+ *
+ * Вычесть матрицы разных размеров нельзя
+ *
+ * @param other
+ */
 void S21Matrix::SubMatrix(const S21Matrix &other) {
   if (rows_ != other.get_rows() || cols_ != other.get_cols()) {
-    throw std::logic_error("Incorrect matrix size");
+    throw std::logic_error("Incorrect matrix size for Sub");
   }
 
   for (int i = 0; i < rows_; ++i) {
@@ -392,12 +403,24 @@ void S21Matrix::SubMatrix(const S21Matrix &other) {
   }
 }
 
+/**
+ * @brief Перегрузка оператора - для объекта
+ *
+ * @param other Вычитаемое (матрица)
+ * @return S21Matrix Результат вычитания двух матриц (матрица)
+ */
 S21Matrix S21Matrix::operator-(const S21Matrix &other) const {
   S21Matrix tmp = *this;
   tmp.SubMatrix(other);
   return tmp;
 }
 
+/**
+ * @brief Перегрузка оператора -= для объекта
+ *
+ * @param other Вычитаемое (матрица)
+ * @return S21Matrix Результат вычитания двух матриц (матрица)
+ */
 S21Matrix S21Matrix::operator-=(const S21Matrix &other) {
   SubMatrix(other);
   return *this;
