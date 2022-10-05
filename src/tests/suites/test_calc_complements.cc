@@ -6,11 +6,10 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 TEST(TestCalcComplements, TestCalcComplementsException1) {
-  // TODO(hubertfu):  EXPECT_ANY_THROW ?
   S21Matrix test_matrix(2, 3);
   S21Matrix matrix_before = test_matrix;
 
-  EXPECT_THROW(test_matrix.CalcComplements(), std::logic_error);
+  EXPECT_ANY_THROW(test_matrix.CalcComplements());
   EXPECT_TRUE(test_matrix == matrix_before);
 }
 
@@ -22,7 +21,7 @@ TEST(TestCalcComplements, TestCalcComplementsException2) {
 
   S21Matrix matrix_before = test_matrix;
 
-  EXPECT_THROW(test_matrix.CalcComplements(), std::logic_error);
+  EXPECT_ANY_THROW(test_matrix.CalcComplements());
   EXPECT_TRUE(test_matrix == matrix_before);
 }
 
@@ -34,7 +33,7 @@ TEST(TestCalcComplements, TestCalcComplementsException3) {
 
   S21Matrix matrix_before = test_matrix;
 
-  EXPECT_THROW(test_matrix.CalcComplements(), std::logic_error);
+  EXPECT_ANY_THROW(test_matrix.CalcComplements());
   EXPECT_TRUE(test_matrix == matrix_before);
 }
 
@@ -46,7 +45,7 @@ TEST(TestCalcComplements, TestCalcComplementsException4) {
 
   S21Matrix matrix_before = test_matrix;
 
-  EXPECT_THROW(test_matrix.CalcComplements(), std::logic_error);
+  EXPECT_ANY_THROW(test_matrix.CalcComplements());
   EXPECT_TRUE(test_matrix == matrix_before);
 }
 
@@ -58,7 +57,7 @@ TEST(TestCalcComplements, TestCalcComplementsException5) {
 
   S21Matrix matrix_before = test_matrix;
 
-  EXPECT_THROW(test_matrix.CalcComplements(), std::logic_error);
+  EXPECT_ANY_THROW(test_matrix.CalcComplements());
   EXPECT_TRUE(test_matrix == matrix_before);
 }
 
@@ -71,7 +70,7 @@ TEST(TestCalcComplements, TestCalcComplementsException6) {
   test_matrix(0, 0) = 5.0;
   S21Matrix matrix_before = test_matrix;
 
-  EXPECT_THROW(test_matrix.CalcComplements(), std::logic_error);
+  EXPECT_ANY_THROW(test_matrix.CalcComplements());
   EXPECT_TRUE(test_matrix == matrix_before);
 }
 
@@ -86,7 +85,7 @@ TEST(TestCalcComplements, TestCalcComplementsException7) {
 
   S21Matrix matrix_before = test_matrix;
 
-  EXPECT_THROW(test_matrix.CalcComplements(), std::logic_error);
+  EXPECT_ANY_THROW(test_matrix.CalcComplements());
   EXPECT_TRUE(test_matrix == matrix_before);
 }
 
