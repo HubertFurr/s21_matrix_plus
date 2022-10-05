@@ -496,12 +496,24 @@ S21Matrix S21Matrix::operator*=(double number) {
   return *this;
 }
 
+/**
+ * @brief Умножает текущую матрицу на вторую
+ *
+ * Произведением матрицы A[m × k] на матрицу B[k × n] называется матрица
+ * C[m ×n] = A × B размера m × n, элементы которой определяются равенством
+ * C(i,j) = A(i,1) × B(1,j) + A(i,2) × B(2,j) + … + A(i,k) × B(k,j).
+ *
+ * Соответственно перемножить можно матрицы A и B только при условии, что
+ * количество столбцов в матрице A равно количеству строк в матрице B
+ *
+ * @param other 2й множитель (матрица)
+ */
 void S21Matrix::MulMatrix(const S21Matrix &other) {
   if (cols_ != other.get_rows()) {
-    throw std::logic_error("Incorrect matrix size for multiplication");
+    throw std::logic_error("Incorrect matrix size for Multiplication");
   }
 
-  S21Matrix result{rows_, cols_};
+  S21Matrix result{rows_, other.get_cols()};
 
   for (int i = 0; i < result.get_rows(); i++) {
     for (int j = 0; j < result.get_cols(); j++) {
@@ -513,12 +525,24 @@ void S21Matrix::MulMatrix(const S21Matrix &other) {
   *this = std::move(result);
 }
 
+/**
+ * @brief Перегрузка оператора * для перемножения двух объектов S21Matrix
+ * 
+ * @param other 2й множитель (матрица)
+ * @return S21Matrix Результат умножения двух матриц (матрица)
+ */
 S21Matrix S21Matrix::operator*(const S21Matrix &other) const {
   S21Matrix tmp = *this;
   tmp.MulMatrix(other);
   return tmp;
 }
 
+/**
+ * @brief Перегрузка оператора *= для перемножения двух объектов S21Matrix
+ * 
+ * @param other 2й множитель (матрица)
+ * @return S21Matrix Результат умножения двух матриц (матрица)
+ */
 S21Matrix S21Matrix::operator*=(const S21Matrix &other) {
   MulMatrix(other);
   return *this;
