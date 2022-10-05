@@ -132,7 +132,7 @@ $(GCOV_EXE): $(GCOV_OBJ_DIR) $(TESTS_OBJ_DIR) $(REPORT_DIR) $(MODULES_STATIC_LIB
 	@echo "\n-------------------------------------------------------------------------------------------------\n"
 	@./$(GCOV_EXE)
 	@gcov -o $(GCOV_OBJ_DIR) $(ALL_MODULES_C)
-	@lcov -b ./ -d $(GCOV_OBJ_DIR) --gcov-tool /usr/bin/gcov -c -o output.info
+	@lcov -b ./ -d $(GCOV_OBJ_DIR) --gcov-tool /usr/bin/gcov -c -o output.info --no-external
 	@genhtml -o $(REPORT_DIR) output.info
 	@rm *.cc.gcov output.info
 	$(CMD_OPEN) $(REPORT_DIR)/index.html
