@@ -16,7 +16,7 @@
  */
 S21Matrix::S21Matrix()
     : rows_(3), cols_(3), matrix_(new double[rows_ * cols_]{}) {
-  std::cout << "Default constructor" << std::endl;
+  // std::cout << "Default constructor" << std::endl;
 }
 
 /**
@@ -24,7 +24,7 @@ S21Matrix::S21Matrix()
  * Создает объект S21Matrix размером [rows x cols], заполненный нулями
  */
 S21Matrix::S21Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
-  std::cout << "int int constructor" << std::endl;
+  // std::cout << "int int constructor" << std::endl;
   if (rows_ <= 0 || cols_ <= 0) {
     rows_ = 0;
     cols_ = 0;
@@ -42,7 +42,7 @@ S21Matrix::S21Matrix(const S21Matrix &other)
     : rows_(other.rows_),
       cols_(other.cols_),
       matrix_(new double[rows_ * cols_]{}) {
-  std::cout << "Copy constructor" << std::endl;
+  // std::cout << "Copy constructor" << std::endl;
   std::copy(other.matrix_, other.matrix_ + rows_ * cols_, matrix_);
 }
 
@@ -64,7 +64,7 @@ S21Matrix::S21Matrix(const S21Matrix &other)
  */
 S21Matrix::S21Matrix(S21Matrix &&other) noexcept
     : rows_(other.rows_), cols_(other.cols_), matrix_(other.matrix_) {
-  std::cout << "Move constructor" << std::endl;
+  // std::cout << "Move constructor" << std::endl;
   // Обязательно зануляем указатель из other, т.к. в противном случае оба
   // указателя будут указывать на один участок памяти и при вызове деструктора
   // other будет очищена память текущего объекта
@@ -113,7 +113,7 @@ S21Matrix::~S21Matrix() { Free(); }
  * @return S21Matrix&
  */
 S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
-  std::cout << "Use =&" << std::endl;
+  // std::cout << "Use =&" << std::endl;
   // Проверка на самоприсваивание, иначе после Free() уже нечего будет
   // присваивать (т.к. всё удалится)
   if (this != &other) {
@@ -154,7 +154,7 @@ S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
  * @return S21Matrix&
  */
 S21Matrix &S21Matrix::operator=(S21Matrix &&other) noexcept {
-  std::cout << "Use =&&" << std::endl;
+  // std::cout << "Use =&&" << std::endl;
   if (this != &other) {
     Free();
 
@@ -426,6 +426,17 @@ S21Matrix S21Matrix::operator-=(const S21Matrix &other) {
   return *this;
 }
 
+/**
+ * @brief Умножает текущую матрицу на число
+ *
+ * Произведением матрицы A[m × n] на число λ называется матрица
+ * B[m × n] = λ × A, элементы которой определяются равенствами
+ * B(i,j) = λ × A(i,j).
+ *
+ * Применимо к корректной матрице любого размера
+ *
+ * @param number 2й множитель (число)
+ */
 void S21Matrix::MulNumber(const double number) {
   for (int i = 0; i < rows_; ++i) {
     for (int j = 0; j < cols_; ++j) {
@@ -434,18 +445,53 @@ void S21Matrix::MulNumber(const double number) {
   }
 }
 
-S21Matrix operator*(const S21Matrix &matrix, const double number) {
-  S21Matrix tmp(matrix);
+/**
+ * @brief Перегрузка оператор * для умножения объекта на число
+ *
+ * Этот метод будет срабатывать только в случае, если матрица умножается на
+ * число (именно в таком порядке). Для обработки ситуации наоборот, т.е.
+ * умножения числа на матрицу, необходимо сделать отдельную перегрузку (см.
+ * следующую функцию)
+ *
+ * @param number Число, на которое умножается объект
+ * @return S21Matrix Результат умножения текущей матрицы на число
+ */
+S21Matrix S21Matrix::operator*(double number) const {
+  S21Matrix tmp = *this;
   tmp.MulNumber(number);
   return tmp;
 }
 
-S21Matrix operator*(const double number, const S21Matrix &matrix) {
+/**
+ * @brief Перегрузка оператор * для умножения числа на объект S21Matrix
+ *
+ * Этот метод будет срабатывать только в случае, если число умножается на
+ * матрицу (именно в таком порядке).
+ *
+ * Переменная с типом double "не знает" о том, как производится умножения на
+ * матрицу. Поэтому мы объявляем данную перегрузку за пределами класса и
+ * используем оператор с двумя аргументами.
+ *
+ * Для того, чтобы связать эту функцию с классом S21Matrix, в заголовочном файле
+ * класса мы определяем данный оператор как дружественный при помощи ключевого
+ * слова friend.
+ *
+ * @param number Число, на которое умножается объект S21Matrix
+ * @param matrix Объект S21Matrix, на который умножается число
+ * @return S21Matrix Результат умножения числа на объект S21Matrix
+ */
+S21Matrix operator*(double number, const S21Matrix &matrix) {
   S21Matrix tmp = matrix * number;
   return tmp;
 }
 
-S21Matrix S21Matrix::operator*=(const double number) {
+/**
+ * @brief Перегрузка оператор *= для умножения объекта на число
+ *
+ * @param number Число, на которое умножается объект
+ * @return S21Matrix Результат умножения текущей матрицы на число
+ */
+S21Matrix S21Matrix::operator*=(double number) {
   MulNumber(number);
   return *this;
 }

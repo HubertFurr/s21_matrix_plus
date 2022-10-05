@@ -83,3 +83,5 @@ class RandomInverseMatrixRangeThree : public ::testing::TestWithParam<int> {
  protected:
   S21Matrix test_matrix_;
 };
+
+class RandomMulNumberMatrixRangeOne : public RandomInverseMatrixRangeOne {};

@@ -59,9 +59,9 @@ class S21Matrix {
   S21Matrix operator+=(const S21Matrix& other);
   S21Matrix operator-(const S21Matrix& other) const;
   S21Matrix operator-=(const S21Matrix& other);
-  friend S21Matrix operator*(const S21Matrix& matrix, const double number);
-  friend S21Matrix operator*(const double number, const S21Matrix& matrix);
-  S21Matrix operator*=(const double number);
+  S21Matrix operator*(double number) const;
+  friend S21Matrix operator*(double number, const S21Matrix& matrix);
+  S21Matrix operator*=(double number);
   S21Matrix operator*(const S21Matrix& other) const;
   S21Matrix operator*=(const S21Matrix& other);
 };
