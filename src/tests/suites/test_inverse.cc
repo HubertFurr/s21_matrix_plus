@@ -725,6 +725,7 @@ TEST(TestInverse, TestInverse8) {
 }
 
 TEST(TestInverse, TestInverse9) {
+  TEST_TIMEOUT_BEGIN
   S21Matrix matrix1{11, 11};
   EXPECT_EQ(matrix1.get_cols(), 11);
   EXPECT_EQ(matrix1.get_rows(), 11);
@@ -852,6 +853,7 @@ TEST(TestInverse, TestInverse9) {
   matrix1(10, 10) = 93;
 
   s21_matrix_test_helper::TestInverse(matrix1);
+  TEST_TIMEOUT_END
 }
 
 TEST(TestInverse, TestInverse10) {
