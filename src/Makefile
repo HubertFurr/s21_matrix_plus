@@ -13,17 +13,17 @@ endif
 ifeq ($(detected_OS), Linux)
 	detected_Linux := $(shell cat /etc/issue | sed -n '1p' | awk '{print $$1}')
 	ifeq ($(detected_Linux), Arch)
-	LIBS_ADDITIONAL = -lm
+	LIBS_ADDITIONAL = 
 	CMD_OPEN = xdg-open
 	endif
 
 	ifeq ($(detected_Linux), Ubuntu)
-	LIBS_ADDITIONAL = -lm -pthread -lsubunit -lrt
+	LIBS_ADDITIONAL = -pthread
 	CMD_OPEN = xdg-open
 	endif
 	
 	ifeq ($(detected_Linux), Debian)
-	LIBS_ADDITIONAL = -lm -pthread -lsubunit -lrt
+	LIBS_ADDITIONAL = -pthread
 	CMD_OPEN = xdg-open
 	endif
 endif
@@ -71,20 +71,10 @@ else
 		CFLAGS=-Wall -Werror -Wextra -c -g
 		CFLAGS_TESTS = $(CFLAGS)
 	else 
-		ifeq ($(MODE), 4)
-			# Собираем со всеми флагами проверок и пишем идеальный код
-			LFLAGS=-g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover -fstack-protector -fanalyzer
-			CFLAGS=-Wall -Werror -Wextra -c -g -O2 -pedantic -std=c11 -Wshadow -Wlogical-op -Wshift-overflow=2 \
-			-Wduplicated-cond -Wcast-align -Wfloat-equal -Wconversion -Wcast-qual -D_GLIBCXX_DEBUG \
-			-D_GLIBCXX_DEBUG_PEDANTIC -D_FORTIFY_SOURCE=2 -fsanitize=address -fsanitize=undefined \
-			-fno-sanitize-recover -fstack-protector -fanalyzer
-			CFLAGS_TESTS = $(CFLAGS)
-		else
-			# Стандартный режим
-			LFLAGS= 
-			CFLAGS=-Wall -Werror -Wextra -c -std=c++17 -pedantic
-			CFLAGS_TESTS = $(CFLAGS)
-		endif
+		# Стандартный режим
+		LFLAGS= 
+		CFLAGS=-Wall -Werror -Wextra -c -std=c++17 -pedantic
+		CFLAGS_TESTS = $(CFLAGS)
 	endif
 endif
 
