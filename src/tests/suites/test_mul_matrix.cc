@@ -1,3 +1,4 @@
+#include "./../classes/class_random_suites.h"
 #include "./../test.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1056,3 +1057,40 @@ TEST(TestMulMatrix, TestMulMatrixOperator9) {
   ASSERT_TRUE(matrix1_before == matrix1);
   ASSERT_TRUE(matrix2_before == matrix2);
 }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Рандомные тесты
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+TEST_P(RandomMulMatrixRangeOne, TestMulMatrixRandom1) {
+  S21Matrix matrix_before = test_matrix_;
+  S21Matrix matrix_identity =
+      s21_matrix_test_helper::GetIdentityMatrix(test_matrix_.get_rows());
+
+  S21Matrix check_matrix = test_matrix_;
+  S21Matrix matrix1 = test_matrix_;
+  S21Matrix matrix2 = test_matrix_;
+  S21Matrix result1 = test_matrix_ * matrix_identity;
+  S21Matrix result2 = matrix_identity * test_matrix_;
+  matrix1.MulMatrix(matrix_identity);
+  S21Matrix result3 = matrix2;
+  result3 *= matrix_identity;
+
+  EXPECT_TRUE(result1 == check_matrix);
+  EXPECT_TRUE(result2 == check_matrix);
+  EXPECT_TRUE(result3 == check_matrix);
+  EXPECT_TRUE(matrix1 == check_matrix);
+  EXPECT_TRUE(matrix_before == test_matrix_);
+
+#if (__DEBUG == 1)
+  if (::testing::Test::HasFailure()) {
+    s21_matrix_test_helper::Print(test_matrix_);
+    s21_matrix_test_helper::PrintTest(test_matrix_);
+    s21_matrix_test_helper::PrintWolfram(test_matrix_);
+  }
+#endif
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    MulMatrixSuite1, RandomMulMatrixRangeOne,
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));

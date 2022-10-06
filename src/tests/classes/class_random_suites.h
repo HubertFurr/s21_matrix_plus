@@ -85,3 +85,5 @@ class RandomInverseMatrixRangeThree : public ::testing::TestWithParam<int> {
 };
 
 class RandomMulNumberMatrixRangeOne : public RandomInverseMatrixRangeOne {};
+
+class RandomMulMatrixRangeOne : public RandomInverseMatrixRangeOne {};
