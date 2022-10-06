@@ -4,7 +4,7 @@
 
 #include <random>
 namespace s21_matrix_test_helper {
-S21Matrix TestMoveConstructor(const S21Matrix test) { return test; }
+S21Matrix TestMoveConstructor(S21Matrix test) { return test; }
 
 void Print(const S21Matrix& matrix) {
   // std::cout.precision(10);

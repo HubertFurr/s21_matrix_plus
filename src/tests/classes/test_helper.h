@@ -8,7 +8,7 @@ constexpr double epsilon_ = 1e-7;
 constexpr int random_test_num_ = 50;
 constexpr int random_matrix_max_size = 20;  // 9!
 
-S21Matrix TestMoveConstructor(const S21Matrix test);
+S21Matrix TestMoveConstructor(S21Matrix test);
 void Print(const S21Matrix& matrix);
 void PrintWolfram(const S21Matrix& matrix);
 void PrintPlanet(const S21Matrix& matrix);
