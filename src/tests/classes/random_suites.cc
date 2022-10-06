@@ -1,6 +1,6 @@
-#include "class_random_suites.h"
+#include "random_suites.h"
 
-#include "class_test_helper.h"
+#include "test_helper.h"
 
 RandomDeterminantMatrixWithZeros::RandomDeterminantMatrixWithZeros() {
   int num_rows = s21_matrix_test_helper::GetRandInt(

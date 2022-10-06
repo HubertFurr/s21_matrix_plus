@@ -1,4 +1,4 @@
-#include "./../classes/class_random_suites.h"
+#include "./../classes/random_suites.h"
 #include "./../test.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

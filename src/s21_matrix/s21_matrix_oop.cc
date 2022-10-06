@@ -831,7 +831,7 @@ double S21Matrix::Determinant() const {
       double koef = tmp(j, i) / tmp(i, i);
       for (int k = i; k < size; ++k) {
         // Зануляем, начиная со столбца i, т.к. предыдущие столбцы уже занулены
-        // на предыдущих шагах и не изменяться
+        // на предыдущих шагах и не изменятся
         tmp(j, k) -= tmp(i, k) * koef;
       }
     }

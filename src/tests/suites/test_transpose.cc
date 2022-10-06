@@ -1,4 +1,3 @@
-// #include "./../classes/class_determinant_random.h"
 #include "./../test.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

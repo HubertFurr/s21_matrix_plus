@@ -1,4 +1,4 @@
-#include "class_test_helper.h"
+#include "test_helper.h"
 
 #include <gtest/gtest.h>
 
@@ -7,7 +7,7 @@ namespace s21_matrix_test_helper {
 S21Matrix TestMoveConstructor(const S21Matrix test) { return test; }
 
 void Print(const S21Matrix& matrix) {
-  std::cout.precision(10);
+  // std::cout.precision(10);
   // std::cout.setf(std::ios::fixed);
   std::cout << "[" << matrix.get_rows() << " x " << matrix.get_cols() << "]"
             << std::endl;
@@ -29,8 +29,8 @@ void Print(const S21Matrix& matrix) {
  * @param matrix
  */
 void PrintWolfram(const S21Matrix& matrix) {
-  std::cout.precision(0);
-  std::cout.setf(std::ios::fixed);
+  // std::cout.precision(0);
+  // std::cout.setf(std::ios::fixed);
   std::cout << "[{";
   for (int i = 0; i < matrix.get_rows(); ++i) {
     std::cout << "{";
@@ -74,8 +74,8 @@ void PrintPlanet(const S21Matrix& matrix) {
  * @param matrix
  */
 void PrintMathway(const S21Matrix& matrix) {
-  std::cout.precision(2);
-  std::cout.setf(std::ios::fixed);
+  // std::cout.precision(2);
+  // std::cout.setf(std::ios::fixed);
   std::cout << "[";
   for (int i = 0; i < matrix.get_rows(); ++i) {
     std::cout << "[";
@@ -93,9 +93,14 @@ void PrintMathway(const S21Matrix& matrix) {
   std::cout << "]" << std::endl;
 }
 
+/**
+ * @brief Формат для gtest
+ *
+ * @param matrix
+ */
 void PrintTest(const S21Matrix& matrix) {
-  std::cout.precision(0);
-  std::cout.setf(std::ios::fixed);
+  // std::cout.precision(0);
+  // std::cout.setf(std::ios::fixed);
   for (int i = 0; i < matrix.get_rows(); ++i) {
     for (int j = 0; j < matrix.get_cols(); ++j) {
       std::cout << "matrix1(" << i << ", " << j << ") = " << matrix(i, j) << ";"

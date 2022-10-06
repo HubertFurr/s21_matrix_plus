@@ -1,3 +1,6 @@
+#ifndef S21MATRIX_PLUS_TESTS_CLASSES_RANDOM_SUITES_H_
+#define S21MATRIX_PLUS_TESTS_CLASSES_RANDOM_SUITES_H_
+
 #include <gtest/gtest.h>
 
 #include "../../s21_matrix_oop.h"
@@ -87,3 +90,5 @@ class RandomInverseMatrixRangeThree : public ::testing::TestWithParam<int> {
 class RandomMulNumberMatrixRangeOne : public RandomInverseMatrixRangeOne {};
 
 class RandomMulMatrixRangeOne : public RandomInverseMatrixRangeOne {};
+
+#endif  // S21MATRIX_PLUS_TESTS_CLASSES_RANDOM_SUITES_H_

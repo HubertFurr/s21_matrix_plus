@@ -1,3 +1,6 @@
+#ifndef S21MATRIX_PLUS_TESTS_CLASSES_TEST_HELPER_H_
+#define S21MATRIX_PLUS_TESTS_CLASSES_TEST_HELPER_H_
+
 #include "./../../s21_matrix_oop.h"
 
 namespace s21_matrix_test_helper {
@@ -19,3 +22,5 @@ void CheckMatrix(const S21Matrix& matrix, double value);
 void TestInverse(const S21Matrix& matrix);
 S21Matrix GetIdentityMatrix(int size);
 }  // namespace s21_matrix_test_helper
+
+#endif  // S21MATRIX_PLUS_TESTS_CLASSES_TEST_HELPER_H_

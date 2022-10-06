@@ -1,5 +1,5 @@
-#ifndef SRC_TESTS_TEST_H_
-#define SRC_TESTS_TEST_H_
+#ifndef S21MATRIX_PLUS_TESTS_TEST_H_
+#define S21MATRIX_PLUS_TESTS_TEST_H_
 
 // 1 - включить тесты, потенциально вылетающие в timeout
 // 2 - выключить тесты, потенциально вылетающие в timeout
@@ -11,7 +11,7 @@
 #include <gtest/gtest.h>
 
 #include "./../s21_matrix_oop.h"
-#include "./classes/class_test_helper.h"
+#include "./classes/test_helper.h"
 
 #if (_GTEST_TIMEOUT == 1)
 #define TEST_TIMEOUT_BEGIN if (1) {
@@ -21,4 +21,4 @@
 #define TEST_TIMEOUT_END }
 #endif
 
-#endif  // SRC_TESTS_TEST_H_
+#endif  // S21MATRIX_PLUS_TESTS_TEST_H_
