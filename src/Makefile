@@ -112,12 +112,12 @@ vpath %.o $(OBJ_DIR)
 # Далее идут все цели
 all: $(TEST_EXE) $(GCOV_EXE)
 
-$(TEST_EXE): $(OBJ_DIR) $(TESTS_OBJ_DIR) $(MODULES_STATIC_LIBRARY) $(ALL_TESTS_O)
+$(TEST_EXE): $(OBJ_DIR) $(TESTS_OBJ_DIR) $(ALL_TESTS_O) $(MODULES_STATIC_LIBRARY)
 	@$(CC) $(LFLAGS) $(ALL_TESTS_O) $(MODULES_STATIC_LIBRARY) $(LIBS) -o $(TEST_EXE)
 	@echo "\n-------------------------------------------------------------------------------------------------\n"
 	@./$(TEST_EXE)
 
-$(GCOV_EXE): $(GCOV_OBJ_DIR) $(TESTS_OBJ_DIR) $(REPORT_DIR) $(MODULES_STATIC_LIBRARY_GCOV) $(ALL_TESTS_O) $(ALL_H) $(ALL_TESTS_H)
+$(GCOV_EXE): $(GCOV_OBJ_DIR) $(TESTS_OBJ_DIR) $(REPORT_DIR) $(ALL_TESTS_O) $(MODULES_STATIC_LIBRARY_GCOV)
 	@$(CC) $(LFLAGS) $(ALL_TESTS_O) $(MODULES_STATIC_LIBRARY_GCOV) $(LIBS_GCOV) -o ./$(GCOV_EXE)
 	@echo "\n-------------------------------------------------------------------------------------------------\n"
 	@./$(GCOV_EXE)
@@ -137,7 +137,7 @@ $(MODULES_STATIC_LIBRARY_GCOV): $(GCOV_OBJ_DIR) $(TESTS_OBJ_DIR) $(ALL_MODULES_G
 	@ar rc $(MODULES_STATIC_LIBRARY_GCOV) $(ALL_MODULES_GCOV_O)
 	@ranlib $(MODULES_STATIC_LIBRARY_GCOV)
 
-%.o: %.cc $(ALL_H) $(ALL_TESTS_H)
+%.o: %.cc $(ALL_H)
 	@echo "$(GREEN)*$(RESET)\c"
 	@$(CC) $(CFLAGS) -o $(addprefix $(OBJ_DIR)/, $@) $<
 
