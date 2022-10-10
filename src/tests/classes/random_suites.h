@@ -3,7 +3,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../../s21_matrix_oop.h"
+#include "../../s21_matrix/s21_matrix_oop.h"
 
 class RandomDeterminantMatrixWithZeros : public ::testing::TestWithParam<int> {
  public:

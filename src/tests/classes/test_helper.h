@@ -1,7 +1,7 @@
 #ifndef S21MATRIX_PLUS_TESTS_CLASSES_TEST_HELPER_H_
 #define S21MATRIX_PLUS_TESTS_CLASSES_TEST_HELPER_H_
 
-#include "./../../s21_matrix_oop.h"
+#include "./../../s21_matrix/s21_matrix_oop.h"
 
 namespace s21_matrix_test_helper {
 constexpr double epsilon_ = 1e-7;
