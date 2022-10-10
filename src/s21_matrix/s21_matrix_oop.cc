@@ -34,7 +34,7 @@ S21Matrix::S21Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
 /**
  * @brief Конструктор копирования (Copy Constructor)
  * Создает объект S21Matrix путем копирования данных из объекта other
- */
+ */ 
 S21Matrix::S21Matrix(const S21Matrix &other)
     : rows_(other.rows_),
       cols_(other.cols_),
@@ -77,7 +77,7 @@ S21Matrix::S21Matrix(S21Matrix &&other) noexcept
  * В качестве альтернативы можно было бы контролировать необходимость очистки
  * памяти по rows_ и cols_ (и учитывать это во всей программе)
  */
-void S21Matrix::Free() {
+void S21Matrix::Free() noexcept {
   delete[] matrix_;
   rows_ = 0;
   cols_ = 0;
@@ -91,7 +91,7 @@ void S21Matrix::Free() {
  * Вызывается, когда заканчивается время жизни объекта, чтобы освободить
  * ресурсы, занимаемые объектом
  */
-S21Matrix::~S21Matrix() { Free(); }
+S21Matrix::~S21Matrix() noexcept { Free(); }
 
 /**
  * @brief Оператор присваивания копированием

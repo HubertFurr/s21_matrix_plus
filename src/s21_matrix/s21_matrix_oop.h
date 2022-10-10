@@ -7,7 +7,7 @@ class S21Matrix {
   double* matrix_;
   const double epsilon_ = 1e-7;
 
-  void Free();
+  void Free() noexcept;
   double& get_matrix_element(int row, int col) const;
   void SwapRows(int n1, int n2);
   S21Matrix GetMinorMatrix(const int skip_row, const int skip_column) const;
@@ -22,7 +22,7 @@ class S21Matrix {
   S21Matrix(int rows, int cols);
   S21Matrix(const S21Matrix& other);
   S21Matrix(S21Matrix&& other) noexcept;
-  ~S21Matrix();
+  ~S21Matrix() noexcept;
 
   // Nodiscard -  атрибут используется, чтобы обозначить, что возвращаемое
   // значение функции должно быть обязательно использовано при вызове.
