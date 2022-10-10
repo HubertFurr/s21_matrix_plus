@@ -164,6 +164,8 @@ TEST(TestOperatorBrackets, TestOperatorBracketsConst2) {
   ASSERT_NEAR(matrix_check(2, 1), 0.0, s21_matrix_test_helper::epsilon_);
   ASSERT_NEAR(matrix_check(2, 2), 0.0, s21_matrix_test_helper::epsilon_);
 
+  // Расскомментировать, чтобы проверить наличие ошибки при компиляции
+  // (конст матрицы нельзя менять!)
   // matrix_check(0, 0) = 1.0;
   // matrix_check(0, 1) = 2.0;
   // matrix_check(1, 0) = 3.0;
