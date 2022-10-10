@@ -52,8 +52,11 @@ class S21Matrix {
 
   S21Matrix& operator=(const S21Matrix& other);
   S21Matrix& operator=(S21Matrix&& other) noexcept;
-  double& operator()(int row, int col);
-  const double& operator()(int row, int col) const;
+  // Зачем указывать &, && и delete - см. brief метода
+  double& operator()(int row, int col) &;
+  double& operator()(int row, int col) && = delete;
+  const double& operator()(int row, int col) const&;
+  const double& operator()(int row, int col) const&& = delete;
   bool operator==(const S21Matrix& other) const;
   S21Matrix operator+(const S21Matrix& other) const;
   S21Matrix operator+=(const S21Matrix& other);

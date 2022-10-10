@@ -171,3 +171,28 @@ TEST(TestOperatorBrackets, TestOperatorBracketsConst2) {
   // matrix_check(1, 0) = 3.0;
   // matrix_check(1, 1) = 4.0;
 }
+
+TEST(TestOperatorBrackets, TestOperatorBracketsParrot) {
+  // Расскомментировать, чтобы проверить, позволяет ли класс получать висячие
+  // ссылки
+  // S21Matrix matrix_check;
+  // double& y = matrix_check(0, 0);
+  // // double& z = S21Matrix{}(0,0);
+  // // const double& zz = S21Matrix{}(0, 0);
+
+  // std::cout << y << std::endl;
+  // // std::cout << z << std::endl;
+  // // std::cout << zz << std::endl;
+
+  // const S21Matrix matrix_check_const;
+
+  // // double& cy = matrix_check_const(0, 0);
+  // const double& ccy = matrix_check_const(0, 0);
+  // // double& cz = S21Matrix{}(0,0);
+  // // const double& czz = S21Matrix{}(0, 0);
+
+  // // std::cout << cy << std::endl;
+  // std::cout << ccy << std::endl;
+  // // std::cout << cz << std::endl;
+  // // std::cout << czz << std::endl;
+}

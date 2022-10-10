@@ -149,6 +149,9 @@ S21Matrix &S21Matrix::operator=(const S21Matrix &other) {
  */
 S21Matrix &S21Matrix::operator=(S21Matrix &&other) noexcept {
   if (this != &other) {
+    // Можно убрать вообще Free() и делать только swap
+    // В этом случае удаление сваливаем на деструктор объекта other, который
+    // всё равно будет вызван в ближайшее время
     Free();
 
     std::swap(rows_, other.rows_);
@@ -165,11 +168,31 @@ S21Matrix &S21Matrix::operator=(S21Matrix &&other) noexcept {
  * Возвращает ссылку на элемент, которая позволяет как получить его значение,
  * так и изменить при необходимости.
  *
+ * Указание & после метода - это перегрузка по вызову функций для lvalue (&) и
+ * rvalue (&&). Называется reference-qualified member functions. Необходимо,
+ * чтобы нельзя было использовать эту функцию для rvalue с риском получить
+ * висячую ссылку. В целом можно посмотреть тест TestOperatorBracketsParrot для
+ * примеров.
+ *
+ * Из-за наличия & компилятор начинает помечать ошибкой такой код:
+ * double& z = S21Matrix{}(0,0);
+ *
+ * Однако всё еще считается допустимым такой код из-за особенностей
+ * const-ссылок (т.к. const & будет вызывать и на rvalue тоже, но с меньшим
+ * приоритетом чем &&):
+ * const double& zz = S21Matrix{}(0, 0);
+ *
+ * Чтобы это запретить, в заголовочном файле прописываем:
+ * double& operator()(int row, int col) && = delete;
+ *
+ * Т.е. мы удаляем метод, перегруженный для rvalue (&&), соответственно его
+ * становится недопустимо использовать.
+ *
  * @param row номер столбца запрашиваемого элемента
  * @param col номер строки запрашиваемого элемента
  * @return double& ссылка на значение (row, col)
  */
-double &S21Matrix::operator()(int row, int col) {
+double &S21Matrix::operator()(int row, int col) & {
   return get_matrix_element(row, col);
 }
 
@@ -185,7 +208,7 @@ double &S21Matrix::operator()(int row, int col) {
  * @param col номер строки запрашиваемого элемента
  * @return double& const-ссылка на значение (row, col)
  */
-const double &S21Matrix::operator()(int row, int col) const {
+const double &S21Matrix::operator()(int row, int col) const & {
   return get_matrix_element(row, col);
 }
 

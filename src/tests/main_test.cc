@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[]) {
   // Задаем фильтры для запуска некоторых тестов
-  // ::testing::GTEST_FLAG(filter) = "*MulMatrix*";
+  // ::testing::GTEST_FLAG(filter) = "*TestOperatorBrackets*";
 
   // Передаем параметры командной строки в gtest
   testing::InitGoogleTest(&argc, argv);
