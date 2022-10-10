@@ -446,7 +446,7 @@ S21Matrix S21Matrix::operator-=(const S21Matrix &other) {
  *
  * @param number 2й множитель (число)
  */
-void S21Matrix::MulNumber(const double number) {
+void S21Matrix::MulNumber(const double number) noexcept {
   for (int i = 0; i < rows_; ++i) {
     for (int j = 0; j < cols_; ++j) {
       (*this)(i, j) = (*this)(i, j) * number;
@@ -465,7 +465,7 @@ void S21Matrix::MulNumber(const double number) {
  * @param number Число, на которое умножается объект
  * @return S21Matrix Результат умножения текущей матрицы на число
  */
-S21Matrix S21Matrix::operator*(double number) const {
+S21Matrix S21Matrix::operator*(double number) const noexcept {
   S21Matrix tmp = *this;
   tmp.MulNumber(number);
   return tmp;
@@ -489,7 +489,7 @@ S21Matrix S21Matrix::operator*(double number) const {
  * @param matrix Объект S21Matrix, на который умножается число
  * @return S21Matrix Результат умножения числа на объект S21Matrix
  */
-S21Matrix operator*(double number, const S21Matrix &matrix) {
+S21Matrix operator*(double number, const S21Matrix &matrix) noexcept {
   S21Matrix tmp = matrix * number;
   return tmp;
 }
@@ -572,7 +572,7 @@ S21Matrix S21Matrix::operator*=(const S21Matrix &other) {
  *
  * @return S21Matrix Транспонированная матрица
  */
-S21Matrix S21Matrix::Transpose() const {
+S21Matrix S21Matrix::Transpose() const noexcept {
   S21Matrix result{cols_, rows_};
 
   for (int i = 0; i < rows_; ++i) {
@@ -870,7 +870,7 @@ double S21Matrix::Determinant() const {
  * @param n1 1я строка для обмена
  * @param n2 2я строка для обмена
  */
-void S21Matrix::SwapRows(int n1, int n2) {
+void S21Matrix::SwapRows(int n1, int n2) noexcept {
   if (n1 != n2) {
     for (int i = 0; i < cols_; ++i) {
       std::swap((*this)(n1, i), (*this)(n2, i));

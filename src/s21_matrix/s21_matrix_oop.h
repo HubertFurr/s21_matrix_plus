@@ -9,7 +9,7 @@ class S21Matrix {
 
   void Free() noexcept;
   double& get_matrix_element(int row, int col) const;
-  void SwapRows(int n1, int n2);
+  void SwapRows(int n1, int n2) noexcept;
   S21Matrix GetMinorMatrix(const int skip_row, const int skip_column) const;
 
  public:
@@ -38,9 +38,9 @@ class S21Matrix {
   [[nodiscard]] bool EqMatrix(const S21Matrix& other) const;
   void SumMatrix(const S21Matrix& other);
   void SubMatrix(const S21Matrix& other);
-  void MulNumber(const double number);
+  void MulNumber(const double number) noexcept;
   void MulMatrix(const S21Matrix& other);
-  S21Matrix Transpose() const;
+  S21Matrix Transpose() const noexcept;
   S21Matrix CalcComplements() const;
   double Determinant() const;
   S21Matrix InverseMatrix() const;
@@ -62,8 +62,8 @@ class S21Matrix {
   S21Matrix operator+=(const S21Matrix& other);
   S21Matrix operator-(const S21Matrix& other) const;
   S21Matrix operator-=(const S21Matrix& other);
-  S21Matrix operator*(double number) const;
-  friend S21Matrix operator*(double number, const S21Matrix& matrix);
+  S21Matrix operator*(double number) const noexcept;
+  friend S21Matrix operator*(double number, const S21Matrix& matrix) noexcept;
   S21Matrix operator*=(double number);
   S21Matrix operator*(const S21Matrix& other) const;
   S21Matrix operator*=(const S21Matrix& other);
