@@ -34,7 +34,7 @@ S21Matrix::S21Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
 /**
  * @brief Конструктор копирования (Copy Constructor)
  * Создает объект S21Matrix путем копирования данных из объекта other
- */ 
+ */
 S21Matrix::S21Matrix(const S21Matrix &other)
     : rows_(other.rows_),
       cols_(other.cols_),
@@ -361,8 +361,7 @@ void S21Matrix::SumMatrix(const S21Matrix &other) {
 
   for (int i = 0; i < rows_; ++i) {
     for (int j = 0; j < cols_; ++j) {
-      matrix_[i * cols_ + j] =
-          matrix_[i * cols_ + j] + other.matrix_[i * cols_ + j];
+      (*this)(i, j) = (*this)(i, j) + other(i, j);
     }
   }
 }
@@ -408,8 +407,7 @@ void S21Matrix::SubMatrix(const S21Matrix &other) {
 
   for (int i = 0; i < rows_; ++i) {
     for (int j = 0; j < cols_; ++j) {
-      matrix_[i * cols_ + j] =
-          matrix_[i * cols_ + j] - other.matrix_[i * cols_ + j];
+      (*this)(i, j) = (*this)(i, j) - other(i, j);
     }
   }
 }
@@ -451,7 +449,7 @@ S21Matrix S21Matrix::operator-=(const S21Matrix &other) {
 void S21Matrix::MulNumber(const double number) {
   for (int i = 0; i < rows_; ++i) {
     for (int j = 0; j < cols_; ++j) {
-      matrix_[i * cols_ + j] = matrix_[i * cols_ + j] * number;
+      (*this)(i, j) = (*this)(i, j) * number;
     }
   }
 }
