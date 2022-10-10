@@ -40,7 +40,7 @@ class S21Matrix {
   void SubMatrix(const S21Matrix& other);
   void MulNumber(const double number) noexcept;
   void MulMatrix(const S21Matrix& other);
-  S21Matrix Transpose() const noexcept;
+  S21Matrix Transpose() const;
   S21Matrix CalcComplements() const;
   double Determinant() const;
   S21Matrix InverseMatrix() const;

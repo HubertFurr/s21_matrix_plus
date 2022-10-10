@@ -572,7 +572,7 @@ S21Matrix S21Matrix::operator*=(const S21Matrix &other) {
  *
  * @return S21Matrix Транспонированная матрица
  */
-S21Matrix S21Matrix::Transpose() const noexcept {
+S21Matrix S21Matrix::Transpose() const {
   S21Matrix result{cols_, rows_};
 
   for (int i = 0; i < rows_; ++i) {
