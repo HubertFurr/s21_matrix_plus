@@ -25,6 +25,7 @@ S21Matrix::S21Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
   if (rows_ <= 0 || cols_ <= 0) {
     rows_ = 0;
     cols_ = 0;
+    matrix_ = nullptr;
     throw std::length_error("matrix size must be greater than 0");
   }
 
