@@ -145,3 +145,41 @@ TEST(TestMutators, TestMutators7) {
   EXPECT_NEAR(matrix1(1, 0), 5.5, s21_matrix_test_helper::epsilon_);
   EXPECT_NEAR(matrix1(1, 1), 5.5, s21_matrix_test_helper::epsilon_);
 }
+
+TEST(TestMutators, TestMutators8) {
+  S21Matrix matrix1{2, 2};
+  EXPECT_EQ(matrix1.get_rows(), 2);
+  EXPECT_EQ(matrix1.get_cols(), 2);
+
+  matrix1(0,0) = 1;
+  matrix1(0,1) = 2;
+  matrix1(1,0) = 3;
+  matrix1(1,1) = 4;
+
+  matrix1.set_rows(1);
+
+  EXPECT_EQ(matrix1.get_rows(), 1);
+  EXPECT_EQ(matrix1.get_cols(), 2);
+
+  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::epsilon_);
+  EXPECT_NEAR(matrix1(0, 1), 2, s21_matrix_test_helper::epsilon_);
+}
+
+TEST(TestMutators, TestMutators9) {
+  S21Matrix matrix1{2, 2};
+  EXPECT_EQ(matrix1.get_rows(), 2);
+  EXPECT_EQ(matrix1.get_cols(), 2);
+
+  matrix1(0,0) = 1;
+  matrix1(0,1) = 2;
+  matrix1(1,0) = 3;
+  matrix1(1,1) = 4;
+
+  matrix1.set_rows(1);
+
+  EXPECT_EQ(matrix1.get_rows(), 2);
+  EXPECT_EQ(matrix1.get_cols(), 1);
+
+  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::epsilon_);
+  EXPECT_NEAR(matrix1(1, 0), 3, s21_matrix_test_helper::epsilon_);
+}
