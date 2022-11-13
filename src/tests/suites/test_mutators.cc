@@ -175,7 +175,7 @@ TEST(TestMutators, TestMutators9) {
   matrix1(1,0) = 3;
   matrix1(1,1) = 4;
 
-  matrix1.set_rows(1);
+  matrix1.set_cols(1);
 
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 1);

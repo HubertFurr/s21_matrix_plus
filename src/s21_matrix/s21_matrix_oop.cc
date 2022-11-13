@@ -242,6 +242,7 @@ int S21Matrix::get_cols() const noexcept { return cols_; }
  *
  * @param new_rows новое значение для rows_
  */
+// TODO: if (new_rows != rows_)
 void S21Matrix::set_rows(int new_rows) {
   if (new_rows <= 0) {
     throw std::length_error("matrix size must be greater than 0");

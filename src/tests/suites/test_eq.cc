@@ -1,4 +1,22 @@
 #include "./../test.h"
+// TODO: == и 1+ для const
+
+//TODO:
+
+  // S21Matrix matrix1{1, 1};
+  // S21Matrix matrix2{1, 1};
+
+  // matrix1(0, 0) = -1;
+  // matrix2(0, 0) = 2;
+  // EXPECT_FALSE(matrix1 == matrix2);
+
+
+  // S21Matrix matrix1{1, 1};
+  // S21Matrix matrix2{1, 1};
+
+  // matrix1(0, 0) = 1;
+  // matrix2(0, 0) = -2;
+  // EXPECT_FALSE(matrix1 == matrix2);
 
 TEST(TestEq, TestEq1) {
   S21Matrix matrix1{2, 2};

@@ -4,7 +4,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Тесты исключений функции умножения матриц
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
+// TODO: matrix1 * const_matrix2; const_matrix1 * const_matrix2
 TEST(TestMulMatrix, TestMulMatrixFunctionException1) {
   S21Matrix matrix1{3, 2};
   S21Matrix matrix2{3, 2};
