@@ -76,7 +76,7 @@ TEST(TestOperatorBrackets, TestOperatorBracketsException10) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 TEST(TestOperatorBrackets, TestOperatorBrackets1) {
-  S21Matrix matrix_check;
+  S21Matrix matrix_check{3,3};
   EXPECT_EQ(matrix_check.get_rows(), 3);
   EXPECT_EQ(matrix_check.get_cols(), 3);
 
@@ -107,7 +107,7 @@ TEST(TestOperatorBrackets, TestOperatorBrackets1) {
 }
 
 TEST(TestOperatorBrackets, TestOperatorBracketsConst1) {
-  S21Matrix matrix_check;
+  S21Matrix matrix_check{3,3};
   EXPECT_EQ(matrix_check.get_rows(), 3);
   EXPECT_EQ(matrix_check.get_cols(), 3);
 
@@ -150,7 +150,7 @@ TEST(TestOperatorBrackets, TestOperatorBracketsConst1) {
 }
 
 TEST(TestOperatorBrackets, TestOperatorBracketsConst2) {
-  const S21Matrix matrix_check;
+  const S21Matrix matrix_check{3,3};
   EXPECT_EQ(matrix_check.get_rows(), 3);
   EXPECT_EQ(matrix_check.get_cols(), 3);
 
