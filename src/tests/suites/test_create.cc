@@ -36,6 +36,48 @@ TEST(TestConstructor, TestConstructorException7) {
  * Тесты успешного создания объектов
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+// TODO: нулевые матрицы потенциально имеют много проблем
+TEST(TestConstructor, TestConstructor00) {
+  // S21Matrix matrix_check;
+  // EXPECT_EQ(matrix_check.get_rows(), 0);
+  // EXPECT_EQ(matrix_check.get_cols(), 0);
+
+  // S21Matrix matrix_test{matrix_check};
+
+}
+
+TEST(TestConstructor, TestConstructor001) {
+  // S21Matrix matrix_check;
+  // EXPECT_EQ(matrix_check.get_rows(), 0);
+  // EXPECT_EQ(matrix_check.get_cols(), 0);
+
+  // // s21_matrix_test_helper::CheckMatrix(matrix_check, 0.0);
+
+  // S21Matrix matrix_test{matrix_check};
+
+  // EXPECT_EQ(matrix_test.get_rows(), 0);
+  // EXPECT_EQ(matrix_test.get_cols(), 0);
+
+  // // s21_matrix_test_helper::CheckMatrix(matrix_test, 0.0);
+}
+
+TEST(TestConstructor, TestConstructor002) {
+  // S21Matrix matrix_check;
+  // EXPECT_EQ(matrix_check.get_rows(), 0);
+  // EXPECT_EQ(matrix_check.get_cols(), 0);
+
+  // S21Matrix matrix_test = matrix_check * 5;
+}
+
+// TEST(TestConstructor, TestConstructor003) {
+//   S21Matrix matrix_check1;
+//   S21Matrix matrix_check2;
+//   // EXPECT_EQ(matrix_check.get_rows(), 0);
+//   // EXPECT_EQ(matrix_check.get_cols(), 0);
+
+//   matrix_check1 * matrix_check2;
+// }
+
 TEST(TestConstructor, TestConstructorBasic) {
   S21Matrix matrix_check;
   EXPECT_EQ(matrix_check.get_rows(), 3);
