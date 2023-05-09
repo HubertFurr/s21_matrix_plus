@@ -1,5 +1,5 @@
-#ifndef S21MATRIX_PLUS_TESTS_TEST_H_
-#define S21MATRIX_PLUS_TESTS_TEST_H_
+#ifndef CPP1_S21_MATRIXPLUS_TESTS_TEST_H_
+#define CPP1_S21_MATRIXPLUS_TESTS_TEST_H_
 
 // 1 - включить тесты, потенциально вылетающие в timeout
 // 2 - выключить тесты, потенциально вылетающие в timeout
@@ -21,4 +21,4 @@
 #define TEST_TIMEOUT_END }
 #endif
 
-#endif  // S21MATRIX_PLUS_TESTS_TEST_H_
+#endif  // CPP1_S21_MATRIXPLUS_TESTS_TEST_H_

@@ -1,5 +1,5 @@
-#ifndef S21MATRIX_PLUS_S21_MATRIX_OOP_H_
-#define S21MATRIX_PLUS_S21_MATRIX_OOP_H_
+#ifndef CPP1_S21_MATRIXPLUS_S21_MATRIX_OOP_H_
+#define CPP1_S21_MATRIXPLUS_S21_MATRIX_OOP_H_
 
 class S21Matrix {
  private:
@@ -70,4 +70,4 @@ class S21Matrix {
   S21Matrix operator*=(const S21Matrix& other);
 };
 
-#endif  // S21MATRIX_PLUS_S21_MATRIX_OOP_H_
+#endif  // CPP1_S21_MATRIXPLUS_S21_MATRIX_OOP_H_
