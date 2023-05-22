@@ -1,6 +1,6 @@
 # Дополнительные библиотеки не для Mac, по умолчанию оставляем пустым, чтобы не портить сборку на Mac
 LIBS_ADDITIONAL = 
-# Команда для открытия файла отчета о покрытии по умполчанию
+# Команда для открытия файла отчета о покрытии по умолчанию
 CMD_OPEN = open
 
 # Определяем ОС
@@ -56,6 +56,7 @@ MODULES_STATIC_LIBRARY_GCOV = s21_matrix_oop_gcov.a
 
 # Дефолтное значение 1 если не задано с консоли
 # Задаем так: make test MODE=4
+# (!) Перед изменением режима надо вызывать make clean
 MODE?=1
 ifeq ($(MODE), 2)
 	# Собираем с fsanitizer
@@ -73,7 +74,7 @@ else
 	else 
 		# Стандартный режим
 		LFLAGS= 
-		CFLAGS=-Wall -Werror -Wextra -c -std=c++17 -pedantic
+		CFLAGS=-Wall -Werror -Wextra -c -std=c++17 -pedantic -O3
 		CFLAGS_TESTS = $(CFLAGS)
 	endif
 endif
