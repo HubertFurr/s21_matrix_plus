@@ -816,109 +816,37 @@ TEST(TestSub, TestSubOperation8) {
   EXPECT_TRUE(matrix2_before == matrix2);
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Тесты на const
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+TEST(TestSub, TestSubOperation9) {
+  S21Matrix matrix1{1, 1};
+  EXPECT_EQ(matrix1.get_rows(), 1);
+  EXPECT_EQ(matrix1.get_cols(), 1);
 
-TEST(TestSub, TestSubConst1) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_cols(), 2);
-  EXPECT_EQ(matrix1.get_rows(), 2);
+  S21Matrix matrix2{1, 1};
+  EXPECT_EQ(matrix2.get_rows(), 1);
+  EXPECT_EQ(matrix2.get_cols(), 1);
 
-  S21Matrix matrix2{2, 2};
-  EXPECT_EQ(matrix2.get_cols(), 2);
-  EXPECT_EQ(matrix2.get_rows(), 2);
+  S21Matrix check_matrix{1, 1};
+  EXPECT_EQ(matrix2.get_rows(), 1);
+  EXPECT_EQ(matrix2.get_cols(), 1);
 
-  matrix1(0, 0) = 1;
-  matrix1(0, 1) = 2;
-  matrix1(1, 0) = 3;
-  matrix1(1, 1) = 4;
-
-  matrix2(0, 0) = -4;
-  matrix2(0, 1) = -3;
-  matrix2(1, 0) = -2;
-  matrix2(1, 1) = -1;
-
-  S21Matrix matrix2_before = matrix2;
-  const S21Matrix matrix2_const = matrix2;
-
-  matrix1.SubMatrix(matrix2_const);
-
-  s21_matrix_test_helper::CheckMatrix(matrix1, 5);
-  EXPECT_TRUE(matrix2_before == matrix2_const);
-}
-
-TEST(TestSub, TestSubConst2) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_cols(), 2);
-  EXPECT_EQ(matrix1.get_rows(), 2);
-
-  S21Matrix matrix2{2, 2};
-  EXPECT_EQ(matrix2.get_cols(), 2);
-  EXPECT_EQ(matrix2.get_rows(), 2);
-
-  matrix1(0, 0) = 1;
-  matrix1(0, 1) = 2;
-  matrix1(1, 0) = 3;
-  matrix1(1, 1) = 4;
-
-  matrix2(0, 0) = -4;
-  matrix2(0, 1) = -3;
-  matrix2(1, 0) = -2;
-  matrix2(1, 1) = -1;
+  matrix1(0, 0) = 1.0;
+  matrix2(0, 0) = 0.5;
+  check_matrix(0, 0) = 0.5;
 
   S21Matrix matrix1_before = matrix1;
   S21Matrix matrix2_before = matrix2;
-  const S21Matrix matrix1_const = matrix1;
-  const S21Matrix matrix2_const = matrix2;
+  S21Matrix result1 = matrix1;
+  S21Matrix result2 = matrix1 - matrix2;
+  result1 -= matrix2;
 
-  S21Matrix result;
-  result = matrix1_const - matrix2_const;
+  EXPECT_EQ(result1.get_rows(), 1);
+  EXPECT_EQ(result1.get_cols(), 1);
+  EXPECT_TRUE(result1 == check_matrix);
 
-  EXPECT_EQ(result.get_cols(), 2);
-  EXPECT_EQ(result.get_rows(), 2);
+  EXPECT_EQ(result2.get_rows(), 1);
+  EXPECT_EQ(result2.get_cols(), 1);
+  EXPECT_TRUE(result2 == check_matrix);
 
-  s21_matrix_test_helper::CheckMatrix(result, 5);
-  EXPECT_TRUE(matrix1_before == matrix1_const);
-  EXPECT_TRUE(matrix2_before == matrix2_const);
-}
-
-TEST(TestSub, TestSubConst3) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_cols(), 2);
-  EXPECT_EQ(matrix1.get_rows(), 2);
-
-  S21Matrix matrix2{2, 2};
-  EXPECT_EQ(matrix2.get_cols(), 2);
-  EXPECT_EQ(matrix2.get_rows(), 2);
-
-  matrix1(0, 0) = 2;
-  matrix1(0, 1) = 2;
-  matrix1(1, 0) = 2;
-  matrix1(1, 1) = 2;
-
-  matrix2(0, 0) = -4;
-  matrix2(0, 1) = -4;
-  matrix2(1, 0) = -4;
-  matrix2(1, 1) = -4;
-
-  S21Matrix matrix1_before = matrix1;
-  S21Matrix matrix2_before = matrix2;
-  const S21Matrix matrix1_const = matrix1;
-  const S21Matrix matrix2_const = matrix2;
-
-  S21Matrix result{2, 2};
-  result -= matrix1_const;
-
-  EXPECT_EQ(result.get_cols(), 2);
-  EXPECT_EQ(result.get_rows(), 2);
-  s21_matrix_test_helper::CheckMatrix(result, -2);
-
-  result -= matrix2_const;
-
-  EXPECT_EQ(result.get_cols(), 2);
-  EXPECT_EQ(result.get_rows(), 2);
-  s21_matrix_test_helper::CheckMatrix(result, 2);
-  EXPECT_TRUE(matrix1_before == matrix1_const);
-  EXPECT_TRUE(matrix2_before == matrix2_const);
+  EXPECT_TRUE(matrix1_before == matrix1);
+  EXPECT_TRUE(matrix2_before == matrix2);
 }

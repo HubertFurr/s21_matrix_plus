@@ -3,7 +3,9 @@
 #include <gtest/gtest.h>
 
 #include <random>
+
 namespace s21_matrix_test_helper {
+
 S21Matrix TestMoveConstructor(S21Matrix test) { return test; }
 
 void Print(const S21Matrix& matrix) {
@@ -112,15 +114,15 @@ void PrintTest(const S21Matrix& matrix) {
 int GetRandInt(int min, int max) {
   std::random_device rd;
   std::mt19937 generator(rd());
-  std::uniform_int_distribution<> distr(min, max);
-  return distr(generator);
+  std::uniform_int_distribution<> distribution(min, max);
+  return distribution(generator);
 }
 
 double GetRandDouble(double min, double max) {
   std::random_device rd;
   std::mt19937 generator(rd());
-  std::uniform_real_distribution<double> distr(min, max);
-  return distr(generator);
+  std::uniform_real_distribution<double> distribution(min, max);
+  return distribution(generator);
 }
 
 S21Matrix GetRandMatrix(int rows, int cols, double min, double max) {
@@ -146,7 +148,7 @@ void FillMatrix(S21Matrix& matrix, double value) {
 void CheckMatrix(const S21Matrix& matrix, double value) {
   for (int i = 0; i < matrix.get_rows(); ++i) {
     for (int j = 0; j < matrix.get_cols(); ++j) {
-      ASSERT_NEAR(matrix(i, j), value, epsilon_);
+      ASSERT_NEAR(matrix(i, j), value, s21_matrix_test_helper::epsilon);
     }
   }
 }
@@ -154,7 +156,7 @@ void CheckMatrix(const S21Matrix& matrix, double value) {
 void TestInverse(const S21Matrix& matrix) {
   S21Matrix matrix_before = matrix;
   double det = matrix.Determinant();
-  if (std::abs(det) < s21_matrix_test_helper::epsilon_) {
+  if (std::abs(det) < s21_matrix_test_helper::epsilon) {
     EXPECT_ANY_THROW(matrix.InverseMatrix());
   } else {
     S21Matrix matrix_inverse = matrix.InverseMatrix();
@@ -166,6 +168,18 @@ void TestInverse(const S21Matrix& matrix) {
   EXPECT_TRUE(matrix == matrix_before);
 }
 
+/**
+ * @brief Возвращает единичную матрицу [size x size].
+ *
+ * @details
+ * Для матрицы 0×0 единичная матрица будет тоже 0×0 - это не косяк,
+ * действительно для пустой матрицы размерности 0×0 матрица является собственной
+ * обратной.
+ * via: https://ru.frwiki.wiki/wiki/Matrice_vide
+ *
+ * @param size
+ * @return S21Matrix
+ */
 S21Matrix GetIdentityMatrix(int size) {
   S21Matrix result{size, size};
 
@@ -179,4 +193,5 @@ S21Matrix GetIdentityMatrix(int size) {
 
   return result;
 }
+
 }  // namespace s21_matrix_test_helper

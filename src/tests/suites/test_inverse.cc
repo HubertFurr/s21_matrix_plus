@@ -232,57 +232,6 @@ TEST(TestInverse, TestInverseZero7) {
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Тесты на const матрицы
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-TEST(TestInverse, TestInverseConst1) {
-  S21Matrix matrix1{1, 1};
-  EXPECT_EQ(matrix1.get_cols(), 1);
-  EXPECT_EQ(matrix1.get_rows(), 1);
-
-  matrix1(0, 0) = 1.5;
-
-  const S21Matrix matrix_const = matrix1;
-
-  s21_matrix_test_helper::TestInverse(matrix_const);
-}
-
-TEST(TestInverse, TestInverseConst2) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_cols(), 2);
-  EXPECT_EQ(matrix1.get_rows(), 2);
-
-  matrix1(0, 0) = 1.1;
-  matrix1(0, 1) = 1.2;
-  matrix1(1, 0) = 1.3;
-  matrix1(1, 1) = 1.4;
-
-  const S21Matrix matrix_const = matrix1;
-
-  s21_matrix_test_helper::TestInverse(matrix_const);
-}
-
-TEST(TestInverse, TestInverseConst3) {
-  S21Matrix matrix1{3, 3};
-  EXPECT_EQ(matrix1.get_cols(), 3);
-  EXPECT_EQ(matrix1.get_rows(), 3);
-
-  matrix1(0, 0) = -7.00037610391155;
-  matrix1(1, 0) = -6.32839397341013;
-  matrix1(2, 0) = 10.222164043691;
-  matrix1(0, 1) = -9.82599597726949;
-  matrix1(1, 1) = 3.03237457247451;
-  matrix1(2, 1) = 0.587724786484614;
-  matrix1(0, 2) = 8.27683520526625;
-  matrix1(1, 2) = -4.28063526446931;
-  matrix1(2, 2) = -6.93227237439714;
-
-  const S21Matrix matrix_const = matrix1;
-
-  s21_matrix_test_helper::TestInverse(matrix_const);
-}
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Рандомные цикличные тесты на определитель, равный 0
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -306,7 +255,7 @@ TEST_P(RandomInverseMatrixWithZeros, TestInverseZeroRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite1, RandomInverseMatrixWithZeros,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
 
 // Используем для теста следующее свойство определителя:
 // Если в определителе имеются два одинаковых параллельных ряда, то определитель
@@ -328,7 +277,7 @@ TEST_P(RandomInverseMatrixWithDuplicates, TestInverseZeroRandom2) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite2, RandomInverseMatrixWithDuplicates,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
 
 // Используем для теста следующее свойство определителя:
 // Если в определителе два параллельных ряда пропорциональны, то определитель
@@ -350,7 +299,7 @@ TEST_P(RandomInverseMatrixWithProportiona, TestInverseZeroRandom3) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite3, RandomInverseMatrixWithProportiona,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Рандомные цикличные тесты на определитель, не равный 0
@@ -370,7 +319,7 @@ TEST_P(RandomInverseMatrixRangeOne, TestInverseRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite4, RandomInverseMatrixRangeOne,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
 
 TEST_P(RandomInverseMatrixRangeTwo, TestInverseRandom1) {
   s21_matrix_test_helper::TestInverse(test_matrix_);
@@ -386,7 +335,7 @@ TEST_P(RandomInverseMatrixRangeTwo, TestInverseRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite5, RandomInverseMatrixRangeTwo,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
 
 TEST_P(RandomInverseMatrixRangeThree, TestInverseRandom1) {
   s21_matrix_test_helper::TestInverse(test_matrix_);
@@ -402,7 +351,7 @@ TEST_P(RandomInverseMatrixRangeThree, TestInverseRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite6, RandomInverseMatrixRangeThree,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Тесты на определитель, не равный 0

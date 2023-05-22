@@ -1,5 +1,4 @@
 #include "./../test.h"
-// TODO: == и 1+ для const
 
 TEST(TestEq, TestEq0) {
   S21Matrix matrix1{1, 1};

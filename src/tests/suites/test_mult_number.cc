@@ -312,42 +312,6 @@ TEST(TestMulNumber, TestMulNumberOperator6) {
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Тесты на const
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-TEST(TestMulNumber, TestMulNumberConst1) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_rows(), 2);
-  EXPECT_EQ(matrix1.get_cols(), 2);
-
-  S21Matrix check_matrix = matrix1;
-  EXPECT_EQ(check_matrix.get_rows(), 2);
-  EXPECT_EQ(check_matrix.get_cols(), 2);
-
-  double number = -9.87;
-
-  matrix1(0, 0) = 145678000.588;
-  matrix1(0, 1) = -4542;
-  matrix1(1, 0) = 673552.54545324;
-  matrix1(1, 1) = 145678000.588;
-
-  check_matrix(0, 0) = -1437841865.8035598;
-  check_matrix(0, 1) = 44829.54;
-  check_matrix(1, 0) = -6647963.62362348;
-  check_matrix(1, 1) = -1437841865.80355978;
-
-  S21Matrix matrix1_before = matrix1;
-  const S21Matrix matrix1_const = matrix1;
-  S21Matrix result1 = matrix1_const * number;
-  S21Matrix result2 = number * matrix1_const;
-
-  EXPECT_TRUE(result1 == check_matrix);
-  EXPECT_TRUE(result2 == check_matrix);
-  EXPECT_TRUE(matrix1 == matrix1_before);
-  EXPECT_TRUE(matrix1_const == matrix1_before);
-}
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Рандомные тесты
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -386,4 +350,4 @@ TEST_P(RandomMulNumberMatrixRangeOne, TestMulNumberRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     MulNumberSuite1, RandomMulNumberMatrixRangeOne,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));

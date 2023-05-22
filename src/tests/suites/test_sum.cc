@@ -4,7 +4,7 @@
  * Тесты исключений функции суммирования
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-TEST(TestSumm, TestSummFunctionException1) {
+TEST(TestSum, TestSumFunctionException1) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{2, 3};
 
@@ -17,7 +17,7 @@ TEST(TestSumm, TestSummFunctionException1) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummFunctionException2) {
+TEST(TestSum, TestSumFunctionException2) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{3, 2};
 
@@ -30,7 +30,7 @@ TEST(TestSumm, TestSummFunctionException2) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummFunctionException3) {
+TEST(TestSum, TestSumFunctionException3) {
   S21Matrix matrix1{3, 2};
   S21Matrix matrix2{2, 2};
 
@@ -43,7 +43,7 @@ TEST(TestSumm, TestSummFunctionException3) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummFunctionException4) {
+TEST(TestSum, TestSumFunctionException4) {
   S21Matrix matrix1{2, 3};
   S21Matrix matrix2{2, 2};
 
@@ -56,7 +56,7 @@ TEST(TestSumm, TestSummFunctionException4) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummFunctionException5) {
+TEST(TestSum, TestSumFunctionException5) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{2, 3};
 
@@ -72,7 +72,7 @@ TEST(TestSumm, TestSummFunctionException5) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummFunctionException6) {
+TEST(TestSum, TestSumFunctionException6) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{3, 2};
 
@@ -88,7 +88,7 @@ TEST(TestSumm, TestSummFunctionException6) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummFunctionException7) {
+TEST(TestSum, TestSumFunctionException7) {
   S21Matrix matrix1{3, 2};
   S21Matrix matrix2{2, 2};
 
@@ -104,7 +104,7 @@ TEST(TestSumm, TestSummFunctionException7) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummFunctionException8) {
+TEST(TestSum, TestSumFunctionException8) {
   S21Matrix matrix1{2, 3};
   S21Matrix matrix2{2, 2};
 
@@ -124,7 +124,7 @@ TEST(TestSumm, TestSummFunctionException8) {
  * Тесты исключений операций суммирования
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-TEST(TestSumm, TestSummOperatorException1) {
+TEST(TestSum, TestSumOperatorException1) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{2, 3};
 
@@ -137,7 +137,7 @@ TEST(TestSumm, TestSummOperatorException1) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException2) {
+TEST(TestSum, TestSumOperatorException2) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{3, 2};
 
@@ -150,7 +150,7 @@ TEST(TestSumm, TestSummOperatorException2) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException3) {
+TEST(TestSum, TestSumOperatorException3) {
   S21Matrix matrix1{3, 2};
   S21Matrix matrix2{2, 2};
 
@@ -163,7 +163,7 @@ TEST(TestSumm, TestSummOperatorException3) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException4) {
+TEST(TestSum, TestSumOperatorException4) {
   S21Matrix matrix1{2, 3};
   S21Matrix matrix2{2, 2};
 
@@ -176,7 +176,7 @@ TEST(TestSumm, TestSummOperatorException4) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException5) {
+TEST(TestSum, TestSumOperatorException5) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{2, 3};
 
@@ -192,7 +192,7 @@ TEST(TestSumm, TestSummOperatorException5) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException6) {
+TEST(TestSum, TestSumOperatorException6) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{3, 2};
 
@@ -208,7 +208,7 @@ TEST(TestSumm, TestSummOperatorException6) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException7) {
+TEST(TestSum, TestSumOperatorException7) {
   S21Matrix matrix1{3, 2};
   S21Matrix matrix2{2, 2};
 
@@ -224,7 +224,7 @@ TEST(TestSumm, TestSummOperatorException7) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException8) {
+TEST(TestSum, TestSumOperatorException8) {
   S21Matrix matrix1{2, 3};
   S21Matrix matrix2{2, 2};
 
@@ -240,7 +240,7 @@ TEST(TestSumm, TestSummOperatorException8) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException9) {
+TEST(TestSum, TestSumOperatorException9) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{2, 3};
 
@@ -253,7 +253,7 @@ TEST(TestSumm, TestSummOperatorException9) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException10) {
+TEST(TestSum, TestSumOperatorException10) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{3, 2};
 
@@ -266,7 +266,7 @@ TEST(TestSumm, TestSummOperatorException10) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException11) {
+TEST(TestSum, TestSumOperatorException11) {
   S21Matrix matrix1{3, 2};
   S21Matrix matrix2{2, 2};
 
@@ -279,7 +279,7 @@ TEST(TestSumm, TestSummOperatorException11) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException12) {
+TEST(TestSum, TestSumOperatorException12) {
   S21Matrix matrix1{2, 3};
   S21Matrix matrix2{2, 2};
 
@@ -292,7 +292,7 @@ TEST(TestSumm, TestSummOperatorException12) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException13) {
+TEST(TestSum, TestSumOperatorException13) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{2, 3};
 
@@ -308,7 +308,7 @@ TEST(TestSumm, TestSummOperatorException13) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException14) {
+TEST(TestSum, TestSumOperatorException14) {
   S21Matrix matrix1{2, 2};
   S21Matrix matrix2{3, 2};
 
@@ -324,7 +324,7 @@ TEST(TestSumm, TestSummOperatorException14) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException15) {
+TEST(TestSum, TestSumOperatorException15) {
   S21Matrix matrix1{3, 2};
   S21Matrix matrix2{2, 2};
 
@@ -340,7 +340,7 @@ TEST(TestSumm, TestSummOperatorException15) {
   EXPECT_TRUE(matrix2 == matrix2_before);
 }
 
-TEST(TestSumm, TestSummOperatorException16) {
+TEST(TestSum, TestSumOperatorException16) {
   S21Matrix matrix1{2, 3};
   S21Matrix matrix2{2, 2};
 
@@ -360,7 +360,7 @@ TEST(TestSumm, TestSummOperatorException16) {
  * Тесты успешного суммирования функцией
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-TEST(TestSumm, TestSumm1) {
+TEST(TestSum, TestSum1) {
   S21Matrix matrix1{95, 99};
   EXPECT_EQ(matrix1.get_rows(), 95);
   EXPECT_EQ(matrix1.get_cols(), 99);
@@ -381,7 +381,7 @@ TEST(TestSumm, TestSumm1) {
   s21_matrix_test_helper::CheckMatrix(matrix2, 3.5 + 2.5 + 3.5);
 }
 
-TEST(TestSumm, TestSumm2) {
+TEST(TestSum, TestSum2) {
   S21Matrix matrix1{99, 99};
   EXPECT_EQ(matrix1.get_rows(), 99);
   EXPECT_EQ(matrix1.get_cols(), 99);
@@ -402,7 +402,7 @@ TEST(TestSumm, TestSumm2) {
   s21_matrix_test_helper::CheckMatrix(matrix2, -2.5);
 }
 
-TEST(TestSumm, TestSumm3) {
+TEST(TestSum, TestSum3) {
   S21Matrix matrix1{4, 3};
   EXPECT_EQ(matrix1.get_rows(), 4);
   EXPECT_EQ(matrix1.get_cols(), 3);
@@ -459,7 +459,7 @@ TEST(TestSumm, TestSumm3) {
   EXPECT_TRUE(matrix1 == check_matrix);
 }
 
-TEST(TestSumm, TestSumm4) {
+TEST(TestSum, TestSum4) {
   S21Matrix matrix1{2, 2};
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 2);
@@ -496,7 +496,7 @@ TEST(TestSumm, TestSumm4) {
  * Тесты успешного суммирования операторами
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-TEST(TestSumm, TestSummOperation1) {
+TEST(TestSum, TestSumOperation1) {
   S21Matrix matrix1{95, 99};
   EXPECT_EQ(matrix1.get_rows(), 95);
   EXPECT_EQ(matrix1.get_cols(), 99);
@@ -519,7 +519,7 @@ TEST(TestSumm, TestSummOperation1) {
   EXPECT_TRUE(matrix2_before == matrix2);
 }
 
-TEST(TestSumm, TestSummOperation2) {
+TEST(TestSum, TestSumOperation2) {
   S21Matrix matrix1{99, 99};
   EXPECT_EQ(matrix1.get_rows(), 99);
   EXPECT_EQ(matrix1.get_cols(), 99);
@@ -542,7 +542,7 @@ TEST(TestSumm, TestSummOperation2) {
   EXPECT_TRUE(matrix2_before == matrix2);
 }
 
-TEST(TestSumm, TestSummOperation3) {
+TEST(TestSum, TestSumOperation3) {
   S21Matrix matrix1{4, 3};
   EXPECT_EQ(matrix1.get_rows(), 4);
   EXPECT_EQ(matrix1.get_cols(), 3);
@@ -606,7 +606,7 @@ TEST(TestSumm, TestSummOperation3) {
   EXPECT_TRUE(matrix2_before == matrix2);
 }
 
-TEST(TestSumm, TestSummOperation4) {
+TEST(TestSum, TestSumOperation4) {
   S21Matrix matrix1{2, 2};
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 2);
@@ -646,7 +646,7 @@ TEST(TestSumm, TestSummOperation4) {
   EXPECT_TRUE(matrix2_before == matrix2);
 }
 
-TEST(TestSumm, TestSummOperation5) {
+TEST(TestSum, TestSumOperation5) {
   S21Matrix matrix1{95, 99};
   EXPECT_EQ(matrix1.get_rows(), 95);
   EXPECT_EQ(matrix1.get_cols(), 99);
@@ -678,7 +678,7 @@ TEST(TestSumm, TestSummOperation5) {
   EXPECT_TRUE(matrix2_before == matrix2);
 }
 
-TEST(TestSumm, TestSummOperation6) {
+TEST(TestSum, TestSumOperation6) {
   S21Matrix matrix1{99, 99};
   EXPECT_EQ(matrix1.get_rows(), 99);
   EXPECT_EQ(matrix1.get_cols(), 99);
@@ -710,7 +710,7 @@ TEST(TestSumm, TestSummOperation6) {
   EXPECT_TRUE(matrix2_before == matrix2);
 }
 
-TEST(TestSumm, TestSummOperation7) {
+TEST(TestSum, TestSumOperation7) {
   S21Matrix matrix1{4, 3};
   EXPECT_EQ(matrix1.get_rows(), 4);
   EXPECT_EQ(matrix1.get_cols(), 3);
@@ -775,7 +775,7 @@ TEST(TestSumm, TestSummOperation7) {
   EXPECT_TRUE(matrix2_before == matrix2);
 }
 
-TEST(TestSumm, TestSummOperation8) {
+TEST(TestSum, TestSumOperation8) {
   S21Matrix matrix1{2, 2};
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 2);
@@ -816,109 +816,37 @@ TEST(TestSumm, TestSummOperation8) {
   EXPECT_TRUE(matrix2_before == matrix2);
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Тесты на const
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+TEST(TestSum, TestSumOperation9) {
+  S21Matrix matrix1{1, 1};
+  EXPECT_EQ(matrix1.get_rows(), 1);
+  EXPECT_EQ(matrix1.get_cols(), 1);
 
-TEST(TestSumm, TestSummConst1) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_cols(), 2);
-  EXPECT_EQ(matrix1.get_rows(), 2);
+  S21Matrix matrix2{1, 1};
+  EXPECT_EQ(matrix2.get_rows(), 1);
+  EXPECT_EQ(matrix2.get_cols(), 1);
 
-  S21Matrix matrix2{2, 2};
-  EXPECT_EQ(matrix2.get_cols(), 2);
-  EXPECT_EQ(matrix2.get_rows(), 2);
+  S21Matrix check_matrix{1, 1};
+  EXPECT_EQ(matrix2.get_rows(), 1);
+  EXPECT_EQ(matrix2.get_cols(), 1);
 
-  matrix1(0, 0) = 1;
-  matrix1(0, 1) = 2;
-  matrix1(1, 0) = 3;
-  matrix1(1, 1) = 4;
-
-  matrix2(0, 0) = 4;
-  matrix2(0, 1) = 3;
-  matrix2(1, 0) = 2;
-  matrix2(1, 1) = 1;
-
-  S21Matrix matrix2_before = matrix2;
-  const S21Matrix matrix2_const = matrix2;
-
-  matrix1.SumMatrix(matrix2_const);
-
-  s21_matrix_test_helper::CheckMatrix(matrix1, 5);
-  EXPECT_TRUE(matrix2_before == matrix2_const);
-}
-
-TEST(TestSumm, TestSummConst2) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_cols(), 2);
-  EXPECT_EQ(matrix1.get_rows(), 2);
-
-  S21Matrix matrix2{2, 2};
-  EXPECT_EQ(matrix2.get_cols(), 2);
-  EXPECT_EQ(matrix2.get_rows(), 2);
-
-  matrix1(0, 0) = 1;
-  matrix1(0, 1) = 2;
-  matrix1(1, 0) = 3;
-  matrix1(1, 1) = 4;
-
-  matrix2(0, 0) = 4;
-  matrix2(0, 1) = 3;
-  matrix2(1, 0) = 2;
-  matrix2(1, 1) = 1;
+  matrix1(0, 0) = 1.0;
+  matrix2(0, 0) = 0.5;
+  check_matrix(0, 0) = 1.5;
 
   S21Matrix matrix1_before = matrix1;
   S21Matrix matrix2_before = matrix2;
-  const S21Matrix matrix1_const = matrix1;
-  const S21Matrix matrix2_const = matrix2;
+  S21Matrix result1 = matrix1;
+  S21Matrix result2 = matrix1 + matrix2;
+  result1 += matrix2;
 
-  S21Matrix result;
-  result = matrix1_const + matrix2_const;
+  EXPECT_EQ(result1.get_rows(), 1);
+  EXPECT_EQ(result1.get_cols(), 1);
+  EXPECT_TRUE(result1 == check_matrix);
 
-  EXPECT_EQ(result.get_cols(), 2);
-  EXPECT_EQ(result.get_rows(), 2);
+  EXPECT_EQ(result2.get_rows(), 1);
+  EXPECT_EQ(result2.get_cols(), 1);
+  EXPECT_TRUE(result2 == check_matrix);
 
-  s21_matrix_test_helper::CheckMatrix(result, 5);
-  EXPECT_TRUE(matrix1_before == matrix1_const);
-  EXPECT_TRUE(matrix2_before == matrix2_const);
-}
-
-TEST(TestSumm, TestSummConst3) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_cols(), 2);
-  EXPECT_EQ(matrix1.get_rows(), 2);
-
-  S21Matrix matrix2{2, 2};
-  EXPECT_EQ(matrix2.get_cols(), 2);
-  EXPECT_EQ(matrix2.get_rows(), 2);
-
-  matrix1(0, 0) = 1;
-  matrix1(0, 1) = 2;
-  matrix1(1, 0) = 3;
-  matrix1(1, 1) = 4;
-
-  matrix2(0, 0) = 4;
-  matrix2(0, 1) = 3;
-  matrix2(1, 0) = 2;
-  matrix2(1, 1) = 1;
-
-  S21Matrix matrix1_before = matrix1;
-  S21Matrix matrix2_before = matrix2;
-  const S21Matrix matrix1_const = matrix1;
-  const S21Matrix matrix2_const = matrix2;
-
-  S21Matrix result{2, 2};
-  result += matrix1_const;
-
-  EXPECT_EQ(result.get_cols(), 2);
-  EXPECT_EQ(result.get_rows(), 2);
-  EXPECT_TRUE(result == matrix1);
-
-  result += matrix2_const;
-
-  EXPECT_EQ(result.get_cols(), 2);
-  EXPECT_EQ(result.get_rows(), 2);
-  s21_matrix_test_helper::CheckMatrix(result, 5);
-  EXPECT_TRUE(matrix1_before == matrix1_const);
-  EXPECT_TRUE(matrix2_before == matrix2_const);
+  EXPECT_TRUE(matrix1_before == matrix1);
+  EXPECT_TRUE(matrix2_before == matrix2);
 }

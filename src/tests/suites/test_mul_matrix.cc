@@ -4,7 +4,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Тесты исключений функции умножения матриц
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-// TODO: matrix1 * const_matrix2; const_matrix1 * const_matrix2
+
 TEST(TestMulMatrix, TestMulMatrixFunctionException1) {
   S21Matrix matrix1{3, 2};
   S21Matrix matrix2{3, 2};
@@ -1093,4 +1093,4 @@ TEST_P(RandomMulMatrixRangeOne, TestMulMatrixRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     MulMatrixSuite1, RandomMulMatrixRangeOne,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));

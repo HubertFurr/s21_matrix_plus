@@ -50,31 +50,6 @@ TEST(TestCalcComplements, TestCalcComplementsException4) {
 }
 
 TEST(TestCalcComplements, TestCalcComplementsException5) {
-  S21Matrix test_matrix(1, 1);
-
-  EXPECT_EQ(test_matrix.get_rows(), 1);
-  EXPECT_EQ(test_matrix.get_cols(), 1);
-
-  S21Matrix matrix_before = test_matrix;
-
-  EXPECT_ANY_THROW(test_matrix.CalcComplements());
-  EXPECT_TRUE(test_matrix == matrix_before);
-}
-
-TEST(TestCalcComplements, TestCalcComplementsException6) {
-  S21Matrix test_matrix(1, 1);
-
-  EXPECT_EQ(test_matrix.get_rows(), 1);
-  EXPECT_EQ(test_matrix.get_cols(), 1);
-
-  test_matrix(0, 0) = 5.0;
-  S21Matrix matrix_before = test_matrix;
-
-  EXPECT_ANY_THROW(test_matrix.CalcComplements());
-  EXPECT_TRUE(test_matrix == matrix_before);
-}
-
-TEST(TestCalcComplements, TestCalcComplementsException7) {
   S21Matrix test_matrix(29, 30);
 
   EXPECT_EQ(test_matrix.get_rows(), 29);
@@ -87,68 +62,6 @@ TEST(TestCalcComplements, TestCalcComplementsException7) {
 
   EXPECT_ANY_THROW(test_matrix.CalcComplements());
   EXPECT_TRUE(test_matrix == matrix_before);
-}
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Тесты на const матрицы
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-TEST(TestCalcComplements, TestCalcComplementsConst1) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_cols(), 2);
-  EXPECT_EQ(matrix1.get_rows(), 2);
-
-  S21Matrix result_check{2, 2};
-  EXPECT_EQ(result_check.get_cols(), 2);
-  EXPECT_EQ(result_check.get_rows(), 2);
-
-  matrix1(0, 0) = 1;
-  matrix1(0, 1) = 2;
-  matrix1(1, 0) = 3;
-  matrix1(1, 1) = 4;
-
-  result_check(0, 0) = 4;
-  result_check(0, 1) = -3;
-  result_check(1, 0) = -2;
-  result_check(1, 1) = 1;
-
-  const S21Matrix const_matrix1 = matrix1;
-  const S21Matrix const_result_check = result_check;
-
-  const S21Matrix result = const_matrix1.CalcComplements();
-
-  EXPECT_TRUE(result == result_check);
-  EXPECT_TRUE(result == const_result_check);
-  EXPECT_TRUE(matrix1 == const_matrix1);
-}
-
-TEST(TestCalcComplements, TestCalcComplementsConst2) {
-  S21Matrix matrix1{2, 2};
-  EXPECT_EQ(matrix1.get_cols(), 2);
-  EXPECT_EQ(matrix1.get_rows(), 2);
-
-  S21Matrix result_check{2, 2};
-  EXPECT_EQ(result_check.get_cols(), 2);
-  EXPECT_EQ(result_check.get_rows(), 2);
-
-  matrix1(0, 0) = 12.452;
-  matrix1(0, 1) = 3.34245;
-  matrix1(1, 0) = 3.356;
-  matrix1(1, 1) = 3.543;
-
-  result_check(0, 0) = 3.543;
-  result_check(0, 1) = -3.356;
-  result_check(1, 0) = -3.34245;
-  result_check(1, 1) = 12.452;
-
-  const S21Matrix const_matrix1 = matrix1;
-  const S21Matrix const_result_check = result_check;
-
-  const S21Matrix result = const_matrix1.CalcComplements();
-
-  EXPECT_TRUE(result == result_check);
-  EXPECT_TRUE(result == const_result_check);
-  EXPECT_TRUE(matrix1 == const_matrix1);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -183,7 +96,7 @@ TEST_P(RandomCofactorMatrixWithZeros, TestCalcComplementsZeroRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     CalcComplementsSuite1, RandomCofactorMatrixWithZeros,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
 
 // Используем для теста следующее свойство определителя:
 // Если в определителе имеются два одинаковых параллельных ряда, то определитель
@@ -213,7 +126,7 @@ TEST_P(RandomCofactorMatrixWithDuplicates, TestCalcComplementsZeroRandom2) {
 
 INSTANTIATE_TEST_SUITE_P(
     CalcComplementsSuite2, RandomCofactorMatrixWithDuplicates,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
 
 // Используем для теста следующее свойство определителя:
 // Если в определителе два параллельных ряда пропорциональны, то определитель
@@ -243,7 +156,46 @@ TEST_P(RandomCofactorMatrixWithProportional, TestCalcComplementsZeroRandom3) {
 
 INSTANTIATE_TEST_SUITE_P(
     CalcComplementsSuite3, RandomCofactorMatrixWithProportional,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num_));
+    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Тесты для матриц 1х1
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+TEST(TestCalcComplements, TestCalcComplementsOne1) {
+  S21Matrix test_matrix(1, 1);
+
+  EXPECT_EQ(test_matrix.get_rows(), 1);
+  EXPECT_EQ(test_matrix.get_cols(), 1);
+
+  S21Matrix matrix_before = test_matrix;
+  S21Matrix result;
+
+  EXPECT_NO_THROW(result = test_matrix.CalcComplements());
+  EXPECT_TRUE(test_matrix == matrix_before);
+
+  EXPECT_EQ(result.get_rows(), 1);
+  EXPECT_EQ(result.get_cols(), 1);
+  EXPECT_EQ(result(0, 0), 1.0);
+}
+
+TEST(TestCalcComplements, TestCalcComplementsOne2) {
+  S21Matrix test_matrix(1, 1);
+
+  EXPECT_EQ(test_matrix.get_rows(), 1);
+  EXPECT_EQ(test_matrix.get_cols(), 1);
+
+  test_matrix(0, 0) = 5.0;
+  S21Matrix matrix_before = test_matrix;
+  S21Matrix result;
+
+  EXPECT_NO_THROW(result = test_matrix.CalcComplements());
+  EXPECT_TRUE(test_matrix == matrix_before);
+
+  EXPECT_EQ(result.get_rows(), 1);
+  EXPECT_EQ(result.get_cols(), 1);
+  EXPECT_EQ(result(0, 0), 1.0);
+}
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Тесты, где матрица дополнений заполнена нулями

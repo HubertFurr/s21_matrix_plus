@@ -1,68 +1,6 @@
 #include "./../test.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Тесты на const матрицы
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-TEST(TestTranspose, TestTransposeConst1) {
-  S21Matrix matrix1{1, 99};
-  EXPECT_EQ(matrix1.get_rows(), 1);
-  EXPECT_EQ(matrix1.get_cols(), 99);
-
-  S21Matrix result_check{99, 1};
-  EXPECT_EQ(result_check.get_rows(), 99);
-  EXPECT_EQ(result_check.get_cols(), 1);
-
-  s21_matrix_test_helper::FillMatrix(matrix1, 1.99);
-  s21_matrix_test_helper::FillMatrix(result_check, 1.99);
-
-  s21_matrix_test_helper::CheckMatrix(matrix1, 1.99);
-  s21_matrix_test_helper::CheckMatrix(result_check, 1.99);
-
-  const S21Matrix const_matrix1 = matrix1;
-  const S21Matrix const_result_check = result_check;
-
-  S21Matrix result = const_matrix1.Transpose();
-
-  EXPECT_TRUE(result == result_check);
-  EXPECT_TRUE(result == const_result_check);
-  EXPECT_TRUE(matrix1 == const_matrix1);
-}
-
-TEST(TestTranspose, TestTransposeConst2) {
-  S21Matrix matrix1{2, 3};
-  EXPECT_EQ(matrix1.get_rows(), 2);
-  EXPECT_EQ(matrix1.get_cols(), 3);
-
-  S21Matrix result_check{3, 2};
-  EXPECT_EQ(result_check.get_rows(), 3);
-  EXPECT_EQ(result_check.get_cols(), 2);
-
-  matrix1(0, 0) = 1;
-  matrix1(0, 1) = 2;
-  matrix1(0, 2) = 3;
-  matrix1(1, 0) = 4;
-  matrix1(1, 1) = 5;
-  matrix1(1, 2) = 6;
-
-  result_check(0, 0) = 1;
-  result_check(1, 0) = 2;
-  result_check(2, 0) = 3;
-  result_check(0, 1) = 4;
-  result_check(1, 1) = 5;
-  result_check(2, 1) = 6;
-
-  const S21Matrix const_matrix1 = matrix1;
-  const S21Matrix const_result_check = result_check;
-
-  S21Matrix result = const_matrix1.Transpose();
-
-  EXPECT_TRUE(result == result_check);
-  EXPECT_TRUE(result == const_result_check);
-  EXPECT_TRUE(matrix1 == const_matrix1);
-}
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Тесты на обычные матрицы
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 

@@ -2,40 +2,21 @@
 #define CPP1_S21_MATRIXPLUS_S21_MATRIX_OOP_H_
 
 class S21Matrix {
- private:
-  int rows_, cols_;
-  double* matrix_;
-  const double epsilon_ = 1e-7;
-
-  void Free() noexcept;
-  double& get_matrix_element(int row, int col) const;
-  void SwapRows(int n1, int n2) noexcept;
-  S21Matrix GetMinorMatrix(const int skip_row, const int skip_column) const;
-
  public:
-  // Возможно использование ключевого слова explicit для конструкторов, но на в
-  // контексте данного класса не нашел необходимости в этом.
-  // Неявные преобразования чаще всего нам полезны, поэтому необходимость
-  // использования explicit надо четко для себя объяснить
-
-  S21Matrix();
-  S21Matrix(int rows, int cols);
+  S21Matrix() noexcept;
+  // Зачем explicit - см. brief конструктора
+  explicit S21Matrix(int rows, int cols);
   S21Matrix(const S21Matrix& other);
   S21Matrix(S21Matrix&& other) noexcept;
+  S21Matrix& operator=(const S21Matrix& other);
+  S21Matrix& operator=(S21Matrix&& other) noexcept;
   ~S21Matrix() noexcept;
 
-  // Nodiscard -  атрибут используется, чтобы обозначить, что возвращаемое
-  // значение функции должно быть обязательно использовано при вызове.
-  // Особенно актуально в случаях, когда функция возвращает код ошибки (таким
-  // образом компилятор всегда напомнит, если вы не сохраняете код ошибки и,
-  // соответственно не проверяете его).
-  // В данном случае добавил у некоторых функций для примера. Можно добавить ко
-  // всем функциям, которые никак не меняют объект и что-то возвращают
-  // (использование таких функций без сохранения результатов не имеет смысла и
-  // компилятор будет нас предупреждать), но не стал, т.к.  многие тесты делают
-  // проверки на исключения без сохранения результата функций
-
-  [[nodiscard]] bool EqMatrix(const S21Matrix& other) const;
+  // В заголовочном файле можно помечать методы как [[nodiscard]], например
+  // EqMatrix() можно объявить как:
+  // [[nodiscard]] bool EqMatrix(const S21Matrix& other) const;
+  // Однако не стоит это делать - см. brief метода
+  bool EqMatrix(const S21Matrix& other) const;
   void SumMatrix(const S21Matrix& other);
   void SubMatrix(const S21Matrix& other);
   void MulNumber(const double number) noexcept;
@@ -45,13 +26,11 @@ class S21Matrix {
   double Determinant() const;
   S21Matrix InverseMatrix() const;
 
-  [[nodiscard]] int get_cols() const noexcept;
-  [[nodiscard]] int get_rows() const noexcept;
+  int get_cols() const noexcept;
+  int get_rows() const noexcept;
   void set_rows(int new_rows);
   void set_cols(int new_cols);
 
-  S21Matrix& operator=(const S21Matrix& other);
-  S21Matrix& operator=(S21Matrix&& other) noexcept;
   // Зачем указывать &, && и delete - см. brief метода
   double& operator()(int row, int col) &;
   double& operator()(int row, int col) && = delete;
@@ -59,15 +38,24 @@ class S21Matrix {
   const double& operator()(int row, int col) const&& = delete;
   bool operator==(const S21Matrix& other) const;
   S21Matrix operator+(const S21Matrix& other) const;
-  S21Matrix operator+=(const S21Matrix& other);
+  S21Matrix& operator+=(const S21Matrix& other);
   S21Matrix operator-(const S21Matrix& other) const;
-  S21Matrix operator-=(const S21Matrix& other);
+  S21Matrix& operator-=(const S21Matrix& other);
   S21Matrix operator*(double number) const noexcept;
-  // TODO: S21Matrix operator*(const double num, S21Matrix &A) ???
   friend S21Matrix operator*(double number, const S21Matrix& matrix) noexcept;
-  S21Matrix operator*=(double number);
+  S21Matrix& operator*=(double number);
   S21Matrix operator*(const S21Matrix& other) const;
-  S21Matrix operator*=(const S21Matrix& other);
+  S21Matrix& operator*=(const S21Matrix& other);
+
+ private:
+  void Free() noexcept;
+  double& GetMatrixElement(int row, int col) const;
+  void SwapRows(int row1, int row2) noexcept;
+  S21Matrix GetMinorMatrix(const int skip_row, const int skip_column) const;
+
+  int rows_, cols_;
+  double* matrix_;
+  const double kEpsilon = 1e-7;
 };
 
 #endif  // CPP1_S21_MATRIXPLUS_S21_MATRIX_OOP_H_
