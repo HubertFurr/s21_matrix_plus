@@ -5,9 +5,9 @@
 
 namespace s21_matrix_test_helper {
 
-constexpr double epsilon = 1e-7;
-constexpr int random_test_num = 50;
-constexpr int random_matrix_max_size = 20;  // 9!
+constexpr double kEpsilon = 1e-7;
+constexpr int kRandomTestNum = 50;
+constexpr int kRandomMatrixMaxSize = 20;  // 9!
 
 S21Matrix TestMoveConstructor(S21Matrix test);
 void Print(const S21Matrix& matrix);

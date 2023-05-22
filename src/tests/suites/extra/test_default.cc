@@ -265,7 +265,7 @@ TEST(TestDefault, TestDeterminant1) {
   S21Matrix matrix_before = matrix;
   double result = matrix.Determinant();
 
-  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::kEpsilon);
   EXPECT_TRUE(matrix == matrix_before);
 }
 

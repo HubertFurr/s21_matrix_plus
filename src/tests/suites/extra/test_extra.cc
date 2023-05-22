@@ -5,15 +5,15 @@ TEST(TestExtra, TestOperatorBracketsConst2) {
   EXPECT_EQ(matrix_check.get_rows(), 3);
   EXPECT_EQ(matrix_check.get_cols(), 3);
 
-  ASSERT_NEAR(matrix_check(0, 0), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(0, 1), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(0, 2), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(1, 0), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(1, 1), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(1, 2), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(2, 0), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(2, 1), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(2, 2), 0.0, s21_matrix_test_helper::epsilon);
+  ASSERT_NEAR(matrix_check(0, 0), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(0, 1), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(0, 2), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(1, 0), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(1, 1), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(1, 2), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(2, 0), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(2, 1), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(2, 2), 0.0, s21_matrix_test_helper::kEpsilon);
 
   // Расскомментировать, чтобы проверить наличие ошибки при компиляции
   // (конст матрицы нельзя менять!)

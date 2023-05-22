@@ -96,7 +96,7 @@ TEST_P(RandomCofactorMatrixWithZeros, TestCalcComplementsZeroRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     CalcComplementsSuite1, RandomCofactorMatrixWithZeros,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));
 
 // Используем для теста следующее свойство определителя:
 // Если в определителе имеются два одинаковых параллельных ряда, то определитель
@@ -126,7 +126,7 @@ TEST_P(RandomCofactorMatrixWithDuplicates, TestCalcComplementsZeroRandom2) {
 
 INSTANTIATE_TEST_SUITE_P(
     CalcComplementsSuite2, RandomCofactorMatrixWithDuplicates,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));
 
 // Используем для теста следующее свойство определителя:
 // Если в определителе два параллельных ряда пропорциональны, то определитель
@@ -156,7 +156,7 @@ TEST_P(RandomCofactorMatrixWithProportional, TestCalcComplementsZeroRandom3) {
 
 INSTANTIATE_TEST_SUITE_P(
     CalcComplementsSuite3, RandomCofactorMatrixWithProportional,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Тесты для матриц 1х1

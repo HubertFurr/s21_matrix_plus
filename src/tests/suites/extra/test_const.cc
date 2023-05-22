@@ -126,42 +126,42 @@ TEST(TestConst, TestOperatorBracketsConst1) {
   EXPECT_EQ(matrix_check.get_rows(), 3);
   EXPECT_EQ(matrix_check.get_cols(), 3);
 
-  ASSERT_NEAR(matrix_check(0, 0), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(0, 1), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(0, 2), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(1, 0), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(1, 1), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(1, 2), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(2, 0), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(2, 1), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(2, 2), 0.0, s21_matrix_test_helper::epsilon);
+  ASSERT_NEAR(matrix_check(0, 0), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(0, 1), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(0, 2), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(1, 0), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(1, 1), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(1, 2), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(2, 0), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(2, 1), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(2, 2), 0.0, s21_matrix_test_helper::kEpsilon);
 
   matrix_check(0, 0) = 1.0;
   matrix_check(0, 1) = 2.0;
   matrix_check(1, 0) = 3.0;
   matrix_check(1, 1) = 4.0;
 
-  ASSERT_NEAR(matrix_check(0, 0), 1.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(0, 1), 2.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(0, 2), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(1, 0), 3.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(1, 1), 4.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(1, 2), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(2, 0), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(2, 1), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_check(2, 2), 0.0, s21_matrix_test_helper::epsilon);
+  ASSERT_NEAR(matrix_check(0, 0), 1.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(0, 1), 2.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(0, 2), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(1, 0), 3.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(1, 1), 4.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(1, 2), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(2, 0), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(2, 1), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_check(2, 2), 0.0, s21_matrix_test_helper::kEpsilon);
 
   const S21Matrix matrix_copy = matrix_check;
 
-  ASSERT_NEAR(matrix_copy(0, 0), 1.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_copy(0, 1), 2.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_copy(0, 2), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_copy(1, 0), 3.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_copy(1, 1), 4.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_copy(1, 2), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_copy(2, 0), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_copy(2, 1), 0.0, s21_matrix_test_helper::epsilon);
-  ASSERT_NEAR(matrix_copy(2, 2), 0.0, s21_matrix_test_helper::epsilon);
+  ASSERT_NEAR(matrix_copy(0, 0), 1.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_copy(0, 1), 2.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_copy(0, 2), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_copy(1, 0), 3.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_copy(1, 1), 4.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_copy(1, 2), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_copy(2, 0), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_copy(2, 1), 0.0, s21_matrix_test_helper::kEpsilon);
+  ASSERT_NEAR(matrix_copy(2, 2), 0.0, s21_matrix_test_helper::kEpsilon);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -649,7 +649,7 @@ TEST(TestConst, TestDeterminantConst1) {
   const S21Matrix const_matrix1 = matrix1;
   double result = const_matrix1.Determinant();
 
-  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::kEpsilon);
   EXPECT_TRUE(matrix1 == const_matrix1);
 }
 
@@ -667,7 +667,7 @@ TEST(TestConst, TestDeterminantConst2) {
   const S21Matrix const_matrix1 = matrix1;
   double result = const_matrix1.Determinant();
 
-  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::kEpsilon);
   EXPECT_TRUE(matrix1 == const_matrix1);
 }
 
@@ -690,7 +690,7 @@ TEST(TestConst, TestDeterminantConst3) {
   const S21Matrix const_matrix1 = matrix1;
   double result = const_matrix1.Determinant();
 
-  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(result_check, result, s21_matrix_test_helper::kEpsilon);
   EXPECT_TRUE(matrix1 == const_matrix1);
 }
 

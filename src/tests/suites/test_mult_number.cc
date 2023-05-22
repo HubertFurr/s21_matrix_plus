@@ -350,4 +350,4 @@ TEST_P(RandomMulNumberMatrixRangeOne, TestMulNumberRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     MulNumberSuite1, RandomMulNumberMatrixRangeOne,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));

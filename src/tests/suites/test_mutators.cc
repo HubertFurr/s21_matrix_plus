@@ -67,8 +67,8 @@ TEST(TestMutators, TestMutators1) {
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 1);
 
-  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 0), 0.0, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 0), 0.0, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators2) {
@@ -82,8 +82,8 @@ TEST(TestMutators, TestMutators2) {
   EXPECT_EQ(matrix1.get_rows(), 1);
   EXPECT_EQ(matrix1.get_cols(), 2);
 
-  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(0, 1), 0.0, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(0, 1), 0.0, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators3) {
@@ -97,7 +97,7 @@ TEST(TestMutators, TestMutators3) {
   EXPECT_EQ(matrix1.get_rows(), 1);
   EXPECT_EQ(matrix1.get_cols(), 1);
 
-  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators4) {
@@ -111,7 +111,7 @@ TEST(TestMutators, TestMutators4) {
   EXPECT_EQ(matrix1.get_rows(), 1);
   EXPECT_EQ(matrix1.get_cols(), 1);
 
-  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators5) {
@@ -125,8 +125,8 @@ TEST(TestMutators, TestMutators5) {
   EXPECT_EQ(matrix1.get_rows(), 1);
   EXPECT_EQ(matrix1.get_cols(), 2);
 
-  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(0, 1), 5.5, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(0, 1), 5.5, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators6) {
@@ -140,8 +140,8 @@ TEST(TestMutators, TestMutators6) {
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 1);
 
-  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 0), 5.5, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 0), 5.5, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators7) {
@@ -156,10 +156,10 @@ TEST(TestMutators, TestMutators7) {
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 2);
 
-  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(0, 1), 5.5, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 0), 5.5, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 1), 5.5, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 5.5, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(0, 1), 5.5, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 0), 5.5, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 1), 5.5, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators8) {
@@ -177,8 +177,8 @@ TEST(TestMutators, TestMutators8) {
   EXPECT_EQ(matrix1.get_rows(), 1);
   EXPECT_EQ(matrix1.get_cols(), 2);
 
-  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(0, 1), 2, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(0, 1), 2, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators9) {
@@ -196,8 +196,8 @@ TEST(TestMutators, TestMutators9) {
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 1);
 
-  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 0), 3, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 0), 3, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators10) {
@@ -215,12 +215,12 @@ TEST(TestMutators, TestMutators10) {
   EXPECT_EQ(matrix1.get_rows(), 3);
   EXPECT_EQ(matrix1.get_cols(), 2);
 
-  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(0, 1), 2, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 0), 3, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 1), 4, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(2, 0), 0, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(2, 1), 0, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(0, 1), 2, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 0), 3, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 1), 4, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(2, 0), 0, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(2, 1), 0, s21_matrix_test_helper::kEpsilon);
 }
 
 TEST(TestMutators, TestMutators11) {
@@ -238,10 +238,10 @@ TEST(TestMutators, TestMutators11) {
   EXPECT_EQ(matrix1.get_rows(), 2);
   EXPECT_EQ(matrix1.get_cols(), 3);
 
-  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(0, 1), 2, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(0, 2), 0, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 0), 3, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 1), 4, s21_matrix_test_helper::epsilon);
-  EXPECT_NEAR(matrix1(1, 2), 0, s21_matrix_test_helper::epsilon);
+  EXPECT_NEAR(matrix1(0, 0), 1, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(0, 1), 2, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(0, 2), 0, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 0), 3, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 1), 4, s21_matrix_test_helper::kEpsilon);
+  EXPECT_NEAR(matrix1(1, 2), 0, s21_matrix_test_helper::kEpsilon);
 }

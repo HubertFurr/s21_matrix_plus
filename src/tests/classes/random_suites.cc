@@ -4,7 +4,7 @@
 
 RandomDeterminantMatrixWithZeros::RandomDeterminantMatrixWithZeros() {
   int num_rows = s21_matrix_test_helper::GetRandInt(
-      2, s21_matrix_test_helper::random_matrix_max_size);
+      2, s21_matrix_test_helper::kRandomMatrixMaxSize);
   int num_cols = num_rows;
   test_matrix_ = S21Matrix(num_rows, num_cols);
 
@@ -25,7 +25,7 @@ RandomDeterminantMatrixWithZeros::RandomDeterminantMatrixWithZeros() {
 
 RandomDeterminantMatrixWithDuplicates::RandomDeterminantMatrixWithDuplicates() {
   int num_rows = s21_matrix_test_helper::GetRandInt(
-      3, s21_matrix_test_helper::random_matrix_max_size);
+      3, s21_matrix_test_helper::kRandomMatrixMaxSize);
   int num_cols = num_rows;
   test_matrix_ = S21Matrix(num_rows, num_cols);
 
@@ -55,7 +55,7 @@ RandomDeterminantMatrixWithDuplicates::RandomDeterminantMatrixWithDuplicates() {
 RandomDeterminantMatrixWithProportional::
     RandomDeterminantMatrixWithProportional() {
   int num_rows = s21_matrix_test_helper::GetRandInt(
-      2, s21_matrix_test_helper::random_matrix_max_size);
+      2, s21_matrix_test_helper::kRandomMatrixMaxSize);
   int num_cols = num_rows;
   test_matrix_ = S21Matrix(num_rows, num_cols);
 
@@ -77,7 +77,7 @@ RandomDeterminantMatrixWithProportional::
 
 RandomCofactorMatrixWithZeros::RandomCofactorMatrixWithZeros() {
   int num_rows = s21_matrix_test_helper::GetRandInt(
-      2, s21_matrix_test_helper::random_matrix_max_size);
+      2, s21_matrix_test_helper::kRandomMatrixMaxSize);
   int num_cols = num_rows;
   test_matrix_ = S21Matrix{num_rows, num_cols};
 
@@ -94,7 +94,7 @@ RandomCofactorMatrixWithZeros::RandomCofactorMatrixWithZeros() {
 
 RandomCofactorMatrixWithDuplicates::RandomCofactorMatrixWithDuplicates() {
   int num_rows = s21_matrix_test_helper::GetRandInt(
-      3, s21_matrix_test_helper::random_matrix_max_size);
+      3, s21_matrix_test_helper::kRandomMatrixMaxSize);
   int num_cols = num_rows;
 
   test_matrix_ = S21Matrix{num_rows, num_cols};
@@ -114,7 +114,7 @@ RandomCofactorMatrixWithDuplicates::RandomCofactorMatrixWithDuplicates() {
 
 RandomCofactorMatrixWithProportional::RandomCofactorMatrixWithProportional() {
   int num_rows = s21_matrix_test_helper::GetRandInt(
-      3, s21_matrix_test_helper::random_matrix_max_size);
+      3, s21_matrix_test_helper::kRandomMatrixMaxSize);
   int num_cols = num_rows;
 
   test_matrix_ = S21Matrix{num_rows, num_cols};
@@ -134,7 +134,7 @@ RandomCofactorMatrixWithProportional::RandomCofactorMatrixWithProportional() {
 
 RandomInverseMatrixRangeOne::RandomInverseMatrixRangeOne() {
   int num_rows = s21_matrix_test_helper::GetRandInt(
-      1, s21_matrix_test_helper::random_matrix_max_size);
+      1, s21_matrix_test_helper::kRandomMatrixMaxSize);
   int num_cols = num_rows;
 
   test_matrix_ =
@@ -143,7 +143,7 @@ RandomInverseMatrixRangeOne::RandomInverseMatrixRangeOne() {
 
 RandomInverseMatrixRangeTwo::RandomInverseMatrixRangeTwo() {
   int num_rows = s21_matrix_test_helper::GetRandInt(
-      1, s21_matrix_test_helper::random_matrix_max_size);
+      1, s21_matrix_test_helper::kRandomMatrixMaxSize);
   int num_cols = num_rows;
 
   test_matrix_ =
@@ -152,7 +152,7 @@ RandomInverseMatrixRangeTwo::RandomInverseMatrixRangeTwo() {
 
 RandomInverseMatrixRangeThree::RandomInverseMatrixRangeThree() {
   int num_rows = s21_matrix_test_helper::GetRandInt(
-      1, s21_matrix_test_helper::random_matrix_max_size);
+      1, s21_matrix_test_helper::kRandomMatrixMaxSize);
   int num_cols = num_rows;
 
   test_matrix_ =

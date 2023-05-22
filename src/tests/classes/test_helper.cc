@@ -148,7 +148,7 @@ void FillMatrix(S21Matrix& matrix, double value) {
 void CheckMatrix(const S21Matrix& matrix, double value) {
   for (int i = 0; i < matrix.get_rows(); ++i) {
     for (int j = 0; j < matrix.get_cols(); ++j) {
-      ASSERT_NEAR(matrix(i, j), value, s21_matrix_test_helper::epsilon);
+      ASSERT_NEAR(matrix(i, j), value, s21_matrix_test_helper::kEpsilon);
     }
   }
 }
@@ -156,7 +156,7 @@ void CheckMatrix(const S21Matrix& matrix, double value) {
 void TestInverse(const S21Matrix& matrix) {
   S21Matrix matrix_before = matrix;
   double det = matrix.Determinant();
-  if (std::abs(det) < s21_matrix_test_helper::epsilon) {
+  if (std::abs(det) < s21_matrix_test_helper::kEpsilon) {
     EXPECT_ANY_THROW(matrix.InverseMatrix());
   } else {
     S21Matrix matrix_inverse = matrix.InverseMatrix();

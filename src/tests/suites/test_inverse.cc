@@ -255,7 +255,7 @@ TEST_P(RandomInverseMatrixWithZeros, TestInverseZeroRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite1, RandomInverseMatrixWithZeros,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));
 
 // Используем для теста следующее свойство определителя:
 // Если в определителе имеются два одинаковых параллельных ряда, то определитель
@@ -277,7 +277,7 @@ TEST_P(RandomInverseMatrixWithDuplicates, TestInverseZeroRandom2) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite2, RandomInverseMatrixWithDuplicates,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));
 
 // Используем для теста следующее свойство определителя:
 // Если в определителе два параллельных ряда пропорциональны, то определитель
@@ -299,7 +299,7 @@ TEST_P(RandomInverseMatrixWithProportiona, TestInverseZeroRandom3) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite3, RandomInverseMatrixWithProportiona,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Рандомные цикличные тесты на определитель, не равный 0
@@ -319,7 +319,7 @@ TEST_P(RandomInverseMatrixRangeOne, TestInverseRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite4, RandomInverseMatrixRangeOne,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));
 
 TEST_P(RandomInverseMatrixRangeTwo, TestInverseRandom1) {
   s21_matrix_test_helper::TestInverse(test_matrix_);
@@ -335,7 +335,7 @@ TEST_P(RandomInverseMatrixRangeTwo, TestInverseRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite5, RandomInverseMatrixRangeTwo,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));
 
 TEST_P(RandomInverseMatrixRangeThree, TestInverseRandom1) {
   s21_matrix_test_helper::TestInverse(test_matrix_);
@@ -351,7 +351,7 @@ TEST_P(RandomInverseMatrixRangeThree, TestInverseRandom1) {
 
 INSTANTIATE_TEST_SUITE_P(
     InverseSuite6, RandomInverseMatrixRangeThree,
-    ::testing::Range(0, s21_matrix_test_helper::random_test_num));
+    ::testing::Range(0, s21_matrix_test_helper::kRandomTestNum));
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Тесты на определитель, не равный 0
