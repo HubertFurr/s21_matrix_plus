@@ -735,10 +735,7 @@ S21Matrix S21Matrix::InverseMatrix() const {
     throw std::logic_error("Determinant must be non-zero to calculate Inverse");
   }
 
-  S21Matrix matrix_cofactor_transposed = Transpose().CalcComplements();
-  S21Matrix result = matrix_cofactor_transposed * (1.0 / det);
-
-  return result;
+  return Transpose().CalcComplements() * (1.0 / det);
 }
 
 /**
