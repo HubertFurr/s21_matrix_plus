@@ -919,7 +919,7 @@ void S21Matrix::set_cols(int new_cols) {
  * @return double& ссылка на значение (row, col)
  */
 double &S21Matrix::operator()(int row, int col) & {
-  return GetMatrixElement(row, col);
+  return const_cast<double &>(GetMatrixElement(row, col));
 }
 
 /**
@@ -1117,16 +1117,14 @@ void S21Matrix::Free() noexcept {
 }
 
 /**
- * @brief По сути accessor и mutator для поля matrix_, однако не совсем и он
- * приватный, т.к. позволяет и получить и изменить данные. Нужен для
- * использования в перегрузке оператора (), который уже разделяет поведение для
- * const и не-const объектов
+ * @brief Служебная приватная функция для использования в перегрузке
+ * оператора(), который уже разделяет поведение для const и не-const объектов.
  *
  * @param row Номер столбца запрашиваемого элемента
  * @param col Номер строки запрашиваемого элемента
  * @return double& Ссылка на значение (row, col)
  */
-double &S21Matrix::GetMatrixElement(int row, int col) const {
+const double &S21Matrix::GetMatrixElement(int row, int col) const {
   if (row >= rows_ || col >= cols_ || row < 0 || col < 0) {
     throw std::out_of_range("Incorrect input for (), index is out of range.");
   }

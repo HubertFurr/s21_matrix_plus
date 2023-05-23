@@ -7,7 +7,7 @@
 /*                                                  ########           ####   */
 /*                                              ####                   ####   */
 /*   Created: 2022-09-25                        ####                   ####   */
-/*   Updated: 2023-05-22                            ############       ####   */
+/*   Updated: 2023-05-23                            ############       ####   */
 /*                                                  ############       ####   */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ class S21Matrix {
 
  private:
   void Free() noexcept;
-  double& GetMatrixElement(int row, int col) const;
+  const double& GetMatrixElement(int row, int col) const;
   void SwapRows(int row1, int row2) noexcept;
   S21Matrix GetMinorMatrix(const int skip_row, const int skip_column) const;
 
