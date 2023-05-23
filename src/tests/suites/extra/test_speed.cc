@@ -172,6 +172,40 @@ TEST(TestSpeed, TestCopy1) {
       << " ms)" << std::endl;
 }
 
+TEST(TestSpeed, TestMove1) {
+  int rows = 5120;
+  int cols = 5120;
+  std::cout << "[" << rows << " x " << cols << "]" << std::endl;
+
+  S21Matrix matrix1(rows, cols);
+
+  s21_matrix_test_helper::FillMatrix(matrix1, 2.1);
+  S21Matrix matrix_copy1 = matrix1;
+  S21Matrix matrix_copy2 = matrix1;
+
+  auto start = std::chrono::steady_clock::now();
+  S21Matrix matrix2(std::move(matrix1));
+  auto end = std::chrono::steady_clock::now();
+  auto diff = end - start;
+  std::cout
+      << "Move ctor(): "
+      << std::chrono::duration_cast<std::chrono::microseconds>(diff).count()
+      << " us ("
+      << std::chrono::duration_cast<std::chrono::milliseconds>(diff).count()
+      << " ms)" << std::endl;
+
+  start = std::chrono::steady_clock::now();
+  matrix_copy1 = std::move(matrix_copy2);
+  end = std::chrono::steady_clock::now();
+  diff = end - start;
+  std::cout
+      << "Move assign(): "
+      << std::chrono::duration_cast<std::chrono::microseconds>(diff).count()
+      << " us ("
+      << std::chrono::duration_cast<std::chrono::milliseconds>(diff).count()
+      << " ms)" << std::endl;
+}
+
 TEST(TestSpeed, TestSum1) {
   int rows = 5120;
   int cols = 5120;
