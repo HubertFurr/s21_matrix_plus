@@ -13,7 +13,7 @@
 
 /**
  * @file s21_matrix_oop.cc
- * @author your name (you@domain.com)
+ * @author Hubert Furr (hubertfu@student.21-school.ru)
  * @brief Методы проекта CPP1 s21_matrix+, реализующий библиотеку для
  * работы с матрицами.
  * @version 2.1
@@ -29,6 +29,10 @@
 #include <cmath>      // std::abs
 #include <stdexcept>  // length_error | out_of_range | logic_error
 #include <utility>    // std::move | std::swap
+
+/*******************************************************************************
+ * Special member functions
+ ******************************************************************************/
 
 /**
  * @brief
@@ -130,6 +134,9 @@ S21Matrix::S21Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
  * путем копирования данных из объекта other.
  *
  * @details
+ * В данном конструкторе мы не используем value-initialization при выделении
+ * памяти, т.к. все элементы гарантировано будут записаны при копировании.
+ *
  * std::copy супербыстрый, т.к. умеет целыми блоками копировать, если это
  * возможно (как std::memcpy). Мы можем это провернуть из-за этого, что выделили
  * память одним куском.
@@ -151,7 +158,7 @@ S21Matrix::S21Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
 S21Matrix::S21Matrix(const S21Matrix &other)
     : rows_(other.rows_),
       cols_(other.cols_),
-      matrix_(new double[rows_ * cols_]{}) {
+      matrix_(new double[rows_ * cols_]) {
   std::copy(other.matrix_, other.matrix_ + rows_ * cols_, matrix_);
 }
 
@@ -288,6 +295,10 @@ S21Matrix &S21Matrix::operator=(S21Matrix &&other) noexcept {
  * noexcept(false). Дабы не играть в рулетку, лучше указать явно.
  */
 S21Matrix::~S21Matrix() noexcept { Free(); }
+
+/*******************************************************************************
+ * Public methods
+ ******************************************************************************/
 
 /**
  * @brief Проверяет матрицы на равенство между собой.
@@ -1055,6 +1066,10 @@ S21Matrix &S21Matrix::operator*=(const S21Matrix &other) {
   MulMatrix(other);
   return *this;
 }
+
+/*******************************************************************************
+ * Private methods
+ ******************************************************************************/
 
 /**
  * @brief
