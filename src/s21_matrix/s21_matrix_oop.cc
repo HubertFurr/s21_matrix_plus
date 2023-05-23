@@ -934,7 +934,7 @@ double &S21Matrix::operator()(int row, int col) & {
  *
  * @param row Номер столбца запрашиваемого элемента
  * @param col Номер строки запрашиваемого элемента
- * @return double& const-ссылка на значение (row, col)
+ * @return const double& const-ссылка на значение (row, col)
  */
 const double &S21Matrix::operator()(int row, int col) const & {
   return GetMatrixElement(row, col);
@@ -1122,7 +1122,7 @@ void S21Matrix::Free() noexcept {
  *
  * @param row Номер столбца запрашиваемого элемента
  * @param col Номер строки запрашиваемого элемента
- * @return double& Ссылка на значение (row, col)
+ * @return const double& Ссылка на значение (row, col)
  */
 const double &S21Matrix::GetMatrixElement(int row, int col) const {
   if (row >= rows_ || col >= cols_ || row < 0 || col < 0) {
