@@ -7,7 +7,7 @@
 /*                                                  ########           ####   */
 /*                                              ####                   ####   */
 /*   Created: 2022-09-25                        ####                   ####   */
-/*   Updated: 2023-05-22                            ############       ####   */
+/*   Updated: 2023-05-23                            ############       ####   */
 /*                                                  ############       ####   */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@
  */
 S21Matrix::S21Matrix() noexcept : rows_(0), cols_(0), matrix_(nullptr) {}
 
-// TODO: почему память линейно выделена
+// TODO: Почему память линейно выделена
 // TODO: Привести пример, как в std накосячили из-за разрешения неявных
 // преобразований
 /**
@@ -78,6 +78,23 @@ S21Matrix::S21Matrix() noexcept : rows_(0), cols_(0), matrix_(nullptr) {}
  * S21Matrix размером [rows × cols], заполненный нулями.
  *
  * @details
+ * Обеспечена базовая гарантия безопасности исключений, благодаря тому, что
+ * память выделяется за один вызов new. Если бы мы использовали double**, то
+ * обеспечение базовой гарантии выглядело так бы:
+ *
+ *  matrix_ = new double *[rows_]{};
+ *  for (int i = 0; i < rows_; ++i) {
+ *    try {
+ *      matrix_[i] = new double[cols_]{};
+ *    } catch (...) {
+ *      for (int j = 0; j < i; ++j) {
+ *        delete[] matrix_[j];
+ *      }
+ *      delete[] matrix_;
+ *      throw;
+ *    }
+ *  }
+ *
  * Разрешаем создавать матрицы вида [0 × 5] или [5 × 0], т.к. в математике
  * пустая матрица определяется как матрица, в которой один из размеров m или n
  * равен нулю, следовательно, они являются матрицами размерности [m × 0],
@@ -382,7 +399,7 @@ void S21Matrix::SumMatrix(const S21Matrix &other) {
 
   for (int i = 0; i < rows_; ++i) {
     for (int j = 0; j < cols_; ++j) {
-      (*this)(i, j) = (*this)(i, j) + other(i, j);
+      (*this)(i, j) += other(i, j);
     }
   }
 }
@@ -406,7 +423,7 @@ void S21Matrix::SubMatrix(const S21Matrix &other) {
 
   for (int i = 0; i < rows_; ++i) {
     for (int j = 0; j < cols_; ++j) {
-      (*this)(i, j) = (*this)(i, j) - other(i, j);
+      (*this)(i, j) -= other(i, j);
     }
   }
 }
@@ -426,7 +443,7 @@ void S21Matrix::SubMatrix(const S21Matrix &other) {
 void S21Matrix::MulNumber(const double number) noexcept {
   for (int i = 0; i < rows_; ++i) {
     for (int j = 0; j < cols_; ++j) {
-      (*this)(i, j) = (*this)(i, j) * number;
+      (*this)(i, j) *= number;
     }
   }
 }
@@ -819,6 +836,9 @@ int S21Matrix::get_cols() const noexcept { return cols_; }
  * память при это необязательно. Однако для универсальности, сделаем
  * перевыделение, чтобы не зависеть от способа выделения памяти.
  *
+ * Благодаря использованию временного объекта соблюдается строгая гарантия
+ * безопасности исключений.
+ *
  * @param new_rows Новое значение для rows_
  */
 void S21Matrix::set_rows(int new_rows) {
@@ -840,6 +860,10 @@ void S21Matrix::set_rows(int new_rows) {
 
 /**
  * @brief Mutator (Setter) поля cols_.
+ *
+ * @details
+ * Благодаря использованию временного объекта соблюдается строгая гарантия
+ * безопасности исключений.
  *
  * @param new_rows Новое значение для cols_
  */
