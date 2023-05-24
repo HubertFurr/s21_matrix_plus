@@ -3,6 +3,9 @@ LIBS_ADDITIONAL =
 # Команда для открытия файла отчета о покрытии по умолчанию
 CMD_OPEN = open
 
+# Максимальное количество ошибок компиляции для отображения
+MAX_ERRORS = 10
+
 # Определяем ОС
 ifeq ($(OS), Windows_NT)
     detected_OS := Windows
@@ -63,18 +66,18 @@ ifeq ($(MODE), 2)
 	LFLAGS=-g -fsanitize=leak -fsanitize=address -fsanitize=undefined -fsanitize=unreachable -fno-sanitize-recover \
 	-fstack-protector -fanalyzer
 	CFLAGS_TESTS=-Wall -Werror -Wextra -c -g -fsanitize=leak -fsanitize=address -fsanitize=undefined -fsanitize=unreachable \
-	-fno-sanitize-recover -fstack-protector
+	-fno-sanitize-recover -fstack-protector -fmax-errors=$(MAX_ERRORS) -O3
 	CFLAGS += $(CFLAGS_TESTS) -fanalyzer
 else 
 	ifeq ($(MODE), 3)
 		# Собираем с отладочной информацией для valgrind
 		LFLAGS=-g
-		CFLAGS=-Wall -Werror -Wextra -c -g
+		CFLAGS=-Wall -Werror -Wextra -c -g -fmax-errors=$(MAX_ERRORS) -O3
 		CFLAGS_TESTS = $(CFLAGS)
 	else 
 		# Стандартный режим
 		LFLAGS= 
-		CFLAGS=-Wall -Werror -Wextra -c -std=c++17 -pedantic -O3
+		CFLAGS=-Wall -Werror -Wextra -c -std=c++17 -pedantic -fmax-errors=$(MAX_ERRORS) -O3
 		CFLAGS_TESTS = $(CFLAGS)
 	endif
 endif
