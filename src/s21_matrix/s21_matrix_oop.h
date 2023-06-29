@@ -7,7 +7,7 @@
 /*                                                  ########           ####   */
 /*                                              ####                   ####   */
 /*   Created: 2022-09-25                        ####                   ####   */
-/*   Updated: 2023-05-23                            ############       ####   */
+/*   Updated: 2023-06-29                            ############       ####   */
 /*                                                  ############       ####   */
 /* ************************************************************************** */
 
@@ -17,16 +17,27 @@
  * @brief Заголовочный файл проекта CPP1 s21_matrix+, реализующий библиотеку для
  * работы с матрицами.
  * @version 2.1
- * @date 2023-05-22
+ * @date 2023-06-29
  *
- * @copyright School-21 (c) 2023
+ * @copyright School-21 (c) 2022
  *
  */
 
-#ifndef CPP1_S21_MATRIXPLUS_S21_MATRIX_OOP_H_
-#define CPP1_S21_MATRIXPLUS_S21_MATRIX_OOP_H_
+#ifndef CPP1_S21_MATRIXPLUS_SRC_S21_MATRIX_S21_MATRIX_OOP_H_
+#define CPP1_S21_MATRIXPLUS_SRC_S21_MATRIX_S21_MATRIX_OOP_H_
 
-class S21Matrix {
+/**
+ * @brief Класс для работы с матрицами
+ *
+ * @details Почему класс помечен как final?
+ *
+ * Класс в C++ написан правильно если и только если любое из условий выполнено:
+ * 1) Класс содержит виртуальный деструктор
+ * 2) Класс объявлен как final
+ * 3) Класс является stateless и подвержен EBCO
+ * 4) Класс не может быть уничтожен извне, но может быть уничтожен потомком
+ */
+class S21Matrix final {
  public:
   S21Matrix() noexcept;
   // Зачем explicit - см. brief конструктора
@@ -83,4 +94,4 @@ class S21Matrix {
   const double kEpsilon = 1e-7;
 };
 
-#endif  // CPP1_S21_MATRIXPLUS_S21_MATRIX_OOP_H_
+#endif  // CPP1_S21_MATRIXPLUS_SRC_S21_MATRIX_S21_MATRIX_OOP_H_
