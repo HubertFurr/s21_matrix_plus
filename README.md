@@ -66,7 +66,7 @@ $ make
 ```
 
 ## Tests
-Unit-тесты реализованы при помощи [googletest](https://google.github.io/googletest/), отчет о покрытии при помощи [llvm-cov](https://llvm.org/docs/CommandGuide/llvm-cov.html)
+Unit-тесты реализованы при помощи [googletest](https://google.github.io/googletest/), отчет о покрытии при помощи [LCOV](https://github.com/linux-test-project/lcov)
 ```
 $ git clone git@github.com:HubertFurr/s21_matrix_plus.git
 $ cd s21_matrix_plus/src
