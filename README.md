@@ -72,3 +72,9 @@ $ git clone git@github.com:HubertFurr/s21_matrix_plus.git
 $ cd s21_matrix_plus/src
 $ make test
 ```
+Отчет о покрытии:
+```
+$ git clone git@github.com:HubertFurr/s21_matrix_plus.git
+$ cd s21_matrix_plus/src
+$ make gcov_report
+```

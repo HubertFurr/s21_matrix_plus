@@ -14,7 +14,7 @@
 /**
  * @file s21_matrix_oop.cc
  * @author Hubert Furr (hubertfu@student.21-school.ru)
- * @brief см.
+ * @brief см. заголовочный файл
  * @version 1.0
  * @date 2023-06-29
  *
